@@ -1,4 +1,4 @@
-package autoservice.models.order.status;
+package main.java.autoservice.models.order.enums;
 
 public enum OrderStatus {
     CREATED,

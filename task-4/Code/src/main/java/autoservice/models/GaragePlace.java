@@ -1,4 +1,4 @@
-package autoservice.models;
+package main.java.autoservice.models;
 
 public class GaragePlace {
     private int placeNumber;

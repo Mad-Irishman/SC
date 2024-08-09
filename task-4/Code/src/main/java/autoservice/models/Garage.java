@@ -1,4 +1,4 @@
-package autoservice.models;
+package main.java.autoservice.models;
 
 import java.util.List;
 import java.util.ArrayList;

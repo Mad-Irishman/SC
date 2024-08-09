@@ -1,6 +1,6 @@
-package autoservice.models;
+package main.java.autoservice.models;
 
-import autoservice.models.order.Order;
+import main.java.autoservice.models.order.Order;
 
 public class Master {
     private String name;

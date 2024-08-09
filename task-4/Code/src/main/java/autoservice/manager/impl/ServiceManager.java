@@ -1,13 +1,12 @@
-package autoservice.manager.impl;
+package main.java.autoservice.manager.impl;
 
-import autoservice.manager.ServiceManagerInterface;
-import autoservice.models.Garage;
-import autoservice.models.GaragePlace;
-import autoservice.models.Master;
-import autoservice.models.order.Order;
-import autoservice.models.order.status.OrderStatus;
+import main.java.autoservice.manager.ServiceManagerInterface;
+import main.java.autoservice.models.Garage;
+import main.java.autoservice.models.GaragePlace;
+import main.java.autoservice.models.Master;
+import main.java.autoservice.models.order.Order;
+import main.java.autoservice.models.order.enums.OrderStatus;
 
-import java.sql.Array;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;

@@ -1,8 +1,8 @@
-package autoservice.models.order;
+package main.java.autoservice.models.order;
 
-import autoservice.models.GaragePlace;
-import autoservice.models.Master;
-import autoservice.models.order.status.OrderStatus;
+import main.java.autoservice.models.GaragePlace;
+import main.java.autoservice.models.Master;
+import main.java.autoservice.models.order.enums.OrderStatus;
 
 import java.time.LocalDateTime;
 
