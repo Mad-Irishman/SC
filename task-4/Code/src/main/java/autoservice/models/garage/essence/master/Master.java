@@ -1,30 +1,35 @@
-package main.java.autoservice.models;
+package main.java.autoservice.models.garage.essence.master;
 
+import main.java.autoservice.models.garage.essence.master.masterStatus.MasterStatus;
 import main.java.autoservice.models.order.Order;
+
+import java.util.List;
 
 public class Master {
     private String name;
-    private boolean isAvailable;
+    private MasterStatus isAvailable;
     private Order ordersMaster;
+
 
     public Master(String name) {
         this.name = name;
-        this.isAvailable = true;
+        this.isAvailable = MasterStatus.AVAILABLE;
+
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public boolean isAvailable() {
+    public MasterStatus isAvailable() {
         return this.isAvailable;
     }
 
-    public void setAvailable(boolean available) {
+    public void setAvailable(MasterStatus available) {
         this.isAvailable = available;
     }
 
@@ -43,4 +48,5 @@ public class Master {
     public Order getOrdersMaster() {
         return this.ordersMaster;
     }
+
 }

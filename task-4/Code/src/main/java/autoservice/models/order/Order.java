@@ -1,8 +1,8 @@
 package main.java.autoservice.models.order;
 
-import main.java.autoservice.models.GaragePlace;
-import main.java.autoservice.models.Master;
-import main.java.autoservice.models.order.enums.OrderStatus;
+import main.java.autoservice.models.garage.essence.garagePlace.GaragePlace;
+import main.java.autoservice.models.garage.essence.master.Master;
+import main.java.autoservice.models.order.orderStatus.OrderStatus;
 
 import java.time.LocalDateTime;
 
@@ -18,12 +18,10 @@ public class Order {
     private double price;
 
 
-    public Order(String discription, Master assignedMaster, GaragePlace assignedGaragePlace, LocalDateTime submissionDate, LocalDateTime completionDate, LocalDateTime plannedStartDate, double price) {
-        this.idOrder++;
+    public Order(String discription, LocalDateTime submissionDate, LocalDateTime completionDate, LocalDateTime plannedStartDate, double price) {
+        idOrder++;
         this.discription = discription;
         this.statusOrder = OrderStatus.CREATED;
-        this.assignedMaster = assignedMaster;
-        this.assignedGaragePlace = assignedGaragePlace;
         this.submissionDate = submissionDate;
         this.completionDate = completionDate;
         this.plannedStartDate = plannedStartDate;

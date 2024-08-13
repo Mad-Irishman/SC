@@ -1,8 +1,8 @@
-package main.java.autoservice.models.order.enums;
+package main.java.autoservice.models.order.orderStatus;
 
 public enum OrderStatus {
     CREATED,
-    COMPELETED,
+    COMPLETED,
     CANCELLED,
     IN_PROGRESS
 }

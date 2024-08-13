@@ -1,9 +1,9 @@
 package main.java.autoservice.manager;
 
-import main.java.autoservice.models.GaragePlace;
-import main.java.autoservice.models.Master;
+import main.java.autoservice.models.garage.Garage;
+import main.java.autoservice.models.garage.essence.garagePlace.GaragePlace;
+import main.java.autoservice.models.garage.essence.master.Master;
 import main.java.autoservice.models.order.Order;
-import main.java.autoservice.models.order.enums.OrderStatus;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -17,15 +17,13 @@ public interface ServiceManagerInterface {
 
     void removeGaragePlace(GaragePlace garagePlace);
 
-    List<Master> getMastersByOrders(Order order);
+    List<Master> getMasters();
 
-    List<Master> getMastersSortedByAvailabilityAndName();
+    List<Garage> getGarages();
 
-    List<GaragePlace> getAvailableGaragePlaces();
+    void createOrder(String discription, LocalDateTime submissionDate, LocalDateTime completionDate, LocalDateTime plannedStartDate, double price);
 
-    void createOrder(String discription, Master assignedMaster, GaragePlace assignedGaragePlace, LocalDateTime submissionDate, LocalDateTime completionDate, LocalDateTime plannedStartDate, double price);
-
-    List<Order> getOrdersByMaster(Master master);
+    List<Order> getOrders();
 
     Order getOrderById(int id);
 
@@ -36,18 +34,6 @@ public interface ServiceManagerInterface {
     void cancelOrder(Order order);
 
     void adjustOrdersForDelay(int orderId, int delayInHours);
-
-    List<Order> sortListOrders();
-
-    List<Order> getCurrentOrders();
-
-    List<Order> getSortedCurrentOrders();
-
-    List<Order> getOrdersByStatusAndTimeFrame(OrderStatus status, LocalDateTime startTime, LocalDateTime endTime);
-
-    int getFreePlacesOnDate(LocalDateTime date);
-
-    LocalDateTime getNearestFreeDate();
 
     void showAllOrders();
 
