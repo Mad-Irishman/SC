@@ -1,13 +1,13 @@
 //package test;
 //
 //
-//import main.java.autoservice.manager.impl.ServiceManager;
-//import main.java.autoservice.models.garage.Garage;
-//import main.java.autoservice.models.garage.essence.GaragePlace;
-//import main.java.autoservice.models.garage.essence.master.Master;
-//import main.java.autoservice.models.garage.essence.master.masterStatus.MasterStatus;
-//import main.java.autoservice.models.order.Order;
-//import main.java.autoservice.models.order.orderStatus.OrderStatus;
+//import autoservice.manager.impl.ServiceManager;
+//import autoservice.models.garage.Garage;
+//import autoservice.models.garage.essence.GaragePlace;
+//import autoservice.models.master.Master;
+//import autoservice.models.master.masterStatus.MasterStatus;
+//import autoservice.models.order.Order;
+//import autoservice.models.order.orderStatus.OrderStatus;
 //
 //import java.time.LocalDateTime;
 //import java.util.List;
