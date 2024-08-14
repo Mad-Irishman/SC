@@ -1,7 +1,6 @@
 package autoservice.assistantManager.impl;
 
 import autoservice.assistantManager.AssistantInterface;
-import autoservice.manager.impl.ServiceManager;
 import autoservice.models.garagePlace.GaragePlace;
 import autoservice.models.master.Master;
 import autoservice.models.order.Order;
