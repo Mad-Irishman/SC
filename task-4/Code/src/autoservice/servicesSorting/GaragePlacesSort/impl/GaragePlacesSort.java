@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 public class GaragePlacesSort implements GaragePlacesSortInterface {
     private ServiceManager serviceManager;
 
+    @Override
     public List<GaragePlace> getAvailableGaragePlaces() {
         return serviceManager.getGarages().stream()
                 .flatMap(garage -> garage.getAvailableGaragePlaces().stream())

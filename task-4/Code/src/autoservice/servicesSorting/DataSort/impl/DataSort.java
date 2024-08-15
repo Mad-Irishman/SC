@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 public class DataSort implements DataSortInterface {
     private ServiceManager serviceManager;
 
+    @Override
     public int getFreePlacesOnDate(LocalDateTime date) {
         List<Master> occupiedMasters = serviceManager.getOrders().stream()
                 .filter(order -> order.getStatusOrder() == OrderStatus.IN_PROGRESS || order.getStatusOrder() == OrderStatus.CREATED)
@@ -41,6 +42,7 @@ public class DataSort implements DataSortInterface {
         return Math.min((int) freeMastersCount, (int) freePlacesCount);
     }
 
+    @Override
     public LocalDateTime getNearestFreeDate() {
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime nearestFreeDate = now;

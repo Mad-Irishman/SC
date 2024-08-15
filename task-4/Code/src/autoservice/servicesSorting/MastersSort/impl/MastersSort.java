@@ -13,12 +13,14 @@ public class MastersSort implements MastersSortInterface {
     private ServiceManager serviceManager;
 
 
+    @Override
     public List<Master> getMastersByOrders(Order order) {
         return serviceManager.getMasters().stream()
                 .filter(master -> master.getOrdersMaster() != null)
                 .collect(Collectors.toList());
     }
 
+    @Override
     public List<Master> getSortedMasters(List<Comparator<Master>> comparators) {
         return serviceManager.getMasters().stream()
                 .sorted(combineComparators(comparators))

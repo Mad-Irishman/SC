@@ -38,14 +38,13 @@ public class Garage {
 
     public List<Master> getAvailableMaster() {
         List<Master> availableMasters = new ArrayList<>();
-        for (Master master: masters) {
+        for (Master master : masters) {
             if (master.isAvailable() == MasterStatus.AVAILABLE) {
                 availableMasters.add(master);
             }
         }
         return availableMasters;
     }
-
 
 
     public void addGaragePlace(GaragePlace place) {

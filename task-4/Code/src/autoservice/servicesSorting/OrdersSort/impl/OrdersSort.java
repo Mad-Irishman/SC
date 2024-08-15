@@ -14,30 +14,35 @@ import java.util.stream.Collectors;
 public class OrdersSort implements OrdersSortInterface {
     private ServiceManager serviceManager;
 
+    @Override
     public List<Order> getSortedOrders(List<Comparator<Order>> comparators) {
         return serviceManager.getOrders().stream()
                 .sorted(combineComparators(comparators))
                 .collect(Collectors.toList());
     }
 
+    @Override
     public List<Order> getOrdersByMaster(Master master) {
         return serviceManager.getOrders().stream()
                 .filter(order -> order.getAssignedMaster().equals(master))
                 .collect(Collectors.toList());
     }
 
+    @Override
     public List<Order> getCurrentOrders() {
         return serviceManager.getOrders().stream()
                 .filter(order -> order.getStatusOrder() == OrderStatus.IN_PROGRESS)
                 .collect(Collectors.toList());
     }
 
+    @Override
     public List<Order> getOrdersByStatus(OrderStatus status) {
         return serviceManager.getOrders().stream()
                 .filter(order -> order.getStatusOrder() == status)
                 .collect(Collectors.toList());
     }
 
+    @Override
     public List<Order> getOrdersByTimeFrame(List<Order> orders, LocalDateTime startTime, LocalDateTime endTime) {
         return orders.stream()
                 .filter(order -> order.getCompletionDate() != null &&
