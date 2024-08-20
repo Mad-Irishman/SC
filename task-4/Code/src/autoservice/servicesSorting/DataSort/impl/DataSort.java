@@ -12,7 +12,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class DataSort implements DataSortInterface {
-    private ServiceManager serviceManager;
+    private final ServiceManager serviceManager;
+
+    public DataSort(ServiceManager serviceManager) {
+        this.serviceManager = serviceManager;
+    }
 
     @Override
     public int getFreePlacesOnDate(LocalDateTime date) {
@@ -53,16 +57,15 @@ public class DataSort implements DataSortInterface {
                 .collect(Collectors.toList());
 
         for (LocalDateTime occupiedDate : occupiedDates) {
-            if (occupiedDate.isAfter(nearestFreeDate)) {
-                if (isFreeAt(occupiedDate)) {
-                    nearestFreeDate = occupiedDate;
-                    break;
-                }
+            if (occupiedDate.isAfter(nearestFreeDate) && isFreeAt(occupiedDate)) {
+                nearestFreeDate = occupiedDate;
+                break;
             }
         }
 
         return nearestFreeDate.isEqual(now) ? now.plusDays(1) : nearestFreeDate;
     }
+
 
     private boolean isFreeAt(LocalDateTime dateTime) {
         boolean freeMasterExists = serviceManager.getMasters().stream()

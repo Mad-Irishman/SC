@@ -35,10 +35,10 @@ public class ServiceManager implements ServiceManagerInterface {
         this.garages.add(garage);
         this.orders = new ArrayList<>();
 
-        MastersSort mastersSort = new MastersSort();
-        GaragePlacesSort garagePlacesSort = new GaragePlacesSort();
-        DataSort dataSort = new DataSort();
-        OrdersSort ordersSort = new OrdersSort();
+        MastersSort mastersSort = new MastersSort(this);
+        GaragePlacesSort garagePlacesSort = new GaragePlacesSort(this);
+        DataSort dataSort = new DataSort(this);
+        OrdersSort ordersSort = new OrdersSort(this);
         this.assistant = new Assistant(mastersSort, garagePlacesSort, dataSort, ordersSort);
 
         initializeMasters(DEFAULT_NUMBER_OF_MASTERS);

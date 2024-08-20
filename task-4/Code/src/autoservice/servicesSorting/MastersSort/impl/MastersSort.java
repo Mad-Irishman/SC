@@ -10,8 +10,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class MastersSort implements MastersSortInterface {
-    private ServiceManager serviceManager;
+    private final ServiceManager serviceManager;
 
+    public MastersSort(ServiceManager serviceManager) {
+        this.serviceManager = serviceManager;
+    }
 
     @Override
     public List<Master> getMastersByOrders(Order order) {

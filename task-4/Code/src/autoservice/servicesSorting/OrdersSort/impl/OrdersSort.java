@@ -12,7 +12,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class OrdersSort implements OrdersSortInterface {
-    private ServiceManager serviceManager;
+    private final ServiceManager serviceManager;
+
+    public OrdersSort(ServiceManager serviceManager) {
+        this.serviceManager = serviceManager;
+    }
 
     @Override
     public List<Order> getSortedOrders(List<Comparator<Order>> comparators) {

@@ -8,7 +8,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class GaragePlacesSort implements GaragePlacesSortInterface {
-    private ServiceManager serviceManager;
+    private final ServiceManager serviceManager;
+
+    public GaragePlacesSort(ServiceManager serviceManager) {
+        this.serviceManager = serviceManager;
+    }
 
     @Override
     public List<GaragePlace> getAvailableGaragePlaces() {
