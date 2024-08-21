@@ -17,8 +17,13 @@ public class MenuItem {
         if (action != null) {
             action.execute();
         }
-        if (nextMenu != null) {
-            // Переключение на следующее меню
-        }
+    }
+
+    public Menu getNextMenu() {
+        return nextMenu;
+    }
+
+    public String getTitle() {
+        return title;
     }
 }

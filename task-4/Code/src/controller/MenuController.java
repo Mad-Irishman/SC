@@ -2,6 +2,8 @@ package controller;
 
 import view.menu.Navigator;
 
+import java.util.Scanner;
+
 public class MenuController {
     private Builder builder;
     private Navigator navigator;
@@ -12,7 +14,14 @@ public class MenuController {
     }
 
     public void run() {
-        // Инициализация меню с помощью builder
-        // Запуск основного цикла для обработки ввода пользователя
+        builder.buildMenu();
+        navigator = new Navigator(builder.getRootMenu());
+
+        while (true) {
+            navigator.printMenu();
+            Scanner scanner = new Scanner(System.in);
+            int choice = scanner.nextInt();
+            navigator.navigate(choice);
+        }
     }
 }
