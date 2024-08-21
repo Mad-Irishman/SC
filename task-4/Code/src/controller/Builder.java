@@ -5,21 +5,27 @@ import view.menu.MenuItem;
 
 public class Builder {
     private Menu rootMenu;
+    private Menu userMenu;
 
     public void buildMenu() {
-        // Здесь можно построить меню, используя Menu и MenuItem.
-        Menu subMenu = new Menu("Submenu", new MenuItem[] {
-                new MenuItem("Subitem 1", () -> System.out.println("Subitem 1 selected"), null),
-                new MenuItem("Back to Main", null, null)
+        // Построение корневого меню
+        rootMenu = new Menu("Root Menu", new MenuItem[]{
+                new MenuItem("Root Option 1", () -> System.out.println("Root Option 1 selected"), null),
+                new MenuItem("Exit", () -> System.out.println("Exiting..."), null)
         });
 
-        rootMenu = new Menu("Main Menu", new MenuItem[] {
-                new MenuItem("Go to Submenu", null, subMenu),
+        // Построение пользовательского меню
+        userMenu = new Menu("User Menu", new MenuItem[]{
+                new MenuItem("User Option 1", () -> System.out.println("User Option 1 selected"), null),
                 new MenuItem("Exit", () -> System.out.println("Exiting..."), null)
         });
     }
 
     public Menu getRootMenu() {
         return rootMenu;
+    }
+
+    public Menu getUserMenu() {
+        return userMenu;
     }
 }

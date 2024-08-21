@@ -2,9 +2,11 @@ package view.menu;
 
 public class Navigator {
     private Menu currentMenu;
+    private boolean exitChosen;
 
     public Navigator(Menu initialMenu) {
         this.currentMenu = initialMenu;
+        this.exitChosen = false;
     }
 
     public void printMenu() {
@@ -23,6 +25,12 @@ public class Navigator {
         chosenItem.doAction();
         if (chosenItem.getNextMenu() != null) {
             currentMenu = chosenItem.getNextMenu();
+        } else if (chosenItem.getTitle().equalsIgnoreCase("Exit")) {
+            exitChosen = true;
         }
+    }
+
+    public boolean isExitChosen() {
+        return exitChosen;
     }
 }
