@@ -1,6 +1,7 @@
 package autoservice.assistantManager.impl;
 
 import autoservice.assistantManager.AssistantInterface;
+import autoservice.assistantManager.exception.AssistantException;
 import autoservice.models.garagePlace.GaragePlace;
 import autoservice.models.master.Master;
 import autoservice.models.order.Order;
@@ -14,7 +15,6 @@ import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
 
-
 public class Assistant implements AssistantInterface {
     private final MastersSort mastersSort;
     private final GaragePlacesSort garagePlacesSort;
@@ -22,6 +22,9 @@ public class Assistant implements AssistantInterface {
     private final OrdersSort ordersSort;
 
     public Assistant(MastersSort mastersSort, GaragePlacesSort garagePlacesSort, DataSort dataSort, OrdersSort ordersSort) {
+        if (mastersSort == null || garagePlacesSort == null || dataSort == null || ordersSort == null) {
+            throw new AssistantException("Один или несколько зависимых сервисов не могут быть null");
+        }
         this.mastersSort = mastersSort;
         this.garagePlacesSort = garagePlacesSort;
         this.dataSort = dataSort;
@@ -30,51 +33,115 @@ public class Assistant implements AssistantInterface {
 
     @Override
     public List<Master> getMastersByOrders(Order order) {
-        return mastersSort.getMastersByOrders(order);
+        if (order == null) {
+            throw new AssistantException("Заказ не может быть null");
+        }
+        try {
+            return mastersSort.getMastersByOrders(order);
+        } catch (Exception e) {
+            throw new AssistantException("Ошибка при получении мастеров по заказу. Попробуйте снова позже.");
+        }
     }
 
     @Override
     public List<Master> getSortedMasters(List<Comparator<Master>> comparators) {
-        return mastersSort.getSortedMasters(comparators);
+        if (comparators == null) {
+            throw new AssistantException("Список компараторов не может быть null");
+        }
+        try {
+            return mastersSort.getSortedMasters(comparators);
+        } catch (Exception e) {
+            throw new AssistantException("Ошибка при сортировке мастеров. Попробуйте снова позже.");
+        }
     }
 
     @Override
     public List<GaragePlace> getAvailableGaragePlaces() {
-        return garagePlacesSort.getAvailableGaragePlaces();
+        try {
+            return garagePlacesSort.getAvailableGaragePlaces();
+        } catch (Exception e) {
+            throw new AssistantException("Ошибка при получении доступных гаражных мест. Попробуйте снова позже.");
+        }
     }
 
     @Override
     public int getFreePlacesOnDate(LocalDateTime date) {
-        return dataSort.getFreePlacesOnDate(date);
+        if (date == null) {
+            throw new AssistantException("Дата не может быть null");
+        }
+        try {
+            return dataSort.getFreePlacesOnDate(date);
+        } catch (Exception e) {
+            throw new AssistantException("Ошибка при получении свободных мест на указанную дату. Попробуйте снова позже.");
+        }
     }
 
     @Override
     public LocalDateTime getNearestFreeDate() {
-        return dataSort.getNearestFreeDate();
+        try {
+            return dataSort.getNearestFreeDate();
+        } catch (Exception e) {
+            throw new AssistantException("Ошибка при получении ближайшей свободной даты. Попробуйте снова позже.");
+        }
     }
 
     @Override
     public List<Order> getSortedOrders(List<Comparator<Order>> comparators) {
-        return ordersSort.getSortedOrders(comparators);
+        if (comparators == null) {
+            throw new AssistantException("Список компараторов не может быть null");
+        }
+        try {
+            return ordersSort.getSortedOrders(comparators);
+        } catch (Exception e) {
+            throw new AssistantException("Ошибка при сортировке заказов. Попробуйте снова позже.");
+        }
     }
 
     @Override
     public List<Order> getOrdersByMaster(Master master) {
-        return ordersSort.getOrdersByMaster(master);
+        if (master == null) {
+            throw new AssistantException("Мастер не может быть null");
+        }
+        try {
+            return ordersSort.getOrdersByMaster(master);
+        } catch (Exception e) {
+            throw new AssistantException("Ошибка при получении заказов по мастеру. Попробуйте снова позже.");
+        }
     }
 
     @Override
     public List<Order> getCurrentOrders() {
-        return ordersSort.getCurrentOrders();
+        try {
+            return ordersSort.getCurrentOrders();
+        } catch (Exception e) {
+            throw new AssistantException("Ошибка при получении текущих заказов. Попробуйте снова позже.");
+        }
     }
 
     @Override
     public List<Order> getOrdersByStatus(OrderStatus status) {
-        return ordersSort.getOrdersByStatus(status);
+        if (status == null) {
+            throw new AssistantException("Статус заказа не может быть null");
+        }
+        try {
+            return ordersSort.getOrdersByStatus(status);
+        } catch (Exception e) {
+            throw new AssistantException("Ошибка при получении заказов по статусу. Попробуйте снова позже.");
+        }
     }
 
     @Override
     public List<Order> getOrdersByTimeFrame(List<Order> orders, LocalDateTime startTime, LocalDateTime endTime) {
-        return ordersSort.getOrdersByTimeFrame(orders, startTime, endTime);
+        if (orders == null || startTime == null || endTime == null) {
+            throw new AssistantException("Параметры не могут быть null");
+        }
+        if (startTime.isAfter(endTime)) {
+            throw new AssistantException("Время начала не может быть после времени окончания");
+        }
+        try {
+            return ordersSort.getOrdersByTimeFrame(orders, startTime, endTime);
+        } catch (Exception e) {
+            throw new AssistantException("Ошибка при получении заказов по временным рамкам. Попробуйте снова позже.");
+        }
     }
 }
