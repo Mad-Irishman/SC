@@ -1,6 +1,5 @@
 package autoservice.servicesSorting.OrdersSort.impl;
 
-import autoservice.manager.impl.ServiceManager;
 import autoservice.models.master.Master;
 import autoservice.models.order.Order;
 import autoservice.models.order.orderStatus.OrderStatus;
@@ -13,23 +12,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class OrdersSort implements OrdersSortInterface {
-    private final ServiceManager serviceManager;
-
-    public OrdersSort(ServiceManager serviceManager) {
-        if (serviceManager == null) {
-            throw new OrdersSortException("ServiceManager не может быть null");
-        }
-        this.serviceManager = serviceManager;
-    }
 
     @Override
-    public List<Order> getSortedOrders(List<Comparator<Order>> comparators) {
+    public List<Order> getSortedOrders(List<Order> orders, List<Comparator<Order>> comparators) {
         if (comparators == null) {
             throw new OrdersSortException("Список компараторов не может быть null");
         }
 
         try {
-            return serviceManager.getOrders().stream()
+            return orders.stream()
                     .sorted(combineComparators(comparators))
                     .collect(Collectors.toList());
         } catch (Exception e) {
@@ -38,13 +29,13 @@ public class OrdersSort implements OrdersSortInterface {
     }
 
     @Override
-    public List<Order> getOrdersByMaster(Master master) {
+    public List<Order> getOrdersByMaster(List<Order> orders, Master master) {
         if (master == null) {
             throw new OrdersSortException("Мастер не может быть null");
         }
 
         try {
-            return serviceManager.getOrders().stream()
+            return orders.stream()
                     .filter(order -> order.getAssignedMaster().equals(master))
                     .collect(Collectors.toList());
         } catch (Exception e) {
@@ -53,9 +44,9 @@ public class OrdersSort implements OrdersSortInterface {
     }
 
     @Override
-    public List<Order> getCurrentOrders() {
+    public List<Order> getCurrentOrders(List<Order> orders) {
         try {
-            return serviceManager.getOrders().stream()
+            return orders.stream()
                     .filter(order -> order.getStatusOrder() == OrderStatus.IN_PROGRESS)
                     .collect(Collectors.toList());
         } catch (Exception e) {
@@ -64,13 +55,13 @@ public class OrdersSort implements OrdersSortInterface {
     }
 
     @Override
-    public List<Order> getOrdersByStatus(OrderStatus status) {
+    public List<Order> getOrdersByStatus(List<Order> orders, OrderStatus status) {
         if (status == null) {
             throw new OrdersSortException("Статус заказа не может быть null");
         }
 
         try {
-            return serviceManager.getOrders().stream()
+            return orders.stream()
                     .filter(order -> order.getStatusOrder() == status)
                     .collect(Collectors.toList());
         } catch (Exception e) {

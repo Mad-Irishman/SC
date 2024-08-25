@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface MastersSortInterface {
 
-    List<Master> getMastersByOrders(Order order);
+    List<Master> getMastersByOrders(List<Master> masters, Order order);
 
-    List<Master> getSortedMasters(List<Comparator<Master>> comparators);
+    List<Master> getSortedMasters(List<Master> masters, List<Comparator<Master>> comparators);
 }

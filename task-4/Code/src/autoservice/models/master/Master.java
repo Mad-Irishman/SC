@@ -10,9 +10,6 @@ public class Master {
     private Order ordersMaster;
 
     public Master(String name) {
-        if (name == null || name.trim().isEmpty()) {
-            throw new MasterException("Имя мастера не может быть пустым");
-        }
         this.name = name;
         this.isAvailable = MasterStatus.AVAILABLE;
     }

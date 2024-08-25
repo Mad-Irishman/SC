@@ -19,22 +19,6 @@ public class Order {
     private double price;
 
     public Order(String discription, LocalDateTime submissionDate, LocalDateTime completionDate, LocalDateTime plannedStartDate, double price) {
-        if (discription == null || discription.trim().isEmpty()) {
-            throw new OrderException("Описание заказа не может быть пустым");
-        }
-        if (submissionDate == null || completionDate == null || plannedStartDate == null) {
-            throw new OrderException("Даты заказа не могут быть null");
-        }
-        if (submissionDate.isAfter(completionDate)) {
-            throw new OrderException("Дата подачи не может быть после даты завершения");
-        }
-        if (plannedStartDate.isAfter(completionDate)) {
-            throw new OrderException("Планируемая дата начала не может быть после даты завершения");
-        }
-        if (price < 0) {
-            throw new OrderException("Цена заказа не может быть отрицательной");
-        }
-
         idOrder++;
         this.discription = discription;
         this.statusOrder = OrderStatus.CREATED;

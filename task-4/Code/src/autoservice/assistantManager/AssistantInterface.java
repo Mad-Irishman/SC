@@ -1,5 +1,6 @@
 package autoservice.assistantManager;
 
+import autoservice.models.garage.Garage;
 import autoservice.models.garagePlace.GaragePlace;
 import autoservice.models.master.Master;
 import autoservice.models.order.Order;
@@ -11,23 +12,23 @@ import java.util.List;
 
 public interface AssistantInterface {
 
-    List<Master> getMastersByOrders(Order order);
+    List<Master> getMastersByOrders(List<Master> masters, Order order);
 
-    List<Master> getSortedMasters(List<Comparator<Master>> comparators);
+    List<Master> getSortedMasters(List<Master> masters, List<Comparator<Master>> comparators);
 
-    List<GaragePlace> getAvailableGaragePlaces();
+    List<GaragePlace> getAvailableGaragePlaces(List<Garage> garages);
 
-    int getFreePlacesOnDate(LocalDateTime date);
+    int getFreePlacesOnDate(List<Order> orders, List<Master> masters, List<Garage> garages, LocalDateTime date);
 
-    LocalDateTime getNearestFreeDate();
+    LocalDateTime getNearestFreeDate(List<Master> masters, List<Order> orders, List<Garage> garages);
 
-    List<Order> getSortedOrders(List<Comparator<Order>> comparators);
+    List<Order> getSortedOrders(List<Order> orders, List<Comparator<Order>> comparators);
 
-    List<Order> getOrdersByMaster(Master master);
+    List<Order> getOrdersByMaster(List<Order> orders, Master master);
 
-    List<Order> getCurrentOrders();
+    List<Order> getCurrentOrders(List<Order> orders);
 
-    List<Order> getOrdersByStatus(OrderStatus status);
+    List<Order> getOrdersByStatus(List<Order> orders, OrderStatus status);
 
     List<Order> getOrdersByTimeFrame(List<Order> orders, LocalDateTime startTime, LocalDateTime endTime);
 }

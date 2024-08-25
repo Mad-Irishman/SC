@@ -43,23 +43,23 @@ public interface ServiceManagerInterface {
 
     void showAvailableGaragePlaces();
 
-    void getMastersByOrders(Order order);
+    void getMastersByOrders(List<Master> masters, Order order);
 
-    void getSortedMasters(List<Comparator<Master>> comparators);
+    void getSortedMasters(List<Master> masters, List<Comparator<Master>> comparators);
 
-    void getAvailableGaragePlaces();
+    void getAvailableGaragePlaces(List<Garage> garages);
 
-    void getFreePlacesOnDate(LocalDateTime date);
+    void getFreePlacesOnDate(List<Order> orders, List<Master> masters, List<Garage> garages, LocalDateTime date);
 
-    void getNearestFreeDate();
+    void getNearestFreeDate(List<Master> masters, List<Order> orders, List<Garage> garages);
 
-    void getSortedOrders(List<Comparator<Order>> comparators);
+    void getSortedOrders(List<Order> orders, List<Comparator<Order>> comparators);
 
-    void getOrdersByMaster(Master master);
+    void getOrdersByMaster(List<Order> orders, Master master);
 
-    void getCurrentOrders();
+    void getCurrentOrders(List<Order> orders);
 
-    void getOrdersByStatus(OrderStatus status);
+    void getOrdersByStatus(List<Order> orders, OrderStatus status);
 
     void getOrdersByTimeFrame(List<Order> orders, LocalDateTime startTime, LocalDateTime endTime);
 }

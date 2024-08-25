@@ -1,6 +1,5 @@
 package autoservice.servicesSorting.MastersSort.impl;
 
-import autoservice.manager.impl.ServiceManager;
 import autoservice.models.master.Master;
 import autoservice.models.order.Order;
 import autoservice.servicesSorting.MastersSort.MastersSortInterface;
@@ -11,23 +10,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class MastersSort implements MastersSortInterface {
-    private final ServiceManager serviceManager;
-
-    public MastersSort(ServiceManager serviceManager) {
-        if (serviceManager == null) {
-            throw new IllegalArgumentException("ServiceManager cannot be null.");
-        }
-        this.serviceManager = serviceManager;
-    }
 
     @Override
-    public List<Master> getMastersByOrders(Order order) {
+    public List<Master> getMastersByOrders(List<Master> masters, Order order) {
         try {
             if (order == null) {
                 throw new IllegalArgumentException("Order cannot be null.");
             }
 
-            List<Master> mastersByOrder = serviceManager.getMasters().stream()
+            List<Master> mastersByOrder = masters.stream()
                     .filter(master -> order.contains(master))
                     .collect(Collectors.toList());
 
@@ -44,13 +35,13 @@ public class MastersSort implements MastersSortInterface {
 
 
     @Override
-    public List<Master> getSortedMasters(List<Comparator<Master>> comparators) {
+    public List<Master> getSortedMasters(List<Master> masters, List<Comparator<Master>> comparators) {
         try {
             if (comparators == null || comparators.isEmpty()) {
                 throw new IllegalArgumentException("Comparator list cannot be null or empty.");
             }
 
-            return serviceManager.getMasters().stream()
+            return masters.stream()
                     .sorted(combineComparators(comparators))
                     .collect(Collectors.toList());
 

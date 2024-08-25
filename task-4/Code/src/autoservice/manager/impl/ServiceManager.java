@@ -35,10 +35,10 @@ public class ServiceManager implements ServiceManagerInterface {
         this.garages.add(garage);
         this.orders = new ArrayList<>();
 
-        MastersSort mastersSort = new MastersSort(this);
-        GaragePlacesSort garagePlacesSort = new GaragePlacesSort(this);
-        DataSort dataSort = new DataSort(this);
-        OrdersSort ordersSort = new OrdersSort(this);
+        MastersSort mastersSort = new MastersSort();
+        GaragePlacesSort garagePlacesSort = new GaragePlacesSort();
+        DataSort dataSort = new DataSort();
+        OrdersSort ordersSort = new OrdersSort();
         this.assistant = new Assistant(mastersSort, garagePlacesSort, dataSort, ordersSort);
 
         initializeMasters(DEFAULT_NUMBER_OF_MASTERS);
@@ -267,12 +267,12 @@ public class ServiceManager implements ServiceManagerInterface {
     }
 
     @Override
-    public void getMastersByOrders(Order order) {
+    public void getMastersByOrders(List<Master> masters, Order order) {
         if (order == null) {
             throw new ServiceManagerException("Заказ не может быть null");
         }
         try {
-            for (Master master : assistant.getMastersByOrders(order)) {
+            for (Master master : assistant.getMastersByOrders(masters, order)) {
                 System.out.println(master);
             }
         } catch (Exception e) {
@@ -281,12 +281,12 @@ public class ServiceManager implements ServiceManagerInterface {
     }
 
     @Override
-    public void getSortedMasters(List<Comparator<Master>> comparators) {
+    public void getSortedMasters(List<Master> masters, List<Comparator<Master>> comparators) {
         if (comparators == null) {
             throw new ServiceManagerException("Список компараторов не может быть null");
         }
         try {
-            for (Master master : assistant.getSortedMasters(comparators)) {
+            for (Master master : assistant.getSortedMasters(masters, comparators)) {
                 System.out.println(master);
             }
         } catch (Exception e) {
@@ -295,9 +295,9 @@ public class ServiceManager implements ServiceManagerInterface {
     }
 
     @Override
-    public void getAvailableGaragePlaces() {
+    public void getAvailableGaragePlaces(List<Garage> garages) {
         try {
-            for (GaragePlace place : assistant.getAvailableGaragePlaces()) {
+            for (GaragePlace place : assistant.getAvailableGaragePlaces(garages)) {
                 System.out.println(place);
             }
         } catch (Exception e) {
@@ -306,33 +306,33 @@ public class ServiceManager implements ServiceManagerInterface {
     }
 
     @Override
-    public void getFreePlacesOnDate(LocalDateTime date) {
+    public void getFreePlacesOnDate(List<Order> orders, List<Master> masters, List<Garage> garages, LocalDateTime date) {
         if (date == null) {
             throw new ServiceManagerException("Дата не может быть null");
         }
         try {
-            System.out.println(assistant.getFreePlacesOnDate(date));
+            System.out.println(assistant.getFreePlacesOnDate(orders, masters, garages, date));
         } catch (Exception e) {
             throw new ServiceManagerException("Ошибка при получении свободных мест на указанную дату. Попробуйте снова позже.");
         }
     }
 
     @Override
-    public void getNearestFreeDate() {
+    public void getNearestFreeDate(List<Master> masters, List<Order> orders, List<Garage> garages) {
         try {
-            System.out.println(assistant.getNearestFreeDate());
+            System.out.println(assistant.getNearestFreeDate(masters, orders, garages));
         } catch (Exception e) {
             throw new ServiceManagerException("Ошибка при получении ближайшей свободной даты. Попробуйте снова позже.");
         }
     }
 
     @Override
-    public void getSortedOrders(List<Comparator<Order>> comparators) {
+    public void getSortedOrders(List<Order> orders, List<Comparator<Order>> comparators) {
         if (comparators == null) {
             throw new ServiceManagerException("Список компараторов не может быть null");
         }
         try {
-            for (Order order : assistant.getSortedOrders(comparators)) {
+            for (Order order : assistant.getSortedOrders(orders, comparators)) {
                 System.out.println(order);
             }
         } catch (Exception e) {
@@ -341,12 +341,12 @@ public class ServiceManager implements ServiceManagerInterface {
     }
 
     @Override
-    public void getOrdersByMaster(Master master) {
+    public void getOrdersByMaster(List<Order> orders, Master master) {
         if (master == null) {
             throw new ServiceManagerException("Мастер не может быть null");
         }
         try {
-            for (Order order : assistant.getOrdersByMaster(master)) {
+            for (Order order : assistant.getOrdersByMaster(orders, master)) {
                 System.out.println(order);
             }
         } catch (Exception e) {
@@ -355,9 +355,9 @@ public class ServiceManager implements ServiceManagerInterface {
     }
 
     @Override
-    public void getCurrentOrders() {
+    public void getCurrentOrders(List<Order> orders) {
         try {
-            for (Order order : assistant.getCurrentOrders()) {
+            for (Order order : assistant.getCurrentOrders(orders)) {
                 System.out.println(order);
             }
         } catch (Exception e) {
@@ -366,12 +366,12 @@ public class ServiceManager implements ServiceManagerInterface {
     }
 
     @Override
-    public void getOrdersByStatus(OrderStatus status) {
+    public void getOrdersByStatus(List<Order> orders, OrderStatus status) {
         if (status == null) {
             throw new ServiceManagerException("Статус заказа не может быть null");
         }
         try {
-            for (Order order : assistant.getOrdersByStatus(status)) {
+            for (Order order : assistant.getOrdersByStatus(orders, status)) {
                 System.out.println(order);
             }
         } catch (Exception e) {

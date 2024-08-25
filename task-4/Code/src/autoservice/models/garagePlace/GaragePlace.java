@@ -8,9 +8,6 @@ public class GaragePlace {
     private boolean isOccupied = false;
 
     public GaragePlace(int placeNumber) {
-        if (placeNumber <= 0) {
-            throw new GaragePlaceException("Номер места должен быть положительным числом");
-        }
         this.placeNumber = placeNumber;
     }
 

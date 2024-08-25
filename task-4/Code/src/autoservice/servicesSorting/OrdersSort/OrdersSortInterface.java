@@ -10,13 +10,13 @@ import java.util.List;
 
 public interface OrdersSortInterface {
 
-    List<Order> getSortedOrders(List<Comparator<Order>> comparators);
+    List<Order> getSortedOrders(List<Order> orders, List<Comparator<Order>> comparators);
 
-    List<Order> getOrdersByMaster(Master master);
+    List<Order> getOrdersByMaster(List<Order> orders, Master master);
 
-    List<Order> getCurrentOrders();
+    List<Order> getCurrentOrders(List<Order> orders);
 
-    List<Order> getOrdersByStatus(OrderStatus status);
+    List<Order> getOrdersByStatus(List<Order> orders, OrderStatus status);
 
     List<Order> getOrdersByTimeFrame(List<Order> orders, LocalDateTime startTime, LocalDateTime endTime);
 }

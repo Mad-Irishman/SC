@@ -71,7 +71,6 @@ public class MenuController {
             int choice = scanner.nextInt();
             navigator.navigate(choice);
 
-            // Проверка, если пользователь выбрал "Exit"
             if (navigator.isExitChosen()) {
                 break;
             }
