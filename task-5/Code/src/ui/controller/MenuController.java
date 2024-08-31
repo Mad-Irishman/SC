@@ -6,12 +6,12 @@ import ui.view.menu.Navigator;
 import java.util.Scanner;
 
 public class MenuController {
-    private Builder builder;
-    private Navigator navigator;
+    private final Builder builder;
+    private final Navigator navigator;
 
     public MenuController(ServiceManager serviceManager) {
-        builder = new Builder(serviceManager);
-        navigator = new Navigator(null);
+        this.builder = new Builder(serviceManager);
+        this.navigator = new Navigator(null);
     }
 
     public void run() {

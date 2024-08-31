@@ -2,8 +2,10 @@ package ui.actions.impl.masterAction;
 
 import autoservice.manager.impl.ServiceManager;
 import autoservice.models.master.Master;
+import autoservice.models.master.masterStatus.MasterStatus;
 import ui.actions.IAction;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class RemoveMasterAction implements IAction {
@@ -15,20 +17,40 @@ public class RemoveMasterAction implements IAction {
 
     @Override
     public void execute() {
+
+        System.out.println("Список мастеров:");
+        List<Master> masters = serviceManager.getAllMasterInGarage();
+        if (masters.isEmpty()) {
+            System.out.println("Нет доступных мастеров для удаления.");
+            return;
+        }
+
         Scanner scanner = new Scanner(System.in);
         String nameMaster = null;
+        Master masterToRemove = null;
 
         while (nameMaster == null || nameMaster.trim().isEmpty()) {
             System.out.println("Введите имя мастера, которого вы хотите удалить: ");
             nameMaster = scanner.nextLine().trim();
 
-            if (nameMaster.isEmpty()) {
-                System.out.println("Имя не может быть пустым. Пожалуйста, попробуйте снова.");
+            for (Master master : serviceManager.getAllMasterInGarage()) {
+                if (master.getName().equalsIgnoreCase(nameMaster.trim())) {
+                    masterToRemove = master;
+                    break;
+                }
             }
-        }
 
-        Master master = new Master(nameMaster);
-        serviceManager.removeMaster(master);
-        System.out.println("Матсер " + nameMaster + " успешно удален.");
+            if (masterToRemove != null) {
+                if (masterToRemove.isAvailable() == MasterStatus.AVAILABLE) {
+                    serviceManager.removeMaster(masterToRemove);
+                    System.out.println("Мастер " + nameMaster + " успешно удален.");
+                } else {
+                    System.out.println("Невозможно удалить мастера, так как у него есть незавершенные заказы.");
+                }
+            } else {
+                System.out.println("Мастер с именем " + nameMaster + " не найден.");
+            }
+
+        }
     }
 }

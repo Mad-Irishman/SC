@@ -21,10 +21,8 @@ public class Builder {
         this.navigator = navigator;
 
         Menu masterMenu = new Menu("Master", new MenuItem[]{
-                //Проверить, что мастера добавляются в один и тот же гараж
                 new MenuItem("Add master", new AddMasterAction(serviceManager), null),
                 new MenuItem("All masters", new AllMastersAction(serviceManager), null),
-                //Прикол с тем, что мастера не находятся в этом же гараже
                 new MenuItem("Remove master", new RemoveMasterAction(serviceManager), null),
                 new MenuItem("Exit to root menu", () -> navigator.goToRootMenu(), null)
         });
