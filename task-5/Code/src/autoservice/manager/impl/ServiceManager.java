@@ -5,6 +5,7 @@ import autoservice.manager.ServiceManagerInterface;
 import autoservice.manager.exception.ServiceManagerException;
 import autoservice.models.garage.Garage;
 import autoservice.models.garagePlace.GaragePlace;
+import autoservice.models.garagePlace.exception.GaragePlaceException;
 import autoservice.models.master.Master;
 import autoservice.models.master.masterStatus.MasterStatus;
 import autoservice.models.order.Order;
@@ -111,6 +112,41 @@ public class ServiceManager implements ServiceManagerInterface {
         }
     }
 
+    public List<GaragePlace> allGaragePlaces() {
+        try {
+            if (garage == null) {
+                throw new ServiceManagerException("Гараж не инициализирован.");
+            }
+            return this.garage.getGaragePlaces();
+        } catch (ServiceManagerException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new ServiceManagerException("Ошибка при получении списка мест в гараже: " + e.getMessage());
+        }
+    }
+
+    public GaragePlace getGaragePlaceByNumber(int placeNumber) {
+        try {
+            if (garage == null) {
+                throw new ServiceManagerException("Гараж не инициализирован.");
+            }
+            if (placeNumber <= 0) {
+                throw new GaragePlaceException("Номер места должен быть положительным числом.");
+            }
+            for (GaragePlace place : garage.getGaragePlaces()) {
+                if (place.getPlaceNumber() == placeNumber) {
+                    return place;
+                }
+            }
+            throw new GaragePlaceException("Место с номером " + placeNumber + " не найдено.");
+        } catch (GaragePlaceException e) {
+            throw e;
+        } catch (ServiceManagerException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new ServiceManagerException("Ошибка при получении места в гараже по номеру: " + e.getMessage());
+        }
+    }
     @Override
     public List<Garage> getGarages() {
         return garages;

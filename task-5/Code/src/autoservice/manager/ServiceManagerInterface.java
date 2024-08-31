@@ -23,6 +23,10 @@ public interface ServiceManagerInterface {
 
     List<Master> getAllMasterInGarage();
 
+    List<GaragePlace> allGaragePlaces();
+
+    GaragePlace getGaragePlaceByNumber(int placeNumber);
+
     List<Garage> getGarages();
 
     void createOrder(String discription, LocalDateTime submissionDate, LocalDateTime completionDate, LocalDateTime plannedStartDate, double price);

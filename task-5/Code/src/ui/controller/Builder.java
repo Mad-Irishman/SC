@@ -1,9 +1,13 @@
 package ui.controller;
 
 import autoservice.manager.impl.ServiceManager;
+import ui.actions.impl.garageAction.AddGaragePlaceAction;
+import ui.actions.impl.garageAction.AllGaragePlacesAction;
+import ui.actions.impl.garageAction.RemoveGaragePlaceAction;
 import ui.actions.impl.masterAction.AddMasterAction;
 import ui.actions.impl.masterAction.AllMastersAction;
 import ui.actions.impl.masterAction.RemoveMasterAction;
+import ui.actions.impl.orderAction.CreateOrderAction;
 import ui.view.menu.Menu;
 import ui.view.menu.MenuItem;
 import ui.view.menu.Navigator;
@@ -28,11 +32,14 @@ public class Builder {
         });
 
         Menu garageMenu = new Menu("Garage", new MenuItem[]{
-                new MenuItem("", null, null)
+                new MenuItem("Add garage place", new AddGaragePlaceAction(serviceManager), null),
+                new MenuItem("All garage places", new AllGaragePlacesAction(serviceManager), null),
+                new MenuItem("Remove garage place", new RemoveGaragePlaceAction(serviceManager), null),
+                new MenuItem("Exit to root menu", () -> navigator.goToRootMenu(), null)
         });
 
         Menu orderMenu = new Menu("Order", new MenuItem[]{
-                new MenuItem("", null, null)
+                new MenuItem("Create order", new CreateOrderAction(serviceManager), null)
         });
 
         rootMenu = new Menu("Root menu", new MenuItem[]{
