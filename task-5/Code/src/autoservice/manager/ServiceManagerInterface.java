@@ -21,6 +21,8 @@ public interface ServiceManagerInterface {
 
     List<Master> getMasters();
 
+    List<Master> getAllMasterInGarage();
+
     List<Garage> getGarages();
 
     void createOrder(String discription, LocalDateTime submissionDate, LocalDateTime completionDate, LocalDateTime plannedStartDate, double price);

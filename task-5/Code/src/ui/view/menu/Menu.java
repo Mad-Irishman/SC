@@ -1,4 +1,5 @@
-package view.menu;
+package ui.view.menu;
+
 
 public class Menu {
     private String name;

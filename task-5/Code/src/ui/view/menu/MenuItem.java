@@ -1,6 +1,7 @@
-package view.menu;
+package ui.view.menu;
 
-import autoservice.models.actions.IAction;
+
+import ui.actions.IAction;
 
 public class MenuItem {
     private String title;
@@ -21,6 +22,10 @@ public class MenuItem {
 
     public String getTitle() {
         return title;
+    }
+
+    public IAction getAction() {
+        return action;
     }
 
     public Menu getNextMenu() {

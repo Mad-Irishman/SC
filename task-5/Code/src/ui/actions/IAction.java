@@ -1,4 +1,4 @@
-package autoservice.models.actions;
+package ui.actions;
 
 @FunctionalInterface
 public interface IAction {

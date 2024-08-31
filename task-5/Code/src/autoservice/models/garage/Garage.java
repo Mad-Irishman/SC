@@ -58,6 +58,11 @@ public class Garage {
         return availableMasters;
     }
 
+    public List<Master> getAllMasters() {
+        List<Master> allMasters = new ArrayList<>(masters);
+        return allMasters;
+    }
+
     public void addGaragePlace(GaragePlace place) {
         if (place == null) {
             throw new GarageException("Гаражное место не может быть null");

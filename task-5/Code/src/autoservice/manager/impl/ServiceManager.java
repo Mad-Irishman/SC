@@ -79,6 +79,11 @@ public class ServiceManager implements ServiceManagerInterface {
     }
 
     @Override
+    public List<Master> getAllMasterInGarage() {
+        return garage.getAllMasters();
+    }
+
+    @Override
     public void addGaragePlace(GaragePlace garagePlace) {
         if (garagePlace == null) {
             throw new ServiceManagerException("Гаражное место не может быть null");
