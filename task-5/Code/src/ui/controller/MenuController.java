@@ -11,7 +11,7 @@ public class MenuController {
 
     public MenuController(ServiceManager serviceManager) {
         this.builder = new Builder(serviceManager);
-        this.navigator = new Navigator(null);
+        this.navigator = new Navigator(builder.getRootMenu());
     }
 
     public void run() {

@@ -166,7 +166,7 @@ public class ServiceManager implements ServiceManagerInterface {
                 order.setAssignedGaragePlace(garage.getAvailableGaragePlaces().get(0));
                 order.getAssignedGaragePlace().setOccupied(true);
                 orders.add(order);
-                System.out.println("Заказ создан: " + order);
+                System.out.println("Заказ создан: " + order.getDescription());
             } else {
                 System.out.println("Мастер или место не доступны для создания заказа.");
             }

@@ -7,7 +7,9 @@ import ui.actions.impl.garageAction.RemoveGaragePlaceAction;
 import ui.actions.impl.masterAction.AddMasterAction;
 import ui.actions.impl.masterAction.AllMastersAction;
 import ui.actions.impl.masterAction.RemoveMasterAction;
+import ui.actions.impl.orderAction.AllOrdersAction;
 import ui.actions.impl.orderAction.CreateOrderAction;
+import ui.actions.impl.orderAction.RemoveOrderAction;
 import ui.view.menu.Menu;
 import ui.view.menu.MenuItem;
 import ui.view.menu.Navigator;
@@ -24,6 +26,7 @@ public class Builder {
     public void buildMenu(Navigator navigator) {
         this.navigator = navigator;
 
+        // Вылетает ошибка при переходе в startMenu(rootMenu)
         Menu masterMenu = new Menu("Master", new MenuItem[]{
                 new MenuItem("Add master", new AddMasterAction(serviceManager), null),
                 new MenuItem("All masters", new AllMastersAction(serviceManager), null),
@@ -39,7 +42,10 @@ public class Builder {
         });
 
         Menu orderMenu = new Menu("Order", new MenuItem[]{
-                new MenuItem("Create order", new CreateOrderAction(serviceManager), null)
+                new MenuItem("Create order", new CreateOrderAction(serviceManager), null),
+                new MenuItem("All orders", new AllOrdersAction(serviceManager), null),
+                new MenuItem("Remove order", new RemoveOrderAction(serviceManager), null),
+                new MenuItem("Exit to root menu", () -> navigator.goToRootMenu(), null)
         });
 
         rootMenu = new Menu("Root menu", new MenuItem[]{
