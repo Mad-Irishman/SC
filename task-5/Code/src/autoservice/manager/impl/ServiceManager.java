@@ -147,6 +147,7 @@ public class ServiceManager implements ServiceManagerInterface {
             throw new ServiceManagerException("Ошибка при получении места в гараже по номеру: " + e.getMessage());
         }
     }
+
     @Override
     public List<Garage> getGarages() {
         return garages;
@@ -178,6 +179,18 @@ public class ServiceManager implements ServiceManagerInterface {
     @Override
     public List<Order> getOrders() {
         return orders;
+    }
+
+    public Order getOrderByDescription(String description) {
+        if (description == null || description.trim().isEmpty()) {
+            throw new ServiceManagerException("Описание заказа не может быть пустым.");
+        }
+        for (Order order : orders) {
+            if (order.getDescription().equalsIgnoreCase(description)) {
+                return order;
+            }
+        }
+        return null;
     }
 
     @Override
@@ -308,7 +321,7 @@ public class ServiceManager implements ServiceManagerInterface {
     }
 
     @Override
-    public void getMastersByOrders(List<Master> masters, Order order) {
+    public List<Master> getMastersByOrders(List<Master> masters, Order order) {
         if (order == null) {
             throw new ServiceManagerException("Заказ не может быть null");
         }
@@ -319,10 +332,11 @@ public class ServiceManager implements ServiceManagerInterface {
         } catch (Exception e) {
             throw new ServiceManagerException("Ошибка при получении мастеров по заказу. Попробуйте снова позже.");
         }
+        return masters;
     }
 
     @Override
-    public void getSortedMasters(List<Master> masters, List<Comparator<Master>> comparators) {
+    public List<Master> getSortedMasters(List<Master> masters, List<Comparator<Master>> comparators) {
         if (comparators == null) {
             throw new ServiceManagerException("Список компараторов не может быть null");
         }
@@ -333,10 +347,11 @@ public class ServiceManager implements ServiceManagerInterface {
         } catch (Exception e) {
             throw new ServiceManagerException("Ошибка при сортировке мастеров. Попробуйте снова позже.");
         }
+        return masters;
     }
 
     @Override
-    public void getAvailableGaragePlaces(List<Garage> garages) {
+    public List<GaragePlace> getAvailableGaragePlaces(List<Garage> garages) {
         try {
             for (GaragePlace place : assistant.getAvailableGaragePlaces(garages)) {
                 System.out.println(place);
@@ -344,6 +359,7 @@ public class ServiceManager implements ServiceManagerInterface {
         } catch (Exception e) {
             throw new ServiceManagerException("Ошибка при получении доступных гаражных мест. Попробуйте снова позже.");
         }
+        return null;
     }
 
     @Override
@@ -368,7 +384,7 @@ public class ServiceManager implements ServiceManagerInterface {
     }
 
     @Override
-    public void getSortedOrders(List<Order> orders, List<Comparator<Order>> comparators) {
+    public List<Order> getSortedOrders(List<Order> orders, List<Comparator<Order>> comparators) {
         if (comparators == null) {
             throw new ServiceManagerException("Список компараторов не может быть null");
         }
@@ -379,6 +395,7 @@ public class ServiceManager implements ServiceManagerInterface {
         } catch (Exception e) {
             throw new ServiceManagerException("Ошибка при сортировке заказов. Попробуйте снова позже.");
         }
+        return orders;
     }
 
     @Override
@@ -396,7 +413,7 @@ public class ServiceManager implements ServiceManagerInterface {
     }
 
     @Override
-    public void getCurrentOrders(List<Order> orders) {
+    public List<Order> getCurrentOrders(List<Order> orders) {
         try {
             for (Order order : assistant.getCurrentOrders(orders)) {
                 System.out.println(order);
@@ -404,6 +421,7 @@ public class ServiceManager implements ServiceManagerInterface {
         } catch (Exception e) {
             throw new ServiceManagerException("Ошибка при получении текущих заказов. Попробуйте снова позже.");
         }
+        return orders;
     }
 
     @Override

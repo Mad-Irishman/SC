@@ -33,6 +33,8 @@ public interface ServiceManagerInterface {
 
     List<Order> getOrders();
 
+    Order getOrderByDescription(String description);
+
     Order getOrderById(int id);
 
     void removeOrder(Order order);
@@ -49,21 +51,21 @@ public interface ServiceManagerInterface {
 
     void showAvailableGaragePlaces();
 
-    void getMastersByOrders(List<Master> masters, Order order);
+    List<Master> getMastersByOrders(List<Master> masters, Order order);
 
-    void getSortedMasters(List<Master> masters, List<Comparator<Master>> comparators);
+    List<Master> getSortedMasters(List<Master> masters, List<Comparator<Master>> comparators);
 
-    void getAvailableGaragePlaces(List<Garage> garages);
+    List<GaragePlace> getAvailableGaragePlaces(List<Garage> garages);
 
     void getFreePlacesOnDate(List<Order> orders, List<Master> masters, List<Garage> garages, LocalDateTime date);
 
     void getNearestFreeDate(List<Master> masters, List<Order> orders, List<Garage> garages);
 
-    void getSortedOrders(List<Order> orders, List<Comparator<Order>> comparators);
+    List<Order> getSortedOrders(List<Order> orders, List<Comparator<Order>> comparators);
 
     void getOrdersByMaster(List<Order> orders, Master master);
 
-    void getCurrentOrders(List<Order> orders);
+    List<Order> getCurrentOrders(List<Order> orders);
 
     void getOrdersByStatus(List<Order> orders, OrderStatus status);
 

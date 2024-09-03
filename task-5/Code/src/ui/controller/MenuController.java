@@ -2,7 +2,6 @@ package ui.controller;
 
 import autoservice.manager.impl.ServiceManager;
 import ui.view.menu.Navigator;
-
 import java.util.Scanner;
 
 public class MenuController {
@@ -12,11 +11,11 @@ public class MenuController {
     public MenuController(ServiceManager serviceManager) {
         this.builder = new Builder(serviceManager);
         this.navigator = new Navigator(builder.getRootMenu());
+
     }
 
     public void run() {
         builder.buildMenu(navigator);
-        navigator.setCurrentMenu(builder.getRootMenu());
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
@@ -30,8 +29,10 @@ public class MenuController {
                 navigator.navigate(choice);
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input. Please enter the menu item number.");
+            } catch (NullPointerException e) {
+                System.out.println("Error: Current menu is not set. Returning to root menu.");
+                navigator.goToRootMenu();
             }
         }
-
     }
 }

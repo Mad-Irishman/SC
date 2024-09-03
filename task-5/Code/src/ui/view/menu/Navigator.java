@@ -11,7 +11,12 @@ public class Navigator {
 
 
     public void setCurrentMenu(Menu currentMenu) {
-        this.currentMenu = currentMenu;
+        if (currentMenu == null) {
+            System.out.println("Warning: Trying to set currentMenu to null. Reverting to rootMenu.");
+            this.currentMenu = rootMenu;
+        } else {
+            this.currentMenu = currentMenu;
+        }
     }
 
     public Menu getCurrentMenu() {
@@ -19,6 +24,10 @@ public class Navigator {
     }
 
     public void printMenu() {
+        if (currentMenu == null) {
+            System.out.println("Current menu is not set. Returning to root menu.");
+            currentMenu = rootMenu;
+        }
         System.out.println("Menu: " + currentMenu.getName());
         MenuItem[] items = currentMenu.getMenuItems();
         for (int i = 0; i < items.length; i++) {
@@ -27,6 +36,10 @@ public class Navigator {
     }
 
     public void navigate(int index) {
+        if (currentMenu == null) {
+            System.out.println("Error: Current menu is null. Returning to root menu.");
+            currentMenu = rootMenu;
+        }
         if (index >= 0 && index < currentMenu.getMenuItems().length) {
             currentMenu.getMenuItems()[index].doAction();
             Menu nextMenu = currentMenu.getMenuItems()[index].getNextMenu();
@@ -39,6 +52,10 @@ public class Navigator {
     }
 
     public void goToRootMenu() {
-        this.currentMenu = rootMenu;
+        if (rootMenu != null) {
+            this.currentMenu = rootMenu;
+        } else {
+            System.out.println("Root menu is not set.");
+        }
     }
 }
