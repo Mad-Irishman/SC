@@ -40,9 +40,11 @@ public class Navigator {
             System.out.println("Error: Current menu is null. Returning to root menu.");
             currentMenu = rootMenu;
         }
+
         if (index >= 0 && index < currentMenu.getMenuItems().length) {
-            currentMenu.getMenuItems()[index].doAction();
-            Menu nextMenu = currentMenu.getMenuItems()[index].getNextMenu();
+            MenuItem selectedItem = currentMenu.getMenuItems()[index];
+            Menu nextMenu = selectedItem.getNextMenu();
+            selectedItem.doAction();
             if (nextMenu != null) {
                 setCurrentMenu(nextMenu);
             }
@@ -50,6 +52,7 @@ public class Navigator {
             System.out.println("Invalid choice.");
         }
     }
+
 
     public void goToRootMenu() {
         setCurrentMenu(rootMenu);
