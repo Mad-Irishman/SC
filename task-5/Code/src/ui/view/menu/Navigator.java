@@ -44,7 +44,7 @@ public class Navigator {
             currentMenu.getMenuItems()[index].doAction();
             Menu nextMenu = currentMenu.getMenuItems()[index].getNextMenu();
             if (nextMenu != null) {
-                currentMenu = nextMenu;
+                setCurrentMenu(nextMenu);
             }
         } else {
             System.out.println("Invalid choice.");
@@ -52,12 +52,6 @@ public class Navigator {
     }
 
     public void goToRootMenu() {
-        System.out.println("Navigating to root menu...");
-        if (rootMenu != null) { // Почему то root menu null
-            this.currentMenu = rootMenu;
-            System.out.println("Current menu set to: " + currentMenu.getName());
-        } else {
-            System.out.println("Root menu is not set.");
-        }
+        setCurrentMenu(rootMenu);
     }
 }

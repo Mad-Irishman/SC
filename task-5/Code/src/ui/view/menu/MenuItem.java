@@ -1,6 +1,5 @@
 package ui.view.menu;
 
-
 import ui.actions.IAction;
 
 public class MenuItem {
@@ -14,16 +13,6 @@ public class MenuItem {
         this.nextMenu = nextMenu;
     }
 
-    public void doAction() {
-        if (action != null) {
-            System.out.println("Executing action for menu item: " + title);
-            action.execute();
-        } else {
-            System.out.println("No action defined for menu item: " + title);
-        }
-    }
-
-
     public String getTitle() {
         return title;
     }
@@ -34,5 +23,18 @@ public class MenuItem {
 
     public Menu getNextMenu() {
         return nextMenu;
+    }
+
+    public void setNextMenu(Menu nextMenu) {
+        this.nextMenu = nextMenu;
+    }
+
+    public void doAction() {
+        if (action != null) {
+            System.out.println("Executing action for menu item: " + title);
+            action.execute();
+        } else {
+            System.out.println("No action defined for menu item: " + title);
+        }
     }
 }

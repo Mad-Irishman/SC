@@ -18,6 +18,7 @@ public class Builder {
 
     public Builder(ServiceManager serviceManager) {
         this.serviceManager = serviceManager;
+        buildRootMenu();
     }
 
     public void buildMenu(Navigator navigator) {
@@ -47,16 +48,23 @@ public class Builder {
                 new MenuItem("Exit to root menu", new ExitToRootAction(navigator), null)
         });
 
-        rootMenu = new Menu("Root menu", new MenuItem[]{
-                new MenuItem("Master menu", null, masterMenu),
-                new MenuItem("Garage menu", null, garageMenu),
-                new MenuItem("Order menu", null, orderMenu),
-                new MenuItem("Exit", () -> System.exit(0), null)
-        });
+        rootMenu.getMenuItems()[0].setNextMenu(masterMenu);
+        rootMenu.getMenuItems()[1].setNextMenu(garageMenu);
+        rootMenu.getMenuItems()[2].setNextMenu(orderMenu);
+
         navigator.setCurrentMenu(rootMenu);
     }
 
     public Menu getRootMenu() {
         return rootMenu;
+    }
+
+    private void buildRootMenu() {
+        rootMenu = new Menu("Root menu", new MenuItem[]{
+                new MenuItem("Master menu", null, null),
+                new MenuItem("Garage menu", null, null),
+                new MenuItem("Order menu", null, null),
+                new MenuItem("Exit", () -> System.exit(0), null)
+        });
     }
 }
