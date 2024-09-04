@@ -52,8 +52,10 @@ public class Navigator {
     }
 
     public void goToRootMenu() {
-        if (rootMenu != null) {
+        System.out.println("Navigating to root menu...");
+        if (rootMenu != null) { // Почему то root menu null
             this.currentMenu = rootMenu;
+            System.out.println("Current menu set to: " + currentMenu.getName());
         } else {
             System.out.println("Root menu is not set.");
         }
