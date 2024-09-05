@@ -18,19 +18,23 @@ public class AddMasterAction implements IAction {
         Scanner scanner = new Scanner(System.in);
         String nameMaster = null;
 
-        //Реализовать постоянный запрос на ввод имени мастера
         while (nameMaster == null || nameMaster.trim().isEmpty()) {
-            System.out.println("Введите имя мастера: ");
+            System.out.println("Enter the master's name: ");
             nameMaster = scanner.nextLine().trim();
 
             if (nameMaster.isEmpty()) {
-                System.out.println("Имя не может быть пустым. Пожалуйста, попробуйте снова.");
+                System.out.println("Name cannot be empty. Please try again.");
             }
         }
 
-        Master master = new Master(nameMaster);
-        serviceManager.addMaster(master);
-        System.out.println("Мастер " + nameMaster + " успешно добавлен.");
-
+        try {
+            Master master = new Master(nameMaster);
+            serviceManager.addMaster(master);
+            System.out.println("Master " + nameMaster + " has been successfully added.");
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error creating master: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("An unexpected error occurred while adding the master: " + e.getMessage());
+        }
     }
 }

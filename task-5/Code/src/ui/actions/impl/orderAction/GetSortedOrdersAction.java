@@ -19,14 +19,13 @@ public class GetSortedOrdersAction implements IAction {
     @Override
     public void execute() {
         Scanner scanner = new Scanner(System.in);
+        List<Comparator<Order>> comparators = new ArrayList<>();
 
         try {
-            List<Comparator<Order>> comparators = new ArrayList<>();
-
-            System.out.println("Выберите параметры для сортировки заказов:");
-            System.out.println("1. По дате создания");
-            System.out.println("2. По статусу заказа");
-            System.out.println("3. По стоимости заказа");
+            System.out.println("Choose sorting parameters for orders:");
+            System.out.println("1. By submission date");
+            System.out.println("2. By order status");
+            System.out.println("3. By order price");
 
             String input = scanner.nextLine();
             String[] options = input.split("\\s+");
@@ -43,29 +42,28 @@ public class GetSortedOrdersAction implements IAction {
                         comparators.add(Comparator.comparing(Order::getPrice));
                         break;
                     default:
-                        System.out.println("Некорректный выбор: " + option);
-                        return;
+                        throw new IllegalArgumentException("Invalid option: " + option);
                 }
             }
 
             List<Order> sortedOrders = serviceManager.getSortedOrders(serviceManager.getOrders(), comparators);
 
             if (sortedOrders.isEmpty()) {
-                System.out.println("Заказы не найдены.");
+                System.out.println("No orders found.");
             } else {
-                System.out.println("Отсортированные заказы:");
+                System.out.println("Sorted orders:");
                 for (Order order : sortedOrders) {
-                    System.out.println(" - Заказ ID: " +
-                            ", Дата создания: " + order.getSubmissionDate() +
-                            ", Статус: " + order.getStatusOrder() +
-                            ", Стоимость: " + order.getPrice());
+                    System.out.println(" - Order ID: " +
+                            ", Submission Date: " + order.getSubmissionDate() +
+                            ", Status: " + order.getStatusOrder() +
+                            ", Price: " + order.getPrice());
                 }
             }
 
         } catch (IllegalArgumentException e) {
-            System.out.println("Ошибка: " + e.getMessage());
+            System.out.println("Error: " + e.getMessage());
         } catch (Exception e) {
-            System.out.println("Неожиданная ошибка: " + e.getMessage());
+            System.out.println("Unexpected error: " + e.getMessage());
         }
     }
 }

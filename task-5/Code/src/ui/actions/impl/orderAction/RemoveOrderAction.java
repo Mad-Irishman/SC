@@ -1,5 +1,6 @@
 package ui.actions.impl.orderAction;
 
+import autoservice.manager.exception.ServiceManagerException;
 import autoservice.manager.impl.ServiceManager;
 import autoservice.models.order.Order;
 import ui.actions.IAction;
@@ -13,14 +14,12 @@ public class RemoveOrderAction implements IAction {
         this.serviceManager = serviceManager;
     }
 
-
-    // При удаление пишет, что есть ошибка, но при этом заказ удаляет
     @Override
     public void execute() {
         Scanner scanner = new Scanner(System.in);
 
         try {
-            System.out.print("Введите описание заказа, который хотите удалить: ");
+            System.out.print("Enter the description of the order you want to remove: ");
             String description = scanner.nextLine();
 
             Order orderToRemove = null;
@@ -33,12 +32,14 @@ public class RemoveOrderAction implements IAction {
 
             if (orderToRemove != null) {
                 serviceManager.removeOrder(orderToRemove);
-                System.out.println("Заказ с описанием \"" + description + "\" был успешно удален.");
+                System.out.println("Order with description \"" + description + "\" was successfully removed.");
             } else {
-                System.out.println("Заказ с таким описанием не найден.");
+                System.out.println("No order found with the given description.");
             }
+        } catch (ServiceManagerException e) {
+            System.out.println("Error removing order: " + e.getMessage());
         } catch (Exception e) {
-            System.out.println("Ошибка при удалении заказа: " + e.getMessage());
+            System.out.println("Unexpected error occurred: " + e.getMessage());
         }
     }
 }

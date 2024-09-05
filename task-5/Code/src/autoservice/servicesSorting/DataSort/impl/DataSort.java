@@ -19,8 +19,9 @@ public class DataSort implements DataSortInterface {
     public int getFreePlacesOnDate(List<Order> orders, List<Master> masters, List<Garage> garages, LocalDateTime date) {
         try {
             if (date == null) {
-                throw new IllegalArgumentException("Date cannot be null. ");
+                throw new IllegalArgumentException("Date cannot be null.");
             }
+
             List<Master> occupiedMasters = orders.stream()
                     .filter(order -> order.getStatusOrder() == OrderStatus.IN_PROGRESS || order.getStatusOrder() == OrderStatus.CREATED)
                     .filter(order -> order.getSubmissionDate().isBefore(date) && order.getCompletionDate().isAfter(date))
@@ -45,10 +46,12 @@ public class DataSort implements DataSortInterface {
                     .count();
 
             if (freeMastersCount == 0 || freePlacesCount == 0) {
-                throw new DataSortException("No free masters or garage places available on the specified date. ");
+                throw new DataSortException("No free masters or garage places available on the specified date.");
             }
 
             return Math.min((int) freeMastersCount, (int) freePlacesCount);
+        } catch (IllegalArgumentException e) {
+            throw new DataSortException("Invalid argument: " + e.getMessage());
         } catch (Exception e) {
             throw new DataSortException("Error calculating free places on date: " + e.getMessage());
         }
@@ -72,7 +75,6 @@ public class DataSort implements DataSortInterface {
                 }
             }
 
-            // Если ближайшая свободная дата осталась текущей, вернем завтрашний день
             return nearestFreeDate.isEqual(now) ? now.plusDays(1) : nearestFreeDate;
         } catch (Exception e) {
             throw new DataSortException("Error finding nearest free date: " + e.getMessage());
@@ -101,9 +103,10 @@ public class DataSort implements DataSortInterface {
                     );
 
             return freeMasterExists && freePlaceExists;
+        } catch (IllegalArgumentException e) {
+            throw new DataSortException("Invalid argument: " + e.getMessage());
         } catch (Exception e) {
             throw new DataSortException("Error checking availability at date: " + e.getMessage());
         }
     }
-
 }

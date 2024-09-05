@@ -1,8 +1,10 @@
 package ui.actions.impl.orderAction;
 
 import autoservice.manager.impl.ServiceManager;
+import autoservice.manager.exception.ServiceManagerException;
 import autoservice.models.order.Order;
 import ui.actions.IAction;
+
 import java.util.List;
 
 public class GetCurentOrdersAction implements IAction {
@@ -19,19 +21,21 @@ public class GetCurentOrdersAction implements IAction {
             List<Order> currentOrders = serviceManager.getCurrentOrders(allOrders);
 
             if (currentOrders.isEmpty()) {
-                System.out.println("Нет текущих заказов.");
+                System.out.println("No current orders.");
             } else {
-                System.out.println("Текущие заказы:");
+                System.out.println("Current orders:");
                 for (Order order : currentOrders) {
-                    System.out.println(" - Заказ ID: "+
-                            ", Дата создания: " + order.getSubmissionDate() +
-                            ", Статус: " + order.getStatusOrder() +
-                            ", Стоимость: " + order.getPrice());
+                    System.out.println(" - Order ID: " + order.getIdOrder() +
+                            ", Submission Date: " + order.getSubmissionDate() +
+                            ", Status: " + order.getStatusOrder() +
+                            ", Price: " + order.getPrice());
                 }
             }
 
+        } catch (ServiceManagerException e) {
+            System.out.println("Error retrieving orders from service: " + e.getMessage());
         } catch (Exception e) {
-            System.out.println("Ошибка при получении текущих заказов: " + e.getMessage());
+            System.out.println("Unexpected error: " + e.getMessage());
         }
     }
 }

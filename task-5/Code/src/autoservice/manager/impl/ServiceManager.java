@@ -29,7 +29,7 @@ public class ServiceManager implements ServiceManagerInterface {
     private static final int DEFAULT_NUMBER_OF_MASTERS = 10;
     private static final int DEFAULT_NUMBER_OF_PLACES = 10;
 
-    public ServiceManager() {
+    public ServiceManager() throws ServiceManagerException {
         this.masters = new ArrayList<>();
         this.garage = new Garage();
         this.garages = new ArrayList<>();
@@ -42,35 +42,39 @@ public class ServiceManager implements ServiceManagerInterface {
         OrdersSort ordersSort = new OrdersSort();
         this.assistant = new Assistant(mastersSort, garagePlacesSort, dataSort, ordersSort);
 
-        initializeMasters(DEFAULT_NUMBER_OF_MASTERS);
-        initializeGaragePlaces(DEFAULT_NUMBER_OF_PLACES);
+        try {
+            initializeMasters(DEFAULT_NUMBER_OF_MASTERS);
+            initializeGaragePlaces(DEFAULT_NUMBER_OF_PLACES);
+        } catch (Exception e) {
+            throw new ServiceManagerException("Error initializing service manager: " + e.getMessage());
+        }
     }
 
     @Override
-    public void addMaster(Master master) {
+    public void addMaster(Master master) throws ServiceManagerException {
         if (master == null) {
-            throw new ServiceManagerException("Мастер не может быть null");
+            throw new ServiceManagerException("Master cannot be null");
         }
         try {
             this.garage.addMaster(master);
         } catch (Exception e) {
-            throw new ServiceManagerException("Ошибка при добавлении мастера. Попробуйте снова позже.");
+            throw new ServiceManagerException("Error adding master. Please try again later.");
         }
     }
 
     @Override
-    public void removeMaster(Master master) {
+    public void removeMaster(Master master) throws ServiceManagerException {
         if (master == null) {
-            throw new ServiceManagerException("Мастер не может быть null");
+            throw new ServiceManagerException("Master cannot be null");
         }
         try {
             if (master.isAvailable() == MasterStatus.AVAILABLE) {
                 this.garage.removeMaster(master);
             } else {
-                System.out.println("Невозможно удалить мастера, так как у него есть заказ");
+                System.out.println("Cannot remove the master because they have an active order.");
             }
         } catch (Exception e) {
-            throw new ServiceManagerException("Ошибка при удалении мастера. Попробуйте снова позже.");
+            throw new ServiceManagerException("Error removing master. Please try again later.");
         }
     }
 
@@ -85,66 +89,62 @@ public class ServiceManager implements ServiceManagerInterface {
     }
 
     @Override
-    public void addGaragePlace(GaragePlace garagePlace) {
+    public void addGaragePlace(GaragePlace garagePlace) throws ServiceManagerException {
         if (garagePlace == null) {
-            throw new ServiceManagerException("Гаражное место не может быть null");
+            throw new ServiceManagerException("Garage place cannot be null");
         }
         try {
             this.garage.addGaragePlace(garagePlace);
         } catch (Exception e) {
-            throw new ServiceManagerException("Ошибка при добавлении гаражного места. Попробуйте снова позже.");
+            throw new ServiceManagerException("Error adding garage place. Please try again later.");
         }
     }
 
     @Override
-    public void removeGaragePlace(GaragePlace garagePlace) {
+    public void removeGaragePlace(GaragePlace garagePlace) throws ServiceManagerException {
         if (garagePlace == null) {
-            throw new ServiceManagerException("Гаражное место не может быть null");
+            throw new ServiceManagerException("Garage place cannot be null");
         }
         try {
             if (!garagePlace.isOccupied()) {
                 this.garage.removeGaragePlace(garagePlace);
             } else {
-                System.out.println("Невозможно удалить место, так как оно занято");
+                System.out.println("Cannot remove garage place because it is occupied.");
             }
         } catch (Exception e) {
-            throw new ServiceManagerException("Ошибка при удалении гаражного места. Попробуйте снова позже.");
+            throw new ServiceManagerException("Error removing garage place. Please try again later.");
         }
     }
 
-    public List<GaragePlace> allGaragePlaces() {
+    public List<GaragePlace> allGaragePlaces() throws ServiceManagerException {
         try {
             if (garage == null) {
-                throw new ServiceManagerException("Гараж не инициализирован.");
+                throw new ServiceManagerException("Garage is not initialized.");
             }
             return this.garage.getGaragePlaces();
-        } catch (ServiceManagerException e) {
-            throw e;
         } catch (Exception e) {
-            throw new ServiceManagerException("Ошибка при получении списка мест в гараже: " + e.getMessage());
+            throw new ServiceManagerException("Error retrieving garage places: " + e.getMessage());
         }
     }
 
-    public GaragePlace getGaragePlaceByNumber(int placeNumber) {
+    public GaragePlace getGaragePlaceByNumber(int placeNumber) throws GaragePlaceException, ServiceManagerException {
         try {
             if (garage == null) {
-                throw new ServiceManagerException("Гараж не инициализирован.");
+                throw new ServiceManagerException("Garage is not initialized.");
             }
             if (placeNumber <= 0) {
-                throw new GaragePlaceException("Номер места должен быть положительным числом.");
+                throw new GaragePlaceException("Place number must be a positive number.");
             }
             for (GaragePlace place : garage.getGaragePlaces()) {
                 if (place.getPlaceNumber() == placeNumber) {
                     return place;
                 }
             }
-            throw new GaragePlaceException("Место с номером " + placeNumber + " не найдено.");
+            throw new GaragePlaceException("Place with number " + placeNumber + " not found.");
         } catch (GaragePlaceException e) {
             throw e;
-        } catch (ServiceManagerException e) {
-            throw e;
         } catch (Exception e) {
-            throw new ServiceManagerException("Ошибка при получении места в гараже по номеру: " + e.getMessage());
+            throw new ServiceManagerException("Error retrieving garage place by number: " + e.getMessage());
         }
     }
 
@@ -154,25 +154,25 @@ public class ServiceManager implements ServiceManagerInterface {
     }
 
     @Override
-    public void createOrder(String description, LocalDateTime submissionDate, LocalDateTime completionDate, LocalDateTime plannedStartDate, double price) {
+    public void createOrder(String description, LocalDateTime submissionDate, LocalDateTime completionDate, LocalDateTime plannedStartDate, double price) throws ServiceManagerException {
         if (description == null || submissionDate == null || completionDate == null || plannedStartDate == null) {
-            throw new ServiceManagerException("Параметры заказа не могут быть null");
+            throw new ServiceManagerException("Order parameters cannot be null");
         }
         try {
-            if (!garage.getAvailableMaster().isEmpty() && !garage.getAvailableGaragePlaces().isEmpty()) {
+            if (!garage.getAvailableMasters().isEmpty() && !garage.getAvailableGaragePlaces().isEmpty()) {
                 Order order = new Order(description, submissionDate, completionDate, plannedStartDate, price);
-                order.setAssignedMaster(garage.getAvailableMaster().get(0));
+                order.setAssignedMaster(garage.getAvailableMasters().get(0));
                 order.getAssignedMaster().setAvailable(MasterStatus.OCCUPIED);
 
                 order.setAssignedGaragePlace(garage.getAvailableGaragePlaces().get(0));
                 order.getAssignedGaragePlace().setOccupied(true);
                 orders.add(order);
-                System.out.println("Заказ создан: " + order.getDescription());
+                System.out.println("Order created: " + order.getDescription());
             } else {
-                System.out.println("Мастер или место не доступны для создания заказа.");
+                System.out.println("No available masters or garage places to create an order.");
             }
         } catch (Exception e) {
-            throw new ServiceManagerException("Ошибка при создании заказа. Попробуйте снова позже.");
+            throw new ServiceManagerException("Error creating order. Please try again later.");
         }
     }
 
@@ -181,55 +181,59 @@ public class ServiceManager implements ServiceManagerInterface {
         return orders;
     }
 
-    public Order getOrderByDescription(String description) {
+    public Order getOrderByDescription(String description) throws ServiceManagerException {
         if (description == null || description.trim().isEmpty()) {
-            throw new ServiceManagerException("Описание заказа не может быть пустым.");
+            throw new ServiceManagerException("Order description cannot be empty.");
         }
-        for (Order order : orders) {
-            if (order.getDescription().equalsIgnoreCase(description)) {
-                return order;
+        try {
+            for (Order order : orders) {
+                if (order.getDescription().equalsIgnoreCase(description)) {
+                    return order;
+                }
             }
+            throw new ServiceManagerException("Order with description " + description + " not found.");
+        } catch (Exception e) {
+            throw new ServiceManagerException("Error retrieving order by description: " + e.getMessage());
         }
-        return null;
     }
 
     @Override
-    public Order getOrderById(int id) {
+    public Order getOrderById(int id) throws ServiceManagerException {
         try {
             for (Order order : orders) {
                 if (order.getIdOrder() == id) {
                     return order;
                 }
             }
-            throw new ServiceManagerException("Заказ с ID " + id + " не найден.");
+            throw new ServiceManagerException("Order with ID " + id + " not found.");
         } catch (Exception e) {
-            throw new ServiceManagerException("Ошибка при получении заказа по ID. Попробуйте снова позже.");
+            throw new ServiceManagerException("Error retrieving order by ID. Please try again later.");
         }
     }
 
     @Override
-    public void removeOrder(Order order) {
+    public void removeOrder(Order order) throws ServiceManagerException {
         if (order == null) {
-            throw new ServiceManagerException("Заказ не может быть null");
+            throw new ServiceManagerException("Order cannot be null");
         }
         try {
             if (orders.remove(order)) {
                 order.getAssignedMaster().setAvailable(MasterStatus.AVAILABLE);
                 order.getAssignedMaster().assignOrderMaster(null);
                 order.getAssignedGaragePlace().setOccupied(false);
-                System.out.println("Заказ удален: " + order);
+                System.out.println("Order removed: " + order);
             } else {
-                System.out.println("Заказ не найден: " + order);
+                System.out.println("Order not found: " + order);
             }
         } catch (Exception e) {
-            throw new ServiceManagerException("Ошибка при удалении заказа. Попробуйте снова позже.");
+            throw new ServiceManagerException("Error removing order. Please try again later.");
         }
     }
 
     @Override
-    public void completeOrder(Order order) {
+    public void completeOrder(Order order) throws ServiceManagerException {
         if (order == null) {
-            throw new ServiceManagerException("Заказ не может быть null");
+            throw new ServiceManagerException("Order cannot be null");
         }
         try {
             if (order.getStatusOrder() == OrderStatus.CREATED) {
@@ -237,19 +241,18 @@ public class ServiceManager implements ServiceManagerInterface {
                 order.getAssignedMaster().setAvailable(MasterStatus.AVAILABLE);
                 order.getAssignedMaster().assignOrderMaster(null);
                 order.getAssignedGaragePlace().setOccupied(false);
-                System.out.println("Заказ завершен: " + order);
+                System.out.println("Order completed: " + order);
             } else {
-                System.out.println("Заказ уже завершен или не существует.");
+                System.out.println("Order already completed or does not exist.");
             }
         } catch (Exception e) {
-            throw new ServiceManagerException("Ошибка при завершении заказа. Попробуйте снова позже.");
+            throw new ServiceManagerException("Error completing order. Please try again later.");
         }
     }
 
-    @Override
-    public void cancelOrder(Order order) {
+    public void cancelOrder(Order order) throws ServiceManagerException {
         if (order == null) {
-            throw new ServiceManagerException("Заказ не может быть null");
+            throw new ServiceManagerException("Order cannot be null");
         }
         try {
             if (order.getStatusOrder() == OrderStatus.CREATED && orders.contains(order)) {
@@ -257,25 +260,25 @@ public class ServiceManager implements ServiceManagerInterface {
                 order.getAssignedMaster().setAvailable(MasterStatus.AVAILABLE);
                 order.getAssignedMaster().assignOrderMaster(null);
                 order.getAssignedGaragePlace().setOccupied(false);
-                System.out.println("Заказ отменен: " + order);
+                System.out.println("Order cancelled: " + order);
             } else {
-                System.out.println("Заказ не найден: " + order);
+                System.out.println("Order not found: " + order);
             }
         } catch (Exception e) {
-            throw new ServiceManagerException("Ошибка при отмене заказа. Попробуйте снова позже.");
+            throw new ServiceManagerException("Error while cancelling the order. Please try again later.");
         }
     }
 
     @Override
-    public void adjustOrdersForDelay(int orderId, int delayInHours) {
+    public void adjustOrdersForDelay(int orderId, int delayInHours) throws ServiceManagerException {
         if (delayInHours < 0) {
-            throw new ServiceManagerException("Задержка не может быть отрицательной");
+            throw new ServiceManagerException("Delay cannot be negative");
         }
         try {
             Order delayedOrder = getOrderById(orderId);
             LocalDateTime newCompletionDate = delayedOrder.getCompletionDate().plusHours(delayInHours);
             delayedOrder.setCompletionDate(newCompletionDate);
-            System.out.println("Заказ " + delayedOrder.getIdOrder() + " задержан. Новое время завершения: " + newCompletionDate);
+            System.out.println("Order " + delayedOrder.getIdOrder() + " delayed. New completion time: " + newCompletionDate);
 
             for (Order order : orders) {
                 if (order.getIdOrder() != delayedOrder.getIdOrder()) {
@@ -283,18 +286,18 @@ public class ServiceManager implements ServiceManagerInterface {
                     LocalDateTime newEstimatedEndTime = order.getCompletionDate().plusHours(delayInHours);
                     order.setSubmissionDate(newStartTime);
                     order.setCompletionDate(newEstimatedEndTime);
-                    System.out.println("Заказ " + order.getIdOrder() + " скорректирован. Новое время начала: " + newStartTime
-                            + ", Новое время завершения: " + newEstimatedEndTime);
+                    System.out.println("Order " + order.getIdOrder() + " adjusted. New start time: " + newStartTime
+                            + ", New completion time: " + newEstimatedEndTime);
                 }
             }
         } catch (Exception e) {
-            throw new ServiceManagerException("Ошибка при корректировке заказов. Попробуйте снова позже.");
+            throw new ServiceManagerException("Error while adjusting orders. Please try again later.");
         }
     }
 
     @Override
     public void showAllOrders() {
-        System.out.println("Все заказы:");
+        System.out.println("All orders:");
         for (Order order : orders) {
             System.out.println(order);
         }
@@ -302,7 +305,7 @@ public class ServiceManager implements ServiceManagerInterface {
 
     @Override
     public void showAvailableMasters() {
-        System.out.println("Доступные мастера:");
+        System.out.println("Available masters:");
         for (Master master : masters) {
             if (master.isAvailable() == MasterStatus.AVAILABLE) {
                 System.out.println(master);
@@ -312,7 +315,7 @@ public class ServiceManager implements ServiceManagerInterface {
 
     @Override
     public void showAvailableGaragePlaces() {
-        System.out.println("Доступные гаражные места:");
+        System.out.println("Available garage places:");
         for (GaragePlace place : garage.getAvailableGaragePlaces()) {
             if (!place.isOccupied()) {
                 System.out.println(place);
@@ -321,150 +324,159 @@ public class ServiceManager implements ServiceManagerInterface {
     }
 
     @Override
-    public List<Master> getMastersByOrders(List<Master> masters, Order order) {
+    public List<Master> getMastersByOrders(List<Master> masters, Order order) throws ServiceManagerException {
         if (order == null) {
-            throw new ServiceManagerException("Заказ не может быть null");
+            throw new ServiceManagerException("Order cannot be null");
         }
         try {
             for (Master master : assistant.getMastersByOrders(masters, order)) {
                 System.out.println(master);
             }
         } catch (Exception e) {
-            throw new ServiceManagerException("Ошибка при получении мастеров по заказу. Попробуйте снова позже.");
+            throw new ServiceManagerException("Error while retrieving masters for the order. Please try again later.");
         }
         return masters;
     }
 
     @Override
-    public List<Master> getSortedMasters(List<Master> masters, List<Comparator<Master>> comparators) {
+    public List<Master> getSortedMasters(List<Master> masters, List<Comparator<Master>> comparators) throws ServiceManagerException {
         if (comparators == null) {
-            throw new ServiceManagerException("Список компараторов не может быть null");
+            throw new ServiceManagerException("Comparator list cannot be null");
         }
         try {
             for (Master master : assistant.getSortedMasters(masters, comparators)) {
                 System.out.println(master);
             }
         } catch (Exception e) {
-            throw new ServiceManagerException("Ошибка при сортировке мастеров. Попробуйте снова позже.");
+            throw new ServiceManagerException("Error while sorting masters. Please try again later.");
         }
         return masters;
     }
 
     @Override
-    public List<GaragePlace> getAvailableGaragePlaces(List<Garage> garages) {
+    public List<GaragePlace> getAvailableGaragePlaces(List<Garage> garages) throws ServiceManagerException {
         try {
             for (GaragePlace place : assistant.getAvailableGaragePlaces(garages)) {
                 System.out.println(place);
             }
         } catch (Exception e) {
-            throw new ServiceManagerException("Ошибка при получении доступных гаражных мест. Попробуйте снова позже.");
+            throw new ServiceManagerException("Error while retrieving available garage places. Please try again later.");
         }
         return null;
     }
 
     @Override
-    public void getFreePlacesOnDate(List<Order> orders, List<Master> masters, List<Garage> garages, LocalDateTime date) {
+    public void getFreePlacesOnDate(List<Order> orders, List<Master> masters, List<Garage> garages, LocalDateTime date) throws ServiceManagerException {
         if (date == null) {
-            throw new ServiceManagerException("Дата не может быть null");
+            throw new ServiceManagerException("Date cannot be null");
         }
         try {
             System.out.println(assistant.getFreePlacesOnDate(orders, masters, garages, date));
         } catch (Exception e) {
-            throw new ServiceManagerException("Ошибка при получении свободных мест на указанную дату. Попробуйте снова позже.");
+            throw new ServiceManagerException("Error while retrieving free places for the given date. Please try again later.");
         }
     }
 
     @Override
-    public void getNearestFreeDate(List<Master> masters, List<Order> orders, List<Garage> garages) {
+    public void getNearestFreeDate(List<Master> masters, List<Order> orders, List<Garage> garages) throws ServiceManagerException {
         try {
             System.out.println(assistant.getNearestFreeDate(masters, orders, garages));
         } catch (Exception e) {
-            throw new ServiceManagerException("Ошибка при получении ближайшей свободной даты. Попробуйте снова позже.");
+            throw new ServiceManagerException("Error while retrieving the nearest free date. Please try again later.");
         }
     }
 
     @Override
-    public List<Order> getSortedOrders(List<Order> orders, List<Comparator<Order>> comparators) {
+    public List<Order> getSortedOrders(List<Order> orders, List<Comparator<Order>> comparators) throws ServiceManagerException {
         if (comparators == null) {
-            throw new ServiceManagerException("Список компараторов не может быть null");
+            throw new ServiceManagerException("Comparator list cannot be null");
         }
         try {
             for (Order order : assistant.getSortedOrders(orders, comparators)) {
                 System.out.println(order);
             }
         } catch (Exception e) {
-            throw new ServiceManagerException("Ошибка при сортировке заказов. Попробуйте снова позже.");
+            throw new ServiceManagerException("Error while sorting orders. Please try again later.");
         }
         return orders;
     }
 
     @Override
-    public void getOrdersByMaster(List<Order> orders, Master master) {
+    public void getOrdersByMaster(List<Order> orders, Master master) throws ServiceManagerException {
         if (master == null) {
-            throw new ServiceManagerException("Мастер не может быть null");
+            throw new ServiceManagerException("Master cannot be null");
         }
         try {
             for (Order order : assistant.getOrdersByMaster(orders, master)) {
                 System.out.println(order);
             }
         } catch (Exception e) {
-            throw new ServiceManagerException("Ошибка при получении заказов по мастеру. Попробуйте снова позже.");
+            throw new ServiceManagerException("Error while retrieving orders by master. Please try again later.");
         }
     }
 
     @Override
-    public List<Order> getCurrentOrders(List<Order> orders) {
+    public List<Order> getCurrentOrders(List<Order> orders) throws ServiceManagerException {
         try {
             for (Order order : assistant.getCurrentOrders(orders)) {
                 System.out.println(order);
             }
         } catch (Exception e) {
-            throw new ServiceManagerException("Ошибка при получении текущих заказов. Попробуйте снова позже.");
+            throw new ServiceManagerException("Error while retrieving current orders. Please try again later.");
         }
         return orders;
     }
 
     @Override
-    public void getOrdersByStatus(List<Order> orders, OrderStatus status) {
+    public void getOrdersByStatus(List<Order> orders, OrderStatus status) throws ServiceManagerException {
         if (status == null) {
-            throw new ServiceManagerException("Статус заказа не может быть null");
+            throw new ServiceManagerException("Order status cannot be null");
         }
         try {
             for (Order order : assistant.getOrdersByStatus(orders, status)) {
                 System.out.println(order);
             }
         } catch (Exception e) {
-            throw new ServiceManagerException("Ошибка при получении заказов по статусу. Попробуйте снова позже.");
+            throw new ServiceManagerException("Error while retrieving orders by status. Please try again later.");
         }
     }
 
     @Override
-    public void getOrdersByTimeFrame(List<Order> orders, LocalDateTime startTime, LocalDateTime endTime) {
+    public void getOrdersByTimeFrame(List<Order> orders, LocalDateTime startTime, LocalDateTime endTime) throws ServiceManagerException {
         if (orders == null || startTime == null || endTime == null) {
-            throw new ServiceManagerException("Параметры не могут быть null");
+            throw new ServiceManagerException("Parameters cannot be null");
         }
         if (startTime.isAfter(endTime)) {
-            throw new ServiceManagerException("Время начала не может быть после времени окончания");
+            throw new ServiceManagerException("Start time cannot be after end time");
         }
         try {
             for (Order order : assistant.getOrdersByTimeFrame(orders, startTime, endTime)) {
                 System.out.println(order);
             }
         } catch (Exception e) {
-            throw new ServiceManagerException("Ошибка при получении заказов по временным рамкам. Попробуйте снова позже.");
+            throw new ServiceManagerException("Error while retrieving orders by time frame. Please try again later.");
         }
     }
 
-    private void initializeMasters(int numberOfMasters) {
-        for (int i = 1; i <= numberOfMasters; i++) {
-            Master master = new Master("Master " + i);
-            this.garage.addMaster(master);
+    private void initializeMasters(int count) throws ServiceManagerException {
+        try {
+            for (int i = 0; i < count; i++) {
+                Master master = new Master("Master " + (i + 1));
+                garage.addMaster(master);
+            }
+        } catch (Exception e) {
+            throw new ServiceManagerException("Error initializing masters: " + e.getMessage());
         }
     }
 
-    private void initializeGaragePlaces(int numberOfPlaces) {
-        for (int i = 1; i <= numberOfPlaces; i++) {
-            this.garage.addGaragePlace(new GaragePlace(i));
+    private void initializeGaragePlaces(int count) throws ServiceManagerException {
+        try {
+            for (int i = 0; i < count; i++) {
+                GaragePlace place = new GaragePlace(i + 1);
+                garage.addGaragePlace(place);
+            }
+        } catch (Exception e) {
+            throw new ServiceManagerException("Error initializing garage places: " + e.getMessage());
         }
     }
 }

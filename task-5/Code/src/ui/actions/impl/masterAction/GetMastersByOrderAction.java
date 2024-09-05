@@ -21,30 +21,29 @@ public class GetMastersByOrderAction implements IAction {
         Scanner scanner = new Scanner(System.in);
 
         try {
-            System.out.print("Введите описание заказа, для которого нужно найти мастеров: ");
+            System.out.print("Enter the description of the order to find the masters: ");
             String orderDescription = scanner.nextLine();
-
             Order order = serviceManager.getOrderByDescription(orderDescription);
+
             if (order == null) {
-                System.out.println("Заказ с таким описанием не найден.");
+                System.out.println("Order with the specified description was not found.");
                 return;
             }
 
             List<Master> masters = serviceManager.getMastersByOrders(serviceManager.getMasters(), order);
 
-
             if (masters.isEmpty()) {
-                System.out.println("Мастеров, работающих над этим заказом, не найдено.");
+                System.out.println("No masters are working on this order.");
             } else {
-                System.out.println("Мастера, работающие над заказом '" + orderDescription + "':");
+                System.out.println("Masters working on the order '" + orderDescription + "':");
                 for (Master master : masters) {
                     System.out.println(" - " + master.getName());
                 }
             }
         } catch (AssistantException e) {
-            System.out.println("Ошибка: " + e.getMessage());
+            System.out.println("Error retrieving data from assistant manager: " + e.getMessage());
         } catch (Exception e) {
-            System.out.println("Неожиданная ошибка: " + e.getMessage());
+            System.out.println("Unexpected error occurred: " + e.getMessage());
         }
     }
 }

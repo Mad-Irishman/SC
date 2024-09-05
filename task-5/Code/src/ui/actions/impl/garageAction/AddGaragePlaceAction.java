@@ -16,17 +16,17 @@ public class AddGaragePlaceAction implements IAction {
     @Override
     public void execute() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите номер нового гаражнего места: ");
         int placeNumber = -1;
 
         while (placeNumber <= 0) {
+            System.out.println("Enter the number of the new garage place: ");
             if (scanner.hasNextInt()) {
                 placeNumber = scanner.nextInt();
                 if (placeNumber <= 0) {
-                    System.out.println("Номер места должен быть положительным числом. Попробуйте еще раз.");
+                    System.out.println("The place number must be a positive integer. Please try again.");
                 }
             } else {
-                System.out.println("Введите целое число.");
+                System.out.println("Please enter a valid integer.");
                 scanner.next();
             }
         }
@@ -34,9 +34,11 @@ public class AddGaragePlaceAction implements IAction {
         try {
             GaragePlace garagePlace = new GaragePlace(placeNumber);
             serviceManager.addGaragePlace(garagePlace);
-            System.out.println("Гаражное место " + placeNumber + " успешно добавлено.");
+            System.out.println("Garage place " + placeNumber + " has been successfully added.");
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error while adding garage place: " + e.getMessage());
         } catch (Exception e) {
-            System.out.println("Ошибка при добавление гаражного места: " + e.getMessage());
+            System.out.println("An unexpected error occurred while adding the garage place: " + e.getMessage());
         }
     }
 }

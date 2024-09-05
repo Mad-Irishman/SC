@@ -3,6 +3,7 @@ package ui.actions.impl.garageAction;
 import autoservice.manager.impl.ServiceManager;
 import autoservice.models.garagePlace.GaragePlace;
 import ui.actions.IAction;
+import ui.actions.impl.garageAction.exception.GaragePlaceNotFoundException;
 
 import java.util.Scanner;
 
@@ -16,32 +17,37 @@ public class RemoveGaragePlaceAction implements IAction {
     @Override
     public void execute() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите номер наражного места, которе нужно удалить: ");
-
         int placeNumber = -1;
 
         while (placeNumber <= 0) {
+            System.out.println("Enter the number of the garage place to remove: ");
             if (scanner.hasNextInt()) {
                 placeNumber = scanner.nextInt();
                 if (placeNumber <= 0) {
-                    System.out.println("Номер места должен быть положительным число. Попробуйте снова: ");
+                    System.out.println("Place number must be a positive number. Please try again.");
                 }
             } else {
-                System.out.println("Пожалуйста, введите целое число.");
+                System.out.println("Please enter a valid integer.");
                 scanner.next();
             }
         }
 
         try {
-            GaragePlace placeToRemove = serviceManager.getGaragePlaceByNumber(placeNumber);
-            if (placeToRemove != null) {
-                serviceManager.removeGaragePlace(placeToRemove);
-                System.out.println("Гаражное место " + placeNumber + " успешно удалено.");
-            } else {
-                System.out.println("Гаражное место с номером " + placeNumber + " не найдено.");
-            }
+            removeGaragePlace(placeNumber);
+        } catch (GaragePlaceNotFoundException e) {
+            System.out.println("Garage place with number " + placeNumber + " not found: " + e.getMessage());
         } catch (Exception e) {
-            System.out.println("Ошибка при удалении гаражного места: " + e.getMessage());
+            System.out.println("An error occurred while removing the garage place: " + e.getMessage());
+        }
+    }
+
+    private void removeGaragePlace(int placeNumber) throws GaragePlaceNotFoundException {
+        GaragePlace placeToRemove = serviceManager.getGaragePlaceByNumber(placeNumber);
+        if (placeToRemove != null) {
+            serviceManager.removeGaragePlace(placeToRemove);
+            System.out.println("Garage place " + placeNumber + " successfully removed.");
+        } else {
+            throw new GaragePlaceNotFoundException("Garage place with number " + placeNumber + " does not exist.");
         }
     }
 }

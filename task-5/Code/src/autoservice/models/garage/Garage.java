@@ -1,6 +1,5 @@
 package autoservice.models.garage;
 
-
 import autoservice.models.garage.exceptions.GarageException;
 import autoservice.models.garage.exceptions.GaragePlaceNotFoundException;
 import autoservice.models.garage.exceptions.MasterNotFoundException;
@@ -32,23 +31,31 @@ public class Garage {
     }
 
     public void addMaster(Master master) {
-        if (master == null) {
-            throw new GarageException("Мастер не может быть null");
+        try {
+            if (master == null) {
+                throw new GarageException("Master cannot be null");
+            }
+            this.masters.add(master);
+        } catch (GarageException e) {
+            System.out.println("Error adding master: " + e.getMessage());
         }
-        this.masters.add(master);
     }
 
     public void removeMaster(Master master) {
-        if (master == null) {
-            throw new GarageException("Мастер не может быть null");
+        try {
+            if (master == null) {
+                throw new GarageException("Master cannot be null");
+            }
+            if (!this.masters.contains(master)) {
+                throw new MasterNotFoundException("Master not found in garage");
+            }
+            this.masters.remove(master);
+        } catch (GarageException e) {
+            System.out.println("Error removing master: " + e.getMessage());
         }
-        if (!this.masters.contains(master)) {
-            throw new MasterNotFoundException("Мастер не найден в гараже");
-        }
-        this.masters.remove(master);
     }
 
-    public List<Master> getAvailableMaster() {
+    public List<Master> getAvailableMasters() {
         List<Master> availableMasters = new ArrayList<>();
         for (Master master : masters) {
             if (master.isAvailable() == MasterStatus.AVAILABLE) {
@@ -59,25 +66,32 @@ public class Garage {
     }
 
     public List<Master> getAllMasters() {
-        List<Master> allMasters = new ArrayList<>(masters);
-        return allMasters;
+        return new ArrayList<>(masters);
     }
 
     public void addGaragePlace(GaragePlace place) {
-        if (place == null) {
-            throw new GarageException("Гаражное место не может быть null");
+        try {
+            if (place == null) {
+                throw new GarageException("Garage place cannot be null");
+            }
+            this.garagePlaces.add(place);
+        } catch (GarageException e) {
+            System.out.println("Error adding garage place: " + e.getMessage());
         }
-        this.garagePlaces.add(place);
     }
 
     public void removeGaragePlace(GaragePlace place) {
-        if (place == null) {
-            throw new GarageException("Гаражное место не может быть null");
+        try {
+            if (place == null) {
+                throw new GarageException("Garage place cannot be null");
+            }
+            if (!this.garagePlaces.contains(place)) {
+                throw new GaragePlaceNotFoundException("Garage place not found in garage");
+            }
+            this.garagePlaces.remove(place);
+        } catch (GarageException e) {
+            System.out.println("Error removing garage place: " + e.getMessage());
         }
-        if (!this.garagePlaces.contains(place)) {
-            throw new GaragePlaceNotFoundException("Гаражное место не найдено в гараже");
-        }
-        this.garagePlaces.remove(place);
     }
 
     public List<GaragePlace> getAvailableGaragePlaces() {
@@ -91,6 +105,6 @@ public class Garage {
     }
 
     public List<GaragePlace> getGaragePlaces() {
-        return garagePlaces;
+        return new ArrayList<>(garagePlaces);
     }
 }

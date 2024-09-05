@@ -17,40 +17,44 @@ public class RemoveMasterAction implements IAction {
 
     @Override
     public void execute() {
+        try {
+            System.out.println("List of masters:");
+            List<Master> masters = serviceManager.getAllMasterInGarage();
 
-        System.out.println("Список мастеров:");
-        List<Master> masters = serviceManager.getAllMasterInGarage();
-        if (masters.isEmpty()) {
-            System.out.println("Нет доступных мастеров для удаления.");
-            return;
-        }
-
-        Scanner scanner = new Scanner(System.in);
-        String nameMaster = null;
-        Master masterToRemove = null;
-
-        while (nameMaster == null || nameMaster.trim().isEmpty()) {
-            System.out.println("Введите имя мастера, которого вы хотите удалить: ");
-            nameMaster = scanner.nextLine().trim();
-
-            for (Master master : serviceManager.getAllMasterInGarage()) {
-                if (master.getName().equalsIgnoreCase(nameMaster.trim())) {
-                    masterToRemove = master;
-                    break;
-                }
+            if (masters.isEmpty()) {
+                System.out.println("No available masters for removal.");
+                return;
             }
 
-            if (masterToRemove != null) {
-                if (masterToRemove.isAvailable() == MasterStatus.AVAILABLE) {
-                    serviceManager.removeMaster(masterToRemove);
-                    System.out.println("Мастер " + nameMaster + " успешно удален.");
+            Scanner scanner = new Scanner(System.in);
+            String nameMaster = null;
+            Master masterToRemove = null;
+
+            while (nameMaster == null || nameMaster.trim().isEmpty()) {
+                System.out.println("Enter the name of the master you want to remove: ");
+                nameMaster = scanner.nextLine().trim();
+
+                for (Master master : masters) {
+                    if (master.getName().equalsIgnoreCase(nameMaster.trim())) {
+                        masterToRemove = master;
+                        break;
+                    }
+                }
+
+                if (masterToRemove != null) {
+                    if (masterToRemove.isAvailable() == MasterStatus.AVAILABLE) {
+                        serviceManager.removeMaster(masterToRemove);
+                        System.out.println("Master " + nameMaster + " has been successfully removed.");
+                    } else {
+                        System.out.println("Cannot remove the master as they have unfinished orders.");
+                    }
                 } else {
-                    System.out.println("Невозможно удалить мастера, так как у него есть незавершенные заказы.");
+                    System.out.println("Master with the name " + nameMaster + " not found.");
                 }
-            } else {
-                System.out.println("Мастер с именем " + nameMaster + " не найден.");
             }
 
+        } catch (Exception e) {
+            System.out.println("An error occurred while removing the master: " + e.getMessage());
         }
     }
 }

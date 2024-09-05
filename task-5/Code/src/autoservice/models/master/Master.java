@@ -10,6 +10,9 @@ public class Master {
     private Order ordersMaster;
 
     public Master(String name) {
+        if (name == null || name.trim().isEmpty()) {
+            throw new MasterException("Master's name cannot be empty");
+        }
         this.name = name;
         this.isAvailable = MasterStatus.AVAILABLE;
     }
@@ -18,9 +21,9 @@ public class Master {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(String name) throws MasterException {
         if (name == null || name.trim().isEmpty()) {
-            throw new MasterException("Имя мастера не может быть пустым");
+            throw new MasterException("Master's name cannot be empty");
         }
         this.name = name;
     }
@@ -29,9 +32,9 @@ public class Master {
         return this.isAvailable;
     }
 
-    public void setAvailable(MasterStatus available) {
+    public void setAvailable(MasterStatus available) throws MasterException {
         if (available == null) {
-            throw new MasterException("Статус мастера не может быть null");
+            throw new MasterException("Master's status cannot be null");
         }
         this.isAvailable = available;
     }
@@ -44,9 +47,9 @@ public class Master {
         this.ordersMaster = orderMaster;
     }
 
-    public void assignOrderMaster(Order order) {
+    public void assignOrderMaster(Order order) throws MasterException {
         if (order == null) {
-            throw new MasterException("Заказ не может быть null");
+            throw new MasterException("Order cannot be null");
         }
         this.ordersMaster = order;
     }

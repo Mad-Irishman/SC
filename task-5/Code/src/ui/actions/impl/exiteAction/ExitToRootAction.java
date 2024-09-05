@@ -1,4 +1,4 @@
-package ui.actions.impl;
+package ui.actions.impl.exiteAction;
 
 import ui.actions.IAction;
 import ui.view.menu.Navigator;
@@ -12,6 +12,10 @@ public class ExitToRootAction implements IAction {
 
     @Override
     public void execute() {
-        navigator.goToRootMenu();
+        try {
+            navigator.goToRootMenu();
+        } catch (Exception e) {
+            System.out.println("Unexpected error occurred: " + e.getMessage());
+        }
     }
 }

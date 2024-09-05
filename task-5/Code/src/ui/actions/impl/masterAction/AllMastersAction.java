@@ -7,7 +7,6 @@ import ui.actions.IAction;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class AllMastersAction implements IAction {
     private final ServiceManager serviceManager;
 
@@ -17,9 +16,17 @@ public class AllMastersAction implements IAction {
 
     @Override
     public void execute() {
-        List<Master> allMasters = new ArrayList<>(serviceManager.getAllMasterInGarage());
-        for (int i = 0; i < allMasters.size(); i++) {
-            System.out.println((i + 1) + ". " + allMasters.get(i).getName());
+        try {
+            List<Master> allMasters = new ArrayList<>(serviceManager.getAllMasterInGarage());
+            if (allMasters.isEmpty()) {
+                System.out.println("No masters available in the garage.");
+            } else {
+                for (int i = 0; i < allMasters.size(); i++) {
+                    System.out.println((i + 1) + ". " + allMasters.get(i).getName());
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Error retrieving the list of masters: " + e.getMessage());
         }
     }
 }

@@ -18,21 +18,22 @@ public class GetSortedMastersAction implements IAction {
     public void execute() {
         try {
             Comparator<Master> nameComparator = Comparator.comparing(Master::getName);
+
             List<Master> sortedMasters = serviceManager.getSortedMasters(serviceManager.getMasters(), List.of(nameComparator));
 
             if (sortedMasters.isEmpty()) {
-                System.out.println("Мастера не найдены.");
+                System.out.println("No masters found.");
             } else {
-                System.out.println("Отсортированные мастера по имени:");
+                System.out.println("Masters sorted by name:");
                 for (Master master : sortedMasters) {
                     System.out.println(" - " + master.getName());
                 }
             }
 
         } catch (IllegalArgumentException e) {
-            System.out.println("Ошибка: " + e.getMessage());
+            System.out.println("Error: " + e.getMessage());
         } catch (Exception e) {
-            System.out.println("Неожиданная ошибка: " + e.getMessage());
+            System.out.println("Unexpected error: " + e.getMessage());
         }
     }
 }

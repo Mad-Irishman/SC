@@ -28,11 +28,13 @@ public class MastersSort implements MastersSortInterface {
 
             return mastersByOrder;
 
+        } catch (IllegalArgumentException e) {
+            System.err.println("Invalid argument: " + e.getMessage());
+            throw new MastersSortException("Error retrieving masters by orders: " + e.getMessage());
         } catch (Exception e) {
             throw new MastersSortException("Error retrieving masters by orders: " + e.getMessage());
         }
     }
-
 
     @Override
     public List<Master> getSortedMasters(List<Master> masters, List<Comparator<Master>> comparators) {
@@ -45,6 +47,9 @@ public class MastersSort implements MastersSortInterface {
                     .sorted(combineComparators(comparators))
                     .collect(Collectors.toList());
 
+        } catch (IllegalArgumentException e) {
+            System.err.println("Invalid argument: " + e.getMessage());
+            throw new MastersSortException("Error sorting masters: " + e.getMessage());
         } catch (Exception e) {
             throw new MastersSortException("Error sorting masters: " + e.getMessage());
         }
@@ -55,6 +60,10 @@ public class MastersSort implements MastersSortInterface {
             return comparators.stream()
                     .reduce(Comparator::thenComparing)
                     .orElseThrow(() -> new IllegalArgumentException("Comparator list should not be empty"));
+
+        } catch (IllegalArgumentException e) {
+            System.err.println("Invalid argument: " + e.getMessage());
+            throw new MastersSortException("Error combining comparators: " + e.getMessage());
         } catch (Exception e) {
             throw new MastersSortException("Error combining comparators: " + e.getMessage());
         }

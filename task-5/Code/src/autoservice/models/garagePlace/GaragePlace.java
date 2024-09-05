@@ -1,6 +1,5 @@
 package autoservice.models.garagePlace;
 
-
 import autoservice.models.garagePlace.exception.GaragePlaceException;
 
 public class GaragePlace {
@@ -8,6 +7,9 @@ public class GaragePlace {
     private boolean isOccupied = false;
 
     public GaragePlace(int placeNumber) {
+        if (placeNumber <= 0) {
+            throw new GaragePlaceException("Place number must be a positive number");
+        }
         this.placeNumber = placeNumber;
     }
 
@@ -15,9 +17,9 @@ public class GaragePlace {
         return this.placeNumber;
     }
 
-    public void setPlaceNumber(int placeNumber) {
+    public void setPlaceNumber(int placeNumber) throws GaragePlaceException {
         if (placeNumber <= 0) {
-            throw new GaragePlaceException("Номер места должен быть положительным числом");
+            throw new GaragePlaceException("Place number must be a positive number");
         }
         this.placeNumber = placeNumber;
     }

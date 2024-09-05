@@ -10,23 +10,32 @@ import java.util.stream.Collectors;
 
 public class GaragePlacesSort implements GaragePlacesSortInterface {
 
-
     @Override
-    public List<GaragePlace> getAvailableGaragePlaces(List<Garage> garages) {
+    public List<GaragePlace> getAvailableGaragePlaces(List<Garage> garages) throws GaragePlacesSortException {
         try {
-            List<GaragePlace> availableGaragePlaces = garages.stream().flatMap(garage -> {
+            if (garages == null) {
+                throw new GaragePlacesSortException("Garages list cannot be null.");
+            }
+
+            List<GaragePlace> availableGaragePlaces = garages.stream()
+                    .flatMap(garage -> {
                         if (garage == null) {
-                            throw new GaragePlacesSortException("Garage data is not available.");
+                            throw new GaragePlacesSortException("One of the garages is null.");
                         }
                         return garage.getAvailableGaragePlaces().stream();
                     })
                     .collect(Collectors.toList());
+
             if (availableGaragePlaces.isEmpty()) {
-                throw new GaragePlacesSortException("No available garage places found. ");
+                throw new GaragePlacesSortException("No available garage places found.");
             }
+
             return availableGaragePlaces;
+        } catch (GaragePlacesSortException e) {
+            System.err.println("Error in getAvailableGaragePlaces: " + e.getMessage());
+            throw e;
         } catch (Exception e) {
-            throw new GaragePlacesSortException("Error retrieving  available garage places: " + e.getMessage());
+            throw new GaragePlacesSortException("Error retrieving available garage places: " + e.getMessage());
         }
     }
 }

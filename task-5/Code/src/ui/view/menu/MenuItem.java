@@ -30,11 +30,15 @@ public class MenuItem {
     }
 
     public void doAction() {
-        if (action != null) {
-            System.out.println("Executing action for menu item: " + title);
-            action.execute();
-        } else {
-            System.out.println("No action defined for menu item: " + title);
+        try {
+            if (action != null) {
+                System.out.println("Executing action for menu item: " + title);
+                action.execute();
+            } else {
+                System.out.println("No action defined for menu item: " + title);
+            }
+        } catch (Exception e) {
+            System.out.println("Error while executing action for menu item '" + title + "': " + e.getMessage());
         }
     }
 }

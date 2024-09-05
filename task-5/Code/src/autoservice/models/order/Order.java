@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 public class Order {
     private static int idOrder;
-    private String discription;
+    private String description;
     private Master assignedMaster;
     private GaragePlace assignedGaragePlace;
     private OrderStatus statusOrder;
@@ -18,9 +18,9 @@ public class Order {
     private LocalDateTime plannedStartDate;
     private double price;
 
-    public Order(String discription, LocalDateTime submissionDate, LocalDateTime completionDate, LocalDateTime plannedStartDate, double price) {
+    public Order(String description, LocalDateTime submissionDate, LocalDateTime completionDate, LocalDateTime plannedStartDate, double price) {
         idOrder++;
-        this.discription = discription;
+        this.description = description;
         this.statusOrder = OrderStatus.CREATED;
         this.submissionDate = submissionDate;
         this.completionDate = completionDate;
@@ -33,14 +33,14 @@ public class Order {
     }
 
     public String getDescription() {
-        return discription;
+        return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescription(String description) throws OrderException {
         if (description == null || description.trim().isEmpty()) {
-            throw new OrderException("Описание заказа не может быть пустым");
+            throw new OrderException("Order description cannot be empty");
         }
-        this.discription = description;
+        this.description = description;
     }
 
     public OrderStatus getStatusOrder() {
@@ -71,12 +71,12 @@ public class Order {
         return this.submissionDate;
     }
 
-    public void setSubmissionDate(LocalDateTime submissionDate) {
+    public void setSubmissionDate(LocalDateTime submissionDate) throws OrderException {
         if (submissionDate == null) {
-            throw new OrderException("Дата подачи не может быть null");
+            throw new OrderException("Submission date cannot be null");
         }
         if (submissionDate.isAfter(this.completionDate)) {
-            throw new OrderException("Дата подачи не может быть после даты завершения");
+            throw new OrderException("Submission date cannot be after completion date");
         }
         this.submissionDate = submissionDate;
     }
@@ -85,12 +85,12 @@ public class Order {
         return completionDate;
     }
 
-    public void setCompletionDate(LocalDateTime completionDate) {
+    public void setCompletionDate(LocalDateTime completionDate) throws OrderException {
         if (completionDate == null) {
-            throw new OrderException("Дата завершения не может быть null");
+            throw new OrderException("Completion date cannot be null");
         }
         if (this.submissionDate != null && completionDate.isBefore(this.submissionDate)) {
-            throw new OrderException("Дата завершения не может быть до даты подачи");
+            throw new OrderException("Completion date cannot be before submission date");
         }
         this.completionDate = completionDate;
     }
@@ -99,12 +99,12 @@ public class Order {
         return plannedStartDate;
     }
 
-    public void setPlannedStartDate(LocalDateTime plannedStartDate) {
+    public void setPlannedStartDate(LocalDateTime plannedStartDate) throws OrderException {
         if (plannedStartDate == null) {
-            throw new OrderException("Планируемая дата начала не может быть null");
+            throw new OrderException("Planned start date cannot be null");
         }
         if (plannedStartDate.isAfter(this.completionDate)) {
-            throw new OrderException("Планируемая дата начала не может быть после даты завершения");
+            throw new OrderException("Planned start date cannot be after completion date");
         }
         this.plannedStartDate = plannedStartDate;
     }
@@ -113,16 +113,16 @@ public class Order {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(double price) throws OrderException {
         if (price < 0) {
-            throw new OrderException("Цена заказа не может быть отрицательной");
+            throw new OrderException("Order price cannot be negative");
         }
         this.price = price;
     }
 
-    public boolean contains(Master master) {
+    public boolean contains(Master master) throws OrderException {
         if (master == null) {
-            throw new OrderException("Мастер не может быть null");
+            throw new OrderException("Master cannot be null");
         }
         return this.assignedMaster != null && this.assignedMaster.equals(master);
     }

@@ -16,9 +16,18 @@ public class AllOrdersAction implements IAction {
 
     @Override
     public void execute() {
-        List<Order> allOrders = new ArrayList<>(serviceManager.getOrders());
-        for (int i = 0; i < allOrders.size(); i++) {
-            System.out.println((i + 1) + ". " + allOrders.get(i).getDescription());
+        try {
+            List<Order> allOrders = new ArrayList<>(serviceManager.getOrders());
+
+            if (allOrders.isEmpty()) {
+                System.out.println("No orders found.");
+            } else {
+                for (int i = 0; i < allOrders.size(); i++) {
+                    System.out.println((i + 1) + ". " + allOrders.get(i).getDescription());
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("An error occurred while retrieving orders: " + e.getMessage());
         }
     }
 }

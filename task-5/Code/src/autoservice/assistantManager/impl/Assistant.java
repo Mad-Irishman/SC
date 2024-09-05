@@ -30,116 +30,134 @@ public class Assistant implements AssistantInterface {
     }
 
     @Override
-    public List<Master> getMastersByOrders(List<Master> masters, Order order) {
+    public List<Master> getMastersByOrders(List<Master> masters, Order order) throws AssistantException {
         if (order == null) {
-            throw new AssistantException("Заказ не может быть null");
+            System.err.println("Error: Order cannot be null.");
+            return masters;
         }
         try {
             return mastersSort.getMastersByOrders(masters, order);
         } catch (Exception e) {
-            throw new AssistantException("Ошибка при получении мастеров по заказу. Попробуйте снова позже.");
+            System.err.println("Error retrieving masters by order. Please try again later.");
+            return masters;
         }
     }
 
     @Override
-    public List<Master> getSortedMasters(List<Master> masters, List<Comparator<Master>> comparators) {
+    public List<Master> getSortedMasters(List<Master> masters, List<Comparator<Master>> comparators) throws AssistantException {
         if (comparators == null) {
-            throw new AssistantException("Список компараторов не может быть null");
+            System.err.println("Error: Comparators list cannot be null.");
+            return masters;
         }
         try {
             return mastersSort.getSortedMasters(masters, comparators);
         } catch (Exception e) {
-            throw new AssistantException("Ошибка при сортировке мастеров. Попробуйте снова позже.");
+            System.err.println("Error sorting masters. Please try again later.");
+            return masters;
         }
     }
 
     @Override
-    public List<GaragePlace> getAvailableGaragePlaces(List<Garage> garages) {
+    public List<GaragePlace> getAvailableGaragePlaces(List<Garage> garages) throws AssistantException {
         try {
             return garagePlacesSort.getAvailableGaragePlaces(garages);
         } catch (Exception e) {
-            throw new AssistantException("Ошибка при получении доступных гаражных мест. Попробуйте снова позже.");
+            System.err.println("Error retrieving available garage places. Please try again later.");
+            return null;
         }
     }
 
     @Override
-    public int getFreePlacesOnDate(List<Order> orders, List<Master> masters, List<Garage> garages, LocalDateTime date) {
+    public int getFreePlacesOnDate(List<Order> orders, List<Master> masters, List<Garage> garages, LocalDateTime date) throws AssistantException {
         if (date == null) {
-            throw new AssistantException("Дата не может быть null");
+            System.err.println("Error: Date cannot be null.");
+            return -1;
         }
         try {
             return dataSort.getFreePlacesOnDate(orders, masters, garages, date);
         } catch (Exception e) {
-            throw new AssistantException("Ошибка при получении свободных мест на указанную дату. Попробуйте снова позже.");
+            System.err.println("Error retrieving free places on the specified date. Please try again later.");
+            return -1;
         }
     }
 
     @Override
-    public LocalDateTime getNearestFreeDate(List<Master> masters, List<Order> orders, List<Garage> garages) {
+    public LocalDateTime getNearestFreeDate(List<Master> masters, List<Order> orders, List<Garage> garages) throws AssistantException {
         try {
             return dataSort.getNearestFreeDate(masters, orders, garages);
         } catch (Exception e) {
-            throw new AssistantException("Ошибка при получении ближайшей свободной даты. Попробуйте снова позже.");
+            System.err.println("Error retrieving nearest free date. Please try again later.");
+            return null;
         }
     }
 
     @Override
-    public List<Order> getSortedOrders(List<Order> orders, List<Comparator<Order>> comparators) {
+    public List<Order> getSortedOrders(List<Order> orders, List<Comparator<Order>> comparators) throws AssistantException {
         if (comparators == null) {
-            throw new AssistantException("Список компараторов не может быть null");
+            System.err.println("Error: Comparators list cannot be null.");
+            return orders;
         }
         try {
             return ordersSort.getSortedOrders(orders, comparators);
         } catch (Exception e) {
-            throw new AssistantException("Ошибка при сортировке заказов. Попробуйте снова позже.");
+            System.err.println("Error sorting orders. Please try again later.");
+            return orders;
         }
     }
 
     @Override
-    public List<Order> getOrdersByMaster(List<Order> orders, Master master) {
+    public List<Order> getOrdersByMaster(List<Order> orders, Master master) throws AssistantException {
         if (master == null) {
-            throw new AssistantException("Мастер не может быть null");
+            System.err.println("Error: Master cannot be null.");
+            return orders;
         }
         try {
             return ordersSort.getOrdersByMaster(orders, master);
         } catch (Exception e) {
-            throw new AssistantException("Ошибка при получении заказов по мастеру. Попробуйте снова позже.");
+            System.err.println("Error retrieving orders by master. Please try again later.");
+            return orders;
         }
     }
 
     @Override
-    public List<Order> getCurrentOrders(List<Order> orders) {
+    public List<Order> getCurrentOrders(List<Order> orders) throws AssistantException {
         try {
             return ordersSort.getCurrentOrders(orders);
         } catch (Exception e) {
-            throw new AssistantException("Ошибка при получении текущих заказов. Попробуйте снова позже.");
+            System.err.println("Error retrieving current orders. Please try again later.");
+            return orders;
         }
     }
 
     @Override
-    public List<Order> getOrdersByStatus(List<Order> orders, OrderStatus status) {
+    public List<Order> getOrdersByStatus(List<Order> orders, OrderStatus status) throws AssistantException {
         if (status == null) {
-            throw new AssistantException("Статус заказа не может быть null");
+            System.err.println("Error: Order status cannot be null.");
+            return orders;
         }
         try {
             return ordersSort.getOrdersByStatus(orders, status);
         } catch (Exception e) {
-            throw new AssistantException("Ошибка при получении заказов по статусу. Попробуйте снова позже.");
+            System.err.println("Error retrieving orders by status. Please try again later.");
+            return orders;
         }
     }
 
     @Override
-    public List<Order> getOrdersByTimeFrame(List<Order> orders, LocalDateTime startTime, LocalDateTime endTime) {
+    public List<Order> getOrdersByTimeFrame(List<Order> orders, LocalDateTime startTime, LocalDateTime endTime) throws AssistantException {
         if (orders == null || startTime == null || endTime == null) {
-            throw new AssistantException("Параметры не могут быть null");
+            System.err.println("Error: Parameters cannot be null.");
+            return orders;
         }
         if (startTime.isAfter(endTime)) {
-            throw new AssistantException("Время начала не может быть после времени окончания");
+            System.err.println("Error: Start time cannot be after end time.");
+            return orders;
         }
         try {
             return ordersSort.getOrdersByTimeFrame(orders, startTime, endTime);
         } catch (Exception e) {
-            throw new AssistantException("Ошибка при получении заказов по временным рамкам. Попробуйте снова позже.");
+            System.err.println("Error retrieving orders by time frame. Please try again later.");
+            return orders;
         }
     }
 }

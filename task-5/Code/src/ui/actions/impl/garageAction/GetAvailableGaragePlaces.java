@@ -18,18 +18,32 @@ public class GetAvailableGaragePlaces implements IAction {
     public void execute() {
         try {
             List<Garage> garages = serviceManager.getGarages();
+            if (garages == null) {
+                throw new RuntimeException("Failed to retrieve garages. The list is null.");
+            }
+
             List<GaragePlace> availableGaragePlaces = serviceManager.getAvailableGaragePlaces(garages);
+            if (availableGaragePlaces == null) {
+                throw new RuntimeException("Failed to retrieve available garage places. The list is null.");
+            }
 
             if (availableGaragePlaces.isEmpty()) {
-                System.out.println("Доступные гаражные места не найдены.");
+                System.out.println("No available garage places found.");
             } else {
-                System.out.println("Доступные гаражные места:");
+                System.out.println("Available garage places:");
                 for (GaragePlace place : availableGaragePlaces) {
-                    System.out.println(place.getPlaceNumber());
+                    try {
+                        System.out.println("Place Number: " + place.getPlaceNumber());
+                    } catch (Exception e) {
+                        System.out.println("Error retrieving information for place number " +
+                                (place != null ? place.getPlaceNumber() : "unknown") + ": " + e.getMessage());
+                    }
                 }
             }
+        } catch (RuntimeException e) {
+            System.out.println("Error occurred: " + e.getMessage());
         } catch (Exception e) {
-            System.out.println("Ошибка при получении доступных гаражных мест: " + e.getMessage());
+            System.out.println("An unexpected error occurred: " + e.getMessage());
         }
     }
 }
