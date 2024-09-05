@@ -51,8 +51,6 @@ public class Builder {
                     new MenuItem("Remove order", new RemoveOrderAction(serviceManager), null),
                     new MenuItem("Get order by status", new GetSortedOrdersAction(serviceManager), null),
                     new MenuItem("Get current order", new GetCurentOrdersAction(serviceManager), null),
-                    new MenuItem("Export orders to CSV", new ExportOrdersAction(serviceManager), null),
-                    new MenuItem("Import orders from CSV", new ImportOrdersAction(serviceManager), null),
                     new MenuItem("Exit to root menu", new ExitToRootAction(navigator), null)
             });
 
