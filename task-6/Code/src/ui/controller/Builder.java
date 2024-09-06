@@ -10,65 +10,69 @@ import ui.actions.impl.masterAction.*;
 import ui.actions.impl.orderAction.*;
 import ui.view.menu.Menu;
 import ui.view.menu.MenuItem;
-import ui.view.menu.Navigator;
 
 public class Builder {
     private final Menu rootMenu;
-    private final Menu masterMenu;
-    private final Menu garageMenu;
-    private final Menu orderMenu;
     private final ServiceManager serviceManager;
 
     public Builder(ServiceManager serviceManager) {
         this.serviceManager = serviceManager;
-        this.masterMenu = buildMasterMenu();
-        this.garageMenu = buildGarageMenu();
-        this.orderMenu = buildOrderMenu();
-        this.rootMenu = buildRootMenu();
+        this.rootMenu = buildMenus();
     }
 
     public Menu getRootMenu() {
         return rootMenu;
     }
 
-    private Menu buildMasterMenu() {
-        return new Menu("Master", new MenuItem[]{
+    private Menu buildMenus() {
+
+        Menu masterMenu = new Menu("Master", new MenuItem[]{
                 new MenuItem("Add master", new AddMasterAction(serviceManager), null),
                 new MenuItem("All masters", new AllMastersAction(serviceManager), null),
                 new MenuItem("Remove master", new RemoveMasterAction(serviceManager), null),
                 new MenuItem("Get masters by order", new GetMastersByOrderAction(serviceManager), null),
                 new MenuItem("Get sorted masters", new GetSortedMastersAction(serviceManager), null),
-                new MenuItem("Exit to root menu", new ExitToRootAction(null), rootMenu)  // Указываем rootMenu как следующую
+                new MenuItem("Exit to root menu", new ExitToRootAction(null), null)  // Связь с rootMenu будет установлена позже
         });
-    }
 
-    private Menu buildGarageMenu() {
-        return new Menu("Garage", new MenuItem[]{
+        Menu garageMenu = new Menu("Garage", new MenuItem[]{
                 new MenuItem("Add garage place", new AddGaragePlaceAction(serviceManager), null),
                 new MenuItem("All garage places", new AllGaragePlacesAction(serviceManager), null),
                 new MenuItem("Remove garage place", new RemoveGaragePlaceAction(serviceManager), null),
                 new MenuItem("Get available garage places", new GetAvailableGaragePlaces(serviceManager), null),
-                new MenuItem("Exit to root menu", new ExitToRootAction(null), rootMenu)
+                new MenuItem("Exit to root menu", new ExitToRootAction(null), null)
         });
-    }
 
-    private Menu buildOrderMenu() {
-        return new Menu("Order", new MenuItem[]{
+        Menu orderMenu = new Menu("Order", new MenuItem[]{
                 new MenuItem("Create order", new CreateOrderAction(serviceManager), null),
                 new MenuItem("All orders", new AllOrdersAction(serviceManager), null),
                 new MenuItem("Remove order", new RemoveOrderAction(serviceManager), null),
                 new MenuItem("Get order by status", new GetSortedOrdersAction(serviceManager), null),
                 new MenuItem("Get current order", new GetCurentOrdersAction(serviceManager), null),
-                new MenuItem("Exit to root menu", new ExitToRootAction(null), rootMenu)
+                new MenuItem("Exit to root menu", new ExitToRootAction(null), null)
         });
-    }
 
-    private Menu buildRootMenu() {
-        return new Menu("Root menu", new MenuItem[]{
+        // Строим корневое меню
+        Menu rootMenu = new Menu("Root menu", new MenuItem[]{
                 new MenuItem("Master menu", null, masterMenu),
                 new MenuItem("Garage menu", null, garageMenu),
                 new MenuItem("Order menu", null, orderMenu),
                 new MenuItem("Exit", () -> System.exit(0), null)
         });
+
+        setExitToRootMenu(masterMenu, rootMenu);
+        setExitToRootMenu(garageMenu, rootMenu);
+        setExitToRootMenu(orderMenu, rootMenu);
+
+        return rootMenu;
+    }
+
+    private void setExitToRootMenu(Menu menu, Menu rootMenu) {
+        for (MenuItem item : menu.getMenuItems()) {
+            if (item.getTitle().equals("Exit to root menu")) {
+                item.setNextMenu(rootMenu);
+                break;
+            }
+        }
     }
 }
