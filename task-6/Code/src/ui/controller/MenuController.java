@@ -1,7 +1,6 @@
 package ui.controller;
 
 import autoservice.manager.impl.ServiceManager;
-
 import ui.view.menu.Navigator;
 
 import java.util.Scanner;
@@ -16,8 +15,6 @@ public class MenuController {
     }
 
     public void run() {
-        builder.buildMenu(navigator);
-
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
