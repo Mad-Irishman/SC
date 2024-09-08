@@ -3,16 +3,16 @@ package autoservice.models.master;
 import autoservice.models.master.exception.MasterException;
 import autoservice.models.master.masterStatus.MasterStatus;
 import autoservice.models.order.Order;
+import java.util.UUID;
 
 public class Master {
+    private final String id;
     private String name;
     private MasterStatus isAvailable;
     private Order ordersMaster;
 
     public Master(String name) {
-        if (name == null || name.trim().isEmpty()) {
-            throw new MasterException("Master's name cannot be empty");
-        }
+        this.id = generateUniqueId();
         this.name = name;
         this.isAvailable = MasterStatus.AVAILABLE;
     }
@@ -56,5 +56,18 @@ public class Master {
 
     public Order getOrdersMaster() {
         return this.ordersMaster;
+    }
+
+    public String getId() {
+        return this.id;
+    }
+
+    @Override
+    public String toString() {
+        return id + "," + name;
+    }
+
+    private static String generateUniqueId() {
+        return UUID.randomUUID().toString();
     }
 }

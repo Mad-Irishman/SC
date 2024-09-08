@@ -32,7 +32,9 @@ public class Builder {
                 new MenuItem("Remove master", new RemoveMasterAction(serviceManager), null),
                 new MenuItem("Get masters by order", new GetMastersByOrderAction(serviceManager), null),
                 new MenuItem("Get sorted masters", new GetSortedMastersAction(serviceManager), null),
-                new MenuItem("Exit to root menu", new ExitToRootAction(null), null)  // Связь с rootMenu будет установлена позже
+                new MenuItem("Export masters", new ExportMastersAction(serviceManager), null),
+                new MenuItem("Import masters", new ImportMastersAction(serviceManager), null),
+                new MenuItem("Exit to root menu", new ExitToRootAction(null), null)
         });
 
         Menu garageMenu = new Menu("Garage", new MenuItem[]{
@@ -51,8 +53,7 @@ public class Builder {
                 new MenuItem("Get current order", new GetCurentOrdersAction(serviceManager), null),
                 new MenuItem("Exit to root menu", new ExitToRootAction(null), null)
         });
-
-        // Строим корневое меню
+        
         Menu rootMenu = new Menu("Root menu", new MenuItem[]{
                 new MenuItem("Master menu", null, masterMenu),
                 new MenuItem("Garage menu", null, garageMenu),

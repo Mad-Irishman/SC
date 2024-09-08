@@ -19,7 +19,7 @@ public class MenuController {
 
         while (true) {
             try {
-                navigator.printMenu();  // Печатаем текущее меню
+                navigator.printMenu();
                 System.out.println("Enter the menu item number: ");
                 String input = scanner.nextLine();
                 int choice = Integer.parseInt(input) - 1;
@@ -28,7 +28,7 @@ public class MenuController {
                     throw new IndexOutOfBoundsException("Menu item number out of range.");
                 }
 
-                navigator.navigate(choice);  // Переходим по выбранному пункту меню
+                navigator.navigate(choice);
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input. Please enter a valid number.");
             } catch (IndexOutOfBoundsException e) {
