@@ -62,11 +62,6 @@ public class Master {
         return this.id;
     }
 
-    @Override
-    public String toString() {
-        return id + "," + name;
-    }
-
     private static String generateUniqueId() {
         return UUID.randomUUID().toString();
     }

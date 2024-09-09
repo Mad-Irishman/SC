@@ -21,7 +21,8 @@ public class ImportMastersAction implements IAction {
         String filePath = scanner.nextLine();
 
         try {
-            MasterCSVImporter.importMastersFromCSV(serviceManager.getMasters(), filePath);
+            // Передаём ServiceManager в метод импорта
+            MasterCSVImporter.importMastersFromCSV(serviceManager, filePath);
             System.out.println("Import successful.");
         } catch (IOException e) {
             System.out.println("Error during import: " + e.getMessage());

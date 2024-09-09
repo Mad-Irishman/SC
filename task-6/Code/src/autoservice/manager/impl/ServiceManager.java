@@ -26,7 +26,7 @@ public class ServiceManager implements ServiceManagerInterface {
     private final List<Garage> garages;
     private final List<Order> orders;
     private final Assistant assistant;
-    private static final int DEFAULT_NUMBER_OF_MASTERS = 10;
+    //private static final int DEFAULT_NUMBER_OF_MASTERS = 10;
     private static final int DEFAULT_NUMBER_OF_PLACES = 10;
 
     public ServiceManager() throws ServiceManagerException {
@@ -43,7 +43,7 @@ public class ServiceManager implements ServiceManagerInterface {
         this.assistant = new Assistant(mastersSort, garagePlacesSort, dataSort, ordersSort);
 
         try {
-            initializeMasters(DEFAULT_NUMBER_OF_MASTERS);
+            //initializeMasters(DEFAULT_NUMBER_OF_MASTERS);
             initializeGaragePlaces(DEFAULT_NUMBER_OF_PLACES);
         } catch (Exception e) {
             throw new ServiceManagerException("Error initializing service manager: " + e.getMessage());
@@ -56,6 +56,7 @@ public class ServiceManager implements ServiceManagerInterface {
             throw new ServiceManagerException("Master cannot be null");
         }
         try {
+            this.masters.add(master);
             this.garage.addMaster(master);
         } catch (Exception e) {
             throw new ServiceManagerException("Error adding master. Please try again later.");
@@ -458,16 +459,16 @@ public class ServiceManager implements ServiceManagerInterface {
         }
     }
 
-    private void initializeMasters(int count) throws ServiceManagerException {
-        try {
-            for (int i = 0; i < count; i++) {
-                Master master = new Master("Master " + (i + 1));
-                garage.addMaster(master);
-            }
-        } catch (Exception e) {
-            throw new ServiceManagerException("Error initializing masters: " + e.getMessage());
-        }
-    }
+//    private void initializeMasters(int count) throws ServiceManagerException {
+//        try {
+//            for (int i = 0; i < count; i++) {
+//                Master master = new Master("Master " + (i + 1));
+//                garage.addMaster(master);
+//            }
+//        } catch (Exception e) {
+//            throw new ServiceManagerException("Error initializing masters: " + e.getMessage());
+//        }
+//    }
 
     private void initializeGaragePlaces(int count) throws ServiceManagerException {
         try {
