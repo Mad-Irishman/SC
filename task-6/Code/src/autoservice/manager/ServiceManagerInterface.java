@@ -19,6 +19,8 @@ public interface ServiceManagerInterface {
 
     void removeGaragePlace(GaragePlace garagePlace);
 
+    Master getMasterById(String id);
+
     List<Master> getMasters();
 
     List<Master> getAllMasterInGarage();

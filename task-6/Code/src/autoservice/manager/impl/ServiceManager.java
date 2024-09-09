@@ -80,14 +80,42 @@ public class ServiceManager implements ServiceManagerInterface {
     }
 
     @Override
-    public List<Master> getMasters() {
-        return masters;
+    public Master getMasterById(String id) throws ServiceManagerException {
+        if (id == null || id.trim().isEmpty()) {
+            throw new ServiceManagerException("Master ID cannot be null or empty");
+        }
+        try {
+            for (Master master : masters) {
+                if (master.getId().equals(id)) {
+                    return master;
+                }
+            }
+            return null; // Если мастер с указанным ID не найден
+        } catch (Exception e) {
+            throw new ServiceManagerException("Error retrieving master by ID: " + id);
+        }
     }
 
+
     @Override
-    public List<Master> getAllMasterInGarage() {
-        return garage.getAllMasters();
+    public List<Master> getMasters() throws ServiceManagerException {
+        try {
+            return new ArrayList<>(masters); // Возвращаем копию списка мастеров
+        } catch (Exception e) {
+            throw new ServiceManagerException("Error retrieving master list");
+        }
     }
+
+
+    @Override
+    public List<Master> getAllMasterInGarage() throws ServiceManagerException {
+        try {
+            return new ArrayList<>(garage.getAllMasters());
+        } catch (Exception e) {
+            throw new ServiceManagerException("Error retrieving masters from garage");
+        }
+    }
+
 
     @Override
     public void addGaragePlace(GaragePlace garagePlace) throws ServiceManagerException {

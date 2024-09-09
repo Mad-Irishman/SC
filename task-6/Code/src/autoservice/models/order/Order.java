@@ -126,15 +126,4 @@ public class Order {
         }
         return this.assignedMaster != null && this.assignedMaster.equals(master);
     }
-
-    public static Order fromCSV(String csvLine) {
-        String[] values = csvLine.split(",");
-        return new Order (
-                values[0],
-                LocalDateTime.parse(values[1]),
-                LocalDateTime.parse(values[2]),
-                LocalDateTime.parse(values[3]),
-                Double.parseDouble(values[4])
-        );
-    }
 }
