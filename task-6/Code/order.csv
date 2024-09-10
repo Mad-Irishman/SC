@@ -1,2 +1,2 @@
-ID, Description, Status
-1,Change Oil,CREATED
+ID, Description, Assigned Master, Assigned Garage Place, Status, Submission Date, Completion Date, Planned Start Date, Price
+1,Change Oil,Oleg,1,CREATED,2024-09-01 08:00,2024-09-08 09:00,2024-09-08 07:00,4143.0

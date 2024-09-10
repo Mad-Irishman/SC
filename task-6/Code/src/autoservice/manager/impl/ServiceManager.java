@@ -19,6 +19,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 
 public class ServiceManager implements ServiceManagerInterface {
     private final List<Master> masters;
@@ -116,6 +117,44 @@ public class ServiceManager implements ServiceManagerInterface {
         }
     }
 
+    @Override
+    public Master findMasterByName(String masterName) {
+        if (masterName == null || masterName.trim().isEmpty()) {
+            throw new IllegalArgumentException("Master name cannot be null or empty");
+        }
+
+        Optional<Master> foundMaster = masters.stream()
+                .filter(master -> master.getName().equalsIgnoreCase(masterName))
+                .findFirst();
+
+        return foundMaster.orElseThrow(() -> new IllegalArgumentException("Master with name '" + masterName + "' not found"));
+    }
+
+    @Override
+    public GaragePlace findGaragePlaceByNumber(String garagePlaceNumber) {
+        if (garagePlaceNumber == null || garagePlaceNumber.trim().isEmpty()) {
+            throw new IllegalArgumentException("Garage place number cannot be null or empty");
+        }
+
+        int placeNumber;
+        try {
+            placeNumber = Integer.parseInt(garagePlaceNumber);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Invalid garage place number format: " + garagePlaceNumber);
+        }
+
+        List<GaragePlace> garagePlaces = garage.getGaragePlaces();
+
+        Optional<GaragePlace> foundGaragePlace = garagePlaces.stream()
+                .filter(garagePlace -> garagePlace.getPlaceNumber() == placeNumber)
+                .findFirst();
+
+        return foundGaragePlace.orElseThrow(() ->
+                new IllegalArgumentException("Garage place with number '" + garagePlaceNumber + "' not found"));
+    }
+
+
+
 
     @Override
     public void addGaragePlace(GaragePlace garagePlace) throws ServiceManagerException {
@@ -204,6 +243,42 @@ public class ServiceManager implements ServiceManagerInterface {
             throw new ServiceManagerException("Error creating order. Please try again later.");
         }
     }
+
+    @Override
+    public void addOrder(Order order) throws ServiceManagerException {
+        if (order == null) {
+            throw new ServiceManagerException("Order cannot be null");
+        }
+
+        try {
+            List<Master> availableMasters = garage.getAvailableMasters();
+            List<GaragePlace> availableGaragePlaces = garage.getAvailableGaragePlaces();
+
+            if (availableMasters.isEmpty()) {
+                throw new ServiceManagerException("No available masters to assign to the order");
+            }
+
+            if (availableGaragePlaces.isEmpty()) {
+                throw new ServiceManagerException("No available garage places to assign to the order");
+            }
+
+            Master assignedMaster = availableMasters.get(0);
+            GaragePlace assignedGaragePlace = availableGaragePlaces.get(0);
+
+            order.setAssignedMaster(assignedMaster);
+            order.setAssignedGaragePlace(assignedGaragePlace);
+
+            assignedMaster.setAvailable(MasterStatus.OCCUPIED);
+            assignedGaragePlace.setOccupied(true);
+
+            orders.add(order);
+
+            System.out.println("Order added: " + order.getDescription());
+        } catch (Exception e) {
+            throw new ServiceManagerException("Error adding order. Please try again later.");
+        }
+    }
+
 
     @Override
     public List<Order> getOrders() {

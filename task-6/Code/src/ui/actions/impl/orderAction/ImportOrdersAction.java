@@ -1,16 +1,18 @@
-package ui.actions.impl.masterAction;
+package ui.actions.impl.orderAction;
 
 import CSVUtils.MasterImportExport.MasterCSVImporter;
+import CSVUtils.OrderImportExport.OrderCSVImporter;
 import autoservice.manager.impl.ServiceManager;
+
 import ui.actions.IAction;
 
 import java.io.IOException;
 import java.util.Scanner;
 
-public class ImportMastersAction implements IAction {
+public class ImportOrdersAction implements IAction {
     private final ServiceManager serviceManager;
 
-    public ImportMastersAction(ServiceManager serviceManager) {
+    public ImportOrdersAction(ServiceManager serviceManager) {
         this.serviceManager = serviceManager;
     }
 
@@ -21,7 +23,7 @@ public class ImportMastersAction implements IAction {
         String filePath = scanner.nextLine();
 
         try {
-            MasterCSVImporter.importMastersFromCSV(serviceManager, filePath);
+            OrderCSVImporter.importOrdersFromCSV(serviceManager, filePath);
             System.out.println("Import successful.");
         } catch (IOException e) {
             System.out.println("Error during import: " + e.getMessage());
