@@ -42,7 +42,7 @@ public class Builder {
                 new MenuItem("All garage places", new AllGaragePlacesAction(serviceManager), null),
                 new MenuItem("Remove garage place", new RemoveGaragePlaceAction(serviceManager), null),
                 new MenuItem("Get available garage places", new GetAvailableGaragePlaces(serviceManager), null),
-                new MenuItem("Export garage", null, null),
+                new MenuItem("Export garage", new ExportOrdersAction(serviceManager), null),
                 new MenuItem("Import garage", null, null),
                 new MenuItem("Exit to root menu", new ExitToRootAction(null), null)
         });

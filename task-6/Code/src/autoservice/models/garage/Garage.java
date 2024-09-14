@@ -11,12 +11,16 @@ import autoservice.models.garage.garageStatus.GarageStatue;
 import java.util.List;
 import java.util.ArrayList;
 
+import java.util.UUID;
+
 public class Garage {
+    private final String id;
     private final List<GaragePlace> garagePlaces;
     private final List<Master> masters;
     private GarageStatue isAvailable;
 
     public Garage() {
+        this.id = generateUniqueId();
         this.garagePlaces = new ArrayList<>();
         this.masters = new ArrayList<>();
         this.isAvailable = GarageStatue.AVAILABLE;
@@ -106,5 +110,13 @@ public class Garage {
 
     public List<GaragePlace> getGaragePlaces() {
         return new ArrayList<>(garagePlaces);
+    }
+
+    public String getId() {
+        return this.id;
+    }
+
+    private static String generateUniqueId() {
+        return UUID.randomUUID().toString();
     }
 }
