@@ -47,10 +47,7 @@ public class Master {
         this.ordersMaster = orderMaster;
     }
 
-    public void assignOrderMaster(Order order) throws MasterException {
-        if (order == null) {
-            throw new MasterException("Order cannot be null");
-        }
+    public void assignOrderMaster(Order order) {
         this.ordersMaster = order;
     }
 

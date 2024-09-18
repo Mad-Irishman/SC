@@ -128,6 +128,21 @@ public class Order {
         return this.assignedMaster != null && this.assignedMaster.equals(master);
     }
 
+    @Override
+    public String toString() {
+        return String.format("Order{id='%s', description='%s', status='%s', master='%s', garagePlace='%s', submissionDate='%s', completionDate='%s', plannedStartDate='%s', price=%.2f}",
+                idOrder,
+                description,
+                statusOrder,
+                assignedMaster != null ? assignedMaster.getName() : "Not assigned",
+                assignedGaragePlace != null ? assignedGaragePlace.getPlaceNumber() : "Not assigned",
+                submissionDate != null ? submissionDate.toString() : "N/A",
+                completionDate != null ? completionDate.toString() : "N/A",
+                plannedStartDate != null ? plannedStartDate.toString() : "N/A",
+                price);
+    }
+
+
     private String generationId() {
         return UUID.randomUUID().toString();
     }

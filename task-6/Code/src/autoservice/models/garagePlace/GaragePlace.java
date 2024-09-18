@@ -17,7 +17,7 @@ public class GaragePlace {
     }
 
     public int getPlaceNumber() {
-        return this.placeNumber;
+        return placeNumber;
     }
 
     public void setPlaceNumber(int placeNumber) throws GaragePlaceException {
