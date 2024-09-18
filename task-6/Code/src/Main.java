@@ -1,5 +1,5 @@
 import autoservice.manager.impl.ServiceManager;
-import ui.controller.MenuController;
+import autoservice.ui.controller.MenuController;
 
 public class Main {
     public static void main(String[] args) {

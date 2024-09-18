@@ -16,25 +16,19 @@ import autoservice.servicesSorting.MastersSort.impl.MastersSort;
 import autoservice.servicesSorting.OrdersSort.impl.OrdersSort;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class ServiceManager implements ServiceManagerInterface {
     private final List<Master> masters;
     private final Garage garage;
-    private final List<Garage> garages;
     private final List<Order> orders;
     private final Assistant assistant;
     //private static final int DEFAULT_NUMBER_OF_MASTERS = 10;
-    private static final int DEFAULT_NUMBER_OF_PLACES = 10;
+    //private static final int DEFAULT_NUMBER_OF_PLACES = 10;
 
     public ServiceManager() throws ServiceManagerException {
         this.masters = new ArrayList<>();
         this.garage = new Garage();
-        this.garages = new ArrayList<>();
-        this.garages.add(garage);
         this.orders = new ArrayList<>();
 
         MastersSort mastersSort = new MastersSort();
@@ -43,12 +37,12 @@ public class ServiceManager implements ServiceManagerInterface {
         OrdersSort ordersSort = new OrdersSort();
         this.assistant = new Assistant(mastersSort, garagePlacesSort, dataSort, ordersSort);
 
-        try {
-            //initializeMasters(DEFAULT_NUMBER_OF_MASTERS);
-            initializeGaragePlaces(DEFAULT_NUMBER_OF_PLACES);
-        } catch (Exception e) {
-            throw new ServiceManagerException("Error initializing service manager: " + e.getMessage());
-        }
+//        try {
+//            //initializeMasters(DEFAULT_NUMBER_OF_MASTERS);
+//            //initializeGaragePlaces(DEFAULT_NUMBER_OF_PLACES);
+//        } catch (Exception e) {
+//            throw new ServiceManagerException("Error initializing service manager: " + e.getMessage());
+//        }
     }
 
     @Override
@@ -101,7 +95,7 @@ public class ServiceManager implements ServiceManagerInterface {
     @Override
     public List<Master> getMasters() throws ServiceManagerException {
         try {
-            return new ArrayList<>(masters); // Возвращаем копию списка мастеров
+            return new ArrayList<>(masters);
         } catch (Exception e) {
             throw new ServiceManagerException("Error retrieving master list");
         }
@@ -152,9 +146,6 @@ public class ServiceManager implements ServiceManagerInterface {
         return foundGaragePlace.orElseThrow(() ->
                 new IllegalArgumentException("Garage place with number '" + garagePlaceNumber + "' not found"));
     }
-
-
-
 
     @Override
     public void addGaragePlace(GaragePlace garagePlace) throws ServiceManagerException {
@@ -217,9 +208,10 @@ public class ServiceManager implements ServiceManagerInterface {
     }
 
     @Override
-    public List<Garage> getGarages() {
-        return garages;
+    public Garage getGarage() {
+        return garage;
     }
+
 
     @Override
     public void createOrder(String description, LocalDateTime submissionDate, LocalDateTime completionDate, LocalDateTime plannedStartDate, double price) throws ServiceManagerException {
@@ -285,6 +277,11 @@ public class ServiceManager implements ServiceManagerInterface {
         return orders;
     }
 
+    public List<Order> getAllOrdersInGarage() {
+        return new ArrayList<>(garage.getAllOrders());
+    }
+
+    @Override
     public Order getOrderByDescription(String description) throws ServiceManagerException {
         if (description == null || description.trim().isEmpty()) {
             throw new ServiceManagerException("Order description cannot be empty.");
@@ -302,10 +299,10 @@ public class ServiceManager implements ServiceManagerInterface {
     }
 
     @Override
-    public Order getOrderById(int id) throws ServiceManagerException {
+    public Order getOrderById(String id) throws ServiceManagerException {
         try {
             for (Order order : orders) {
-                if (order.getIdOrder() == id) {
+                if (order.getIdOrder().equals(id)) {
                     return order;
                 }
             }
@@ -354,6 +351,7 @@ public class ServiceManager implements ServiceManagerInterface {
         }
     }
 
+    @Override
     public void cancelOrder(Order order) throws ServiceManagerException {
         if (order == null) {
             throw new ServiceManagerException("Order cannot be null");
@@ -374,7 +372,7 @@ public class ServiceManager implements ServiceManagerInterface {
     }
 
     @Override
-    public void adjustOrdersForDelay(int orderId, int delayInHours) throws ServiceManagerException {
+    public void adjustOrdersForDelay(String orderId, int delayInHours) throws ServiceManagerException {
         if (delayInHours < 0) {
             throw new ServiceManagerException("Delay cannot be negative");
         }
@@ -385,7 +383,7 @@ public class ServiceManager implements ServiceManagerInterface {
             System.out.println("Order " + delayedOrder.getIdOrder() + " delayed. New completion time: " + newCompletionDate);
 
             for (Order order : orders) {
-                if (order.getIdOrder() != delayedOrder.getIdOrder()) {
+                if (!Objects.equals(order.getIdOrder(), delayedOrder.getIdOrder())) {
                     LocalDateTime newStartTime = order.getSubmissionDate().plusHours(delayInHours);
                     LocalDateTime newEstimatedEndTime = order.getCompletionDate().plusHours(delayInHours);
                     order.setSubmissionDate(newStartTime);
@@ -573,14 +571,14 @@ public class ServiceManager implements ServiceManagerInterface {
 //        }
 //    }
 
-    private void initializeGaragePlaces(int count) throws ServiceManagerException {
-        try {
-            for (int i = 0; i < count; i++) {
-                GaragePlace place = new GaragePlace(i + 1);
-                garage.addGaragePlace(place);
-            }
-        } catch (Exception e) {
-            throw new ServiceManagerException("Error initializing garage places: " + e.getMessage());
-        }
-    }
+//    private void initializeGaragePlaces(int count) throws ServiceManagerException {
+//        try {
+//            for (int i = 0; i < count; i++) {
+//                GaragePlace place = new GaragePlace(i + 1);
+//                garage.addGaragePlace(place);
+//            }
+//        } catch (Exception e) {
+//            throw new ServiceManagerException("Error initializing garage places: " + e.getMessage());
+//        }
+//    }
 }

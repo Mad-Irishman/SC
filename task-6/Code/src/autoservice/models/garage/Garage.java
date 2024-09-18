@@ -6,7 +6,8 @@ import autoservice.models.garage.exceptions.MasterNotFoundException;
 import autoservice.models.garagePlace.GaragePlace;
 import autoservice.models.master.Master;
 import autoservice.models.master.masterStatus.MasterStatus;
-import autoservice.models.garage.garageStatus.GarageStatue;
+import autoservice.models.garage.garageStatus.GarageStatus;
+import autoservice.models.order.Order;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -17,20 +18,22 @@ public class Garage {
     private final String id;
     private final List<GaragePlace> garagePlaces;
     private final List<Master> masters;
-    private GarageStatue isAvailable;
+    private final List<Order> orders;
+    private GarageStatus isAvailable;
 
     public Garage() {
         this.id = generateUniqueId();
         this.garagePlaces = new ArrayList<>();
         this.masters = new ArrayList<>();
-        this.isAvailable = GarageStatue.AVAILABLE;
+        this.orders = new ArrayList<>();
+        this.isAvailable = GarageStatus.AVAILABLE;
     }
 
-    public GarageStatue getIsAvailable() {
-        return this.isAvailable;
+    public GarageStatus getIsAvailable() {
+        return isAvailable;
     }
 
-    public void setIsAvailable(GarageStatue isAvailable) {
+    public void setIsAvailable(GarageStatus isAvailable) {
         this.isAvailable = isAvailable;
     }
 
@@ -110,6 +113,10 @@ public class Garage {
 
     public List<GaragePlace> getGaragePlaces() {
         return new ArrayList<>(garagePlaces);
+    }
+
+    public List<Order> getAllOrders() {
+        return new ArrayList<>(orders);
     }
 
     public String getId() {

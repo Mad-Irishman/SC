@@ -6,9 +6,10 @@ import autoservice.models.order.exception.OrderException;
 import autoservice.models.order.orderStatus.OrderStatus;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 public class Order {
-    private static int idOrder;
+    private final String idOrder;
     private String description;
     private Master assignedMaster;
     private GaragePlace assignedGaragePlace;
@@ -19,7 +20,7 @@ public class Order {
     private double price;
 
     public Order(String description, LocalDateTime submissionDate, LocalDateTime completionDate, LocalDateTime plannedStartDate, double price) {
-        idOrder++;
+        this.idOrder = generationId();
         this.description = description;
         this.statusOrder = OrderStatus.CREATED;
         this.submissionDate = submissionDate;
@@ -28,8 +29,8 @@ public class Order {
         this.price = price;
     }
 
-    public int getIdOrder() {
-        return this.idOrder;
+    public String getIdOrder() {
+        return idOrder;
     }
 
     public String getDescription() {
@@ -125,5 +126,9 @@ public class Order {
             throw new OrderException("Master cannot be null");
         }
         return this.assignedMaster != null && this.assignedMaster.equals(master);
+    }
+
+    private String generationId() {
+        return UUID.randomUUID().toString();
     }
 }

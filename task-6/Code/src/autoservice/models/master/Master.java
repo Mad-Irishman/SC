@@ -59,7 +59,11 @@ public class Master {
     }
 
     public String getId() {
-        return this.id;
+        return id;
+    }
+
+    public String getIdOrder() {
+        return ordersMaster.getIdOrder();
     }
 
     private static String generateUniqueId() {
