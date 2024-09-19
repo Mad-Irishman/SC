@@ -6,9 +6,10 @@ import autoservice.models.order.exception.OrderException;
 import autoservice.models.order.orderStatus.OrderStatus;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 public class Order {
-    private static int idOrder;
+    private final String idOrder;
     private String description;
     private Master assignedMaster;
     private GaragePlace assignedGaragePlace;
@@ -19,7 +20,7 @@ public class Order {
     private double price;
 
     public Order(String description, LocalDateTime submissionDate, LocalDateTime completionDate, LocalDateTime plannedStartDate, double price) {
-        idOrder++;
+        this.idOrder = generationId();
         this.description = description;
         this.statusOrder = OrderStatus.CREATED;
         this.submissionDate = submissionDate;
@@ -28,8 +29,8 @@ public class Order {
         this.price = price;
     }
 
-    public int getIdOrder() {
-        return this.idOrder;
+    public String getIdOrder() {
+        return idOrder;
     }
 
     public String getDescription() {
@@ -127,14 +128,22 @@ public class Order {
         return this.assignedMaster != null && this.assignedMaster.equals(master);
     }
 
-    public static Order fromCSV(String csvLine) {
-        String[] values = csvLine.split(",");
-        return new Order (
-                values[0],
-                LocalDateTime.parse(values[1]),
-                LocalDateTime.parse(values[2]),
-                LocalDateTime.parse(values[3]),
-                Double.parseDouble(values[4])
-        );
+    @Override
+    public String toString() {
+        return String.format("Order{id='%s', description='%s', status='%s', master='%s', garagePlace='%s', submissionDate='%s', completionDate='%s', plannedStartDate='%s', price=%.2f}",
+                idOrder,
+                description,
+                statusOrder,
+                assignedMaster != null ? assignedMaster.getName() : "Not assigned",
+                assignedGaragePlace != null ? assignedGaragePlace.getPlaceNumber() : "Not assigned",
+                submissionDate != null ? submissionDate.toString() : "N/A",
+                completionDate != null ? completionDate.toString() : "N/A",
+                plannedStartDate != null ? plannedStartDate.toString() : "N/A",
+                price);
+    }
+
+
+    private String generationId() {
+        return UUID.randomUUID().toString();
     }
 }
