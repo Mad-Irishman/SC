@@ -7,9 +7,9 @@ import java.io.IOException;
 
 public class Serializer {
     private static final ObjectMapper objectMapper = new ObjectMapper();
-    private static final String filePath = "src/autoservice/resources/serialization";
+    private static final String filePath = "src/autoservice/resources/start_end_program/start_end_program.json";
 
-    public static <T> void serializeToFile(T object, String filePath) {
+    public static <T> void serializeToFile(T object) {
         try {
             objectMapper.writeValue(new File(filePath), object);
         } catch (IOException e) {

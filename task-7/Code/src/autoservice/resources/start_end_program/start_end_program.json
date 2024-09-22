@@ -1,0 +1,121 @@
+{
+  "masters": [],
+  "garage": {
+    "id": "6ad153e1-912b-4a53-96b0-a7e0f9e67fa2",
+    "garagePlaces": [
+      {
+        "placeNumber": 1,
+        "idOrder": null,
+        "occupied": false
+      },
+      {
+        "placeNumber": 2,
+        "idOrder": null,
+        "occupied": false
+      },
+      {
+        "placeNumber": 3,
+        "idOrder": null,
+        "occupied": false
+      },
+      {
+        "placeNumber": 4,
+        "idOrder": null,
+        "occupied": false
+      },
+      {
+        "placeNumber": 5,
+        "idOrder": null,
+        "occupied": false
+      },
+      {
+        "placeNumber": 6,
+        "idOrder": null,
+        "occupied": false
+      },
+      {
+        "placeNumber": 7,
+        "idOrder": null,
+        "occupied": false
+      },
+      {
+        "placeNumber": 8,
+        "idOrder": null,
+        "occupied": false
+      },
+      {
+        "placeNumber": 9,
+        "idOrder": null,
+        "occupied": false
+      },
+      {
+        "placeNumber": 10,
+        "idOrder": null,
+        "occupied": false
+      }
+    ],
+    "isAvailable": "AVAILABLE",
+    "canRemoveGaragePlace": true,
+    "canAddGaragePlace": true,
+    "canRemoveOrder": true,
+    "canRescheduleOrder": true,
+    "availableMasters": [],
+    "availableGaragePlaces": [
+      {
+        "placeNumber": 1,
+        "idOrder": null,
+        "occupied": false
+      },
+      {
+        "placeNumber": 2,
+        "idOrder": null,
+        "occupied": false
+      },
+      {
+        "placeNumber": 3,
+        "idOrder": null,
+        "occupied": false
+      },
+      {
+        "placeNumber": 4,
+        "idOrder": null,
+        "occupied": false
+      },
+      {
+        "placeNumber": 5,
+        "idOrder": null,
+        "occupied": false
+      },
+      {
+        "placeNumber": 6,
+        "idOrder": null,
+        "occupied": false
+      },
+      {
+        "placeNumber": 7,
+        "idOrder": null,
+        "occupied": false
+      },
+      {
+        "placeNumber": 8,
+        "idOrder": null,
+        "occupied": false
+      },
+      {
+        "placeNumber": 9,
+        "idOrder": null,
+        "occupied": false
+      },
+      {
+        "placeNumber": 10,
+        "idOrder": null,
+        "occupied": false
+      }
+    ],
+    "allOrders": [],
+    "allMasters": []
+  },
+  "orders": [],
+  "allOrdersInGarage": [],
+  "allMasterInGarage": []
+}
