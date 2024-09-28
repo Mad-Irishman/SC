@@ -33,8 +33,9 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="jackson-annotations-2.15.0" level="project" />
-    <orderEntry type="library" name="jackson-core-2.15.0" level="project" />
-    <orderEntry type="library" name="jackson-databind-2.15.0" level="project" />
+    <orderEntry type="library" name="jackson-annotations-2.18.0-rc1" level="project" />
+    <orderEntry type="library" name="jackson-core-2.18.0-rc1" level="project" />
+    <orderEntry type="library" name="jackson-databind-2.18.0-rc1" level="project" />
+    <orderEntry type="library" name="jackson-datatype-jsr310-2.18.0" level="project" />
   </component>
 </module>

@@ -3,6 +3,7 @@ package autoservice.models.order;
 import autoservice.models.garagePlace.GaragePlace;
 import autoservice.models.master.Master;
 import autoservice.models.order.orderStatus.OrderStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -17,6 +18,11 @@ public class Order {
     private LocalDateTime completionDate;
     private LocalDateTime plannedStartDate;
     private double price;
+
+    public Order() {
+        this.idOrder = generationId();
+        this.statusOrder = OrderStatus.CREATED;
+    }
 
     public Order(String description, LocalDateTime submissionDate, LocalDateTime completionDate, LocalDateTime plannedStartDate, double price) {
         this.idOrder = generationId();
@@ -52,6 +58,7 @@ public class Order {
         return this.assignedMaster;
     }
 
+    @JsonIgnore
     public void setAssignedMaster(Master assignedMaster) {
         this.assignedMaster = assignedMaster;
     }

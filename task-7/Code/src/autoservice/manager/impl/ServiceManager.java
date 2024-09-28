@@ -25,7 +25,7 @@ public class ServiceManager implements ServiceManagerInterface {
     //private static final int DEFAULT_NUMBER_OF_MASTERS = 10;
     //private static final int DEFAULT_NUMBER_OF_PLACES = 10;
 
-    public ServiceManager() throws ServiceManagerException {
+    public ServiceManager() {
         this.masters = new ArrayList<>();
         this.garage = new Garage();
         this.orders = new ArrayList<>();
@@ -50,8 +50,8 @@ public class ServiceManager implements ServiceManagerInterface {
             throw new ServiceManagerException("Master cannot be null");
         }
         try {
-            this.masters.add(master);
             this.garage.addMaster(master);
+            this.masters.add(master);
         } catch (Exception e) {
             throw new ServiceManagerException("Error adding master. Please try again later.");
         }
@@ -85,7 +85,7 @@ public class ServiceManager implements ServiceManagerInterface {
                     return master;
                 }
             }
-            return null; // Если мастер с указанным ID не найден
+            return null;
         } catch (Exception e) {
             throw new ServiceManagerException("Error retrieving master by ID: " + id);
         }
@@ -95,7 +95,7 @@ public class ServiceManager implements ServiceManagerInterface {
     @Override
     public List<Master> getMasters() throws ServiceManagerException {
         try {
-            return new ArrayList<>(masters);
+            return masters;
         } catch (Exception e) {
             throw new ServiceManagerException("Error retrieving master list");
         }
@@ -199,9 +199,11 @@ public class ServiceManager implements ServiceManagerInterface {
                 Order order = new Order(description, submissionDate, completionDate, plannedStartDate, price);
                 order.setAssignedMaster(garage.getAvailableMasters().get(0));
                 order.getAssignedMaster().setAvailable(MasterStatus.OCCUPIED);
+                order.getAssignedMaster().setOrderMaster(order);
 
                 order.setAssignedGaragePlace(garage.getAvailableGaragePlaces().get(0));
                 order.getAssignedGaragePlace().setOccupied(true);
+
                 orders.add(order);
                 garage.addOrder(order);
                 System.out.println("Order created: " + order.getDescription());
@@ -238,6 +240,7 @@ public class ServiceManager implements ServiceManagerInterface {
             order.setAssignedGaragePlace(assignedGaragePlace);
 
             assignedMaster.setAvailable(MasterStatus.OCCUPIED);
+            assignedMaster.setOrderMaster(order);
             assignedGaragePlace.setOccupied(true);
 
             orders.add(order);

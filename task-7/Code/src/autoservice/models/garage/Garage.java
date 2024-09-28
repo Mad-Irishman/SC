@@ -5,6 +5,7 @@ import autoservice.models.master.Master;
 import autoservice.models.master.masterStatus.MasterStatus;
 import autoservice.models.garage.garageStatus.GarageStatus;
 import autoservice.models.order.Order;
+import com.fasterxml.jackson.annotation.JsonCreator;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -37,6 +38,18 @@ public class Garage {
         loadProperties();
     }
 
+    public Garage(String id, List<GaragePlace> garagePlaces, List<Master> masters, List<Order> orders, GarageStatus isAvailable, boolean canRemoveGaragePlace, boolean canAddGaragePlace, boolean canRemoveOrder, boolean canRescheduleOrder) {
+        this.id = id;
+        this.garagePlaces = garagePlaces;
+        this.masters = masters;
+        this.orders = orders;
+        this.isAvailable = isAvailable;
+        this.canRemoveGaragePlace = canRemoveGaragePlace;
+        this.canAddGaragePlace = canAddGaragePlace;
+        this.canRemoveOrder = canRemoveOrder;
+        this.canRescheduleOrder = canRescheduleOrder;
+    }
+
     public GarageStatus getIsAvailable() {
         return isAvailable;
     }
@@ -64,7 +77,7 @@ public class Garage {
     }
 
     public List<Master> getAllMasters() {
-        return new ArrayList<>(masters);
+        return masters;
     }
 
     public void addGaragePlace(GaragePlace place) {

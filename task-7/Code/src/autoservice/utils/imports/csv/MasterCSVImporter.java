@@ -46,12 +46,12 @@ public class MasterCSVImporter {
                     Master newMaster = new Master(name);
                     newMaster.setAvailable(status);
 
-                    if (order_id.equals("N/A")) {
+                    if (order_id.equals("N/A") && orderLink.equals("N/A")) {
                         newMaster.setOrderMaster(null);
                     } else {
                         Order newOrder = parseOrderFromString(orderLink);
                         serviceManager.addOrder(newOrder);
-                        newMaster.setOrderMaster(newOrder);
+
                     }
 
                     serviceManager.addMaster(newMaster);

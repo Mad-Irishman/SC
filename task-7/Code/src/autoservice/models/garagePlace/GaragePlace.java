@@ -5,6 +5,13 @@ public class GaragePlace {
     private boolean isOccupied = false;
     private String idOrder = null;
 
+    public GaragePlace() {}
+
+    public GaragePlace(int placeNumber, boolean isOccupied, String idOrder) {
+        this.placeNumber = placeNumber;
+        this.isOccupied = isOccupied;
+        this.idOrder = idOrder;
+    }
 
     public GaragePlace(int placeNumber) {
         this.placeNumber = placeNumber;
