@@ -1,3 +1,0 @@
-ID, Name, Status, Order_id, Order link
-60bc74d7-ff1e-47c5-9795-0019fd2d468c, Oleg, OCCUPIED, bbb83b28-4262-4f58-b95e-2cb7da93bae4, Order{id='bbb83b28-4262-4f58-b95e-2cb7da93bae4', description='Change M', status='CREATED', master='Oleg', garagePlace='1', submissionDate='2024-09-10T17:52', completionDate='2024-09-11T17:00', plannedStartDate='2024-09-11T16:00', price=31231,00}
-80bbc3a1-e4bb-468e-a12f-106e6b6bf564, Canya, AVAILABLE, N/A, N/A
