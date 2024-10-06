@@ -1,29 +1,33 @@
 package task1;
 
-public class Task1 extends Thread {
+class Task1 extends Thread {
     @Override
     public void run() {
         try {
-            System.out.println("State: NEW");
+            System.out.println("State: " + getState());
             Thread.sleep(100);
 
-            System.out.println("State: RUNNABLE");
             synchronized (this) {
+                System.out.println("State: " + getState());
                 wait(200);
-                System.out.println("State: TIMED_WAITING");
             }
 
-            synchronized (this) {
-                System.out.println("State: BLOCKED");
-            }
-
-            Thread.sleep(100);
-            System.out.println("State: WAITING");
-
+            System.out.println("State: " + getState());
         } catch (InterruptedException e) {
             e.printStackTrace();
-        } finally {
-            System.out.println("State: TERMINATED");
         }
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        System.out.println("=== Task 1 ===");
+        Task1 task1 = new Task1();
+        System.out.println("Before start: " + task1.getState());
+        task1.start();
+
+        Thread.sleep(50);
+        System.out.println("After start: " + task1.getState());
+
+        task1.join();
+        System.out.println("After completion: " + task1.getState());
     }
 }

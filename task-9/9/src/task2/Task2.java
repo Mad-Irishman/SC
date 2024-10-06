@@ -1,6 +1,6 @@
 package task2;
 
-public class Task2 implements Runnable {
+class Task2 implements Runnable {
     private String name;
 
     public Task2(String name) {
@@ -17,5 +17,17 @@ public class Task2 implements Runnable {
                 e.printStackTrace();
             }
         }
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        System.out.println("=== Task 2 ===");
+        Thread thread1 = new Thread(new Task2("Thread 1"));
+        Thread thread2 = new Thread(new Task2("Thread 2"));
+
+        thread1.start();
+        thread2.start();
+
+        thread1.join();
+        thread2.join();
     }
 }
