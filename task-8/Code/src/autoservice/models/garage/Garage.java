@@ -25,13 +25,16 @@ public class Garage {
     private final List<Order> orders;
     private GarageStatus isAvailable;
 
-    @ConfigProperty(propertyName = "canRemoveGaragePlace", type = Boolean.class)
+    @ConfigProperty(propertyName = "canRemoveGaragePlace", type = boolean.class)
     private boolean canRemoveGaragePlace;
-    @ConfigProperty(propertyName = "canAddGaragePlace", type = Boolean.class)
+
+    @ConfigProperty(propertyName = "canAddGaragePlace", type = boolean.class)
     private boolean canAddGaragePlace;
-    @ConfigProperty(propertyName = "canRemoveOrder", type = Boolean.class)
+
+    @ConfigProperty(propertyName = "canRemoveOrder", type = boolean.class)
     private boolean canRemoveOrder;
-    @ConfigProperty(propertyName = "canRescheduleOrder", type = Boolean.class)
+
+    @ConfigProperty(propertyName = "canRescheduleOrder", type = boolean.class)
     private boolean canRescheduleOrder;
 
     public Garage() {
