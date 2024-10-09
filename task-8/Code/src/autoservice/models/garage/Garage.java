@@ -1,5 +1,6 @@
 package autoservice.models.garage;
 
+import autoservice.config.ConfigProperty;
 import autoservice.models.garagePlace.GaragePlace;
 import autoservice.models.master.Master;
 import autoservice.models.master.masterStatus.MasterStatus;
@@ -24,9 +25,13 @@ public class Garage {
     private final List<Order> orders;
     private GarageStatus isAvailable;
 
+    @ConfigProperty(propertyName = "canRemoveGaragePlace", type = Boolean.class)
     private boolean canRemoveGaragePlace;
+    @ConfigProperty(propertyName = "canAddGaragePlace", type = Boolean.class)
     private boolean canAddGaragePlace;
+    @ConfigProperty(propertyName = "canRemoveOrder", type = Boolean.class)
     private boolean canRemoveOrder;
+    @ConfigProperty(propertyName = "canRescheduleOrder", type = Boolean.class)
     private boolean canRescheduleOrder;
 
     public Garage() {
@@ -35,7 +40,6 @@ public class Garage {
         this.masters = new ArrayList<>();
         this.orders = new ArrayList<>();
         this.isAvailable = GarageStatus.AVAILABLE;
-        loadProperties();
     }
 
     public Garage(String id, List<GaragePlace> garagePlaces, List<Master> masters, List<Order> orders, GarageStatus isAvailable, boolean canRemoveGaragePlace, boolean canAddGaragePlace, boolean canRemoveOrder, boolean canRescheduleOrder) {
@@ -155,29 +159,29 @@ public class Garage {
         return UUID.randomUUID().toString();
     }
 
-    private void loadProperties() {
-        Properties properties = new Properties();
-        try (InputStream input = new FileInputStream("src/autoservice/config/config.properties")) {
-            properties.load(input);
-
-            this.canRemoveGaragePlace = Boolean.parseBoolean(properties.getProperty("canRemoveGaragePlace"));
-            this.canAddGaragePlace = Boolean.parseBoolean(properties.getProperty("canAddGaragePlace"));
-            this.canRescheduleOrder = Boolean.parseBoolean(properties.getProperty("canRescheduleOrder"));
-            this.canRemoveOrder = Boolean.parseBoolean(properties.getProperty("canRemoveOrder"));
-
-
-        } catch (FileNotFoundException e) {
-            this.canRemoveGaragePlace = false;
-            this.canAddGaragePlace = false;
-            this.canRescheduleOrder = false;
-            this.canRemoveOrder = false;
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            this.canRemoveGaragePlace = false;
-            this.canAddGaragePlace = false;
-            this.canRescheduleOrder = false;
-            this.canRemoveOrder = false;
-            throw new RuntimeException(e);
-        }
-    }
+//    private void loadProperties() {
+//        Properties properties = new Properties();
+//        try (InputStream input = new FileInputStream("src/autoservice/config/config.properties")) {
+//            properties.load(input);
+//
+//            this.canRemoveGaragePlace = Boolean.parseBoolean(properties.getProperty("canRemoveGaragePlace"));
+//            this.canAddGaragePlace = Boolean.parseBoolean(properties.getProperty("canAddGaragePlace"));
+//            this.canRescheduleOrder = Boolean.parseBoolean(properties.getProperty("canRescheduleOrder"));
+//            this.canRemoveOrder = Boolean.parseBoolean(properties.getProperty("canRemoveOrder"));
+//
+//
+//        } catch (FileNotFoundException e) {
+//            this.canRemoveGaragePlace = false;
+//            this.canAddGaragePlace = false;
+//            this.canRescheduleOrder = false;
+//            this.canRemoveOrder = false;
+//            throw new RuntimeException(e);
+//        } catch (IOException e) {
+//            this.canRemoveGaragePlace = false;
+//            this.canAddGaragePlace = false;
+//            this.canRescheduleOrder = false;
+//            this.canRemoveOrder = false;
+//            throw new RuntimeException(e);
+//        }
+//    }
 }
