@@ -26,6 +26,14 @@ public class ServiceManager implements ServiceManagerInterface {
     //private static final int DEFAULT_NUMBER_OF_MASTERS = 10;
     //private static final int DEFAULT_NUMBER_OF_PLACES = 10;
 
+    public ServiceManager(List<Master> masters, Garage garage, List<Order> orders, Assistant assistant) {
+        this.masters = masters;
+        this.garage = garage;
+        this.orders = orders;
+        this.assistant = assistant;
+    }
+
+
     public ServiceManager() {
         this.masters = new ArrayList<>();
         this.garage = new Garage();
