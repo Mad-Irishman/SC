@@ -1,5 +1,6 @@
 package autoservice.assistantManager.impl;
 
+import autoservice.DI.Inject;
 import autoservice.assistantManager.AssistantInterface;
 import autoservice.exception.assistantException.exception.AssistantException;
 import autoservice.models.garage.Garage;
@@ -17,9 +18,13 @@ import java.util.Comparator;
 import java.util.List;
 
 public class Assistant implements AssistantInterface {
+    @Inject
     private final MastersSort mastersSort;
+    @Inject
     private final GaragePlacesSort garagePlacesSort;
+    @Inject
     private final DataSort dataSort;
+    @Inject
     private final OrdersSort ordersSort;
 
     public Assistant(MastersSort mastersSort, GaragePlacesSort garagePlacesSort, DataSort dataSort, OrdersSort ordersSort) {

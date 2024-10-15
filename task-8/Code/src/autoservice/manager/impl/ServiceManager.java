@@ -1,5 +1,6 @@
 package autoservice.manager.impl;
 
+import autoservice.DI.Inject;
 import autoservice.assistantManager.impl.Assistant;
 import autoservice.config.Configurator;
 import autoservice.manager.ServiceManagerInterface;
@@ -10,52 +11,48 @@ import autoservice.models.master.Master;
 import autoservice.models.master.masterStatus.MasterStatus;
 import autoservice.models.order.Order;
 import autoservice.models.order.orderStatus.OrderStatus;
-import autoservice.servicesSorting.DataSort.impl.DataSort;
-import autoservice.servicesSorting.GaragePlacesSort.impl.GaragePlacesSort;
-import autoservice.servicesSorting.MastersSort.impl.MastersSort;
-import autoservice.servicesSorting.OrdersSort.impl.OrdersSort;
 
 import java.time.LocalDateTime;
 import java.util.*;
 
 public class ServiceManager implements ServiceManagerInterface {
-    private final List<Master> masters;
-    private final Garage garage;
-    private final List<Order> orders;
-    private final Assistant assistant;
-    //private static final int DEFAULT_NUMBER_OF_MASTERS = 10;
-    //private static final int DEFAULT_NUMBER_OF_PLACES = 10;
-
-    public ServiceManager(List<Master> masters, Garage garage, List<Order> orders, Assistant assistant) {
-        this.masters = masters;
-        this.garage = garage;
-        this.orders = orders;
-        this.assistant = assistant;
-    }
-
+    private List<Master> masters;
+    @Inject
+    private Garage garage;
+    private List<Order> orders;
+    @Inject
+    private Assistant assistant;
+    @Inject
+    private Order order;
 
     public ServiceManager() {
         this.masters = new ArrayList<>();
-        this.garage = new Garage();
-        try{
+        this.orders = new ArrayList<>();
+    }
+
+    public ServiceManager(Garage garage, Assistant assistant, Order order) {
+        this.masters = new ArrayList<>();
+        this.garage = garage;
+        this.orders = new ArrayList<>();
+        this.assistant = assistant;
+        this.order = order;
+        try {
             Configurator.configure(garage);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        this.orders = new ArrayList<>();
+    }
 
-        MastersSort mastersSort = new MastersSort();
-        GaragePlacesSort garagePlacesSort = new GaragePlacesSort();
-        DataSort dataSort = new DataSort();
-        OrdersSort ordersSort = new OrdersSort();
-        this.assistant = new Assistant(mastersSort, garagePlacesSort, dataSort, ordersSort);
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
 
-//        try {
-//            //initializeMasters(DEFAULT_NUMBER_OF_MASTERS);
-//            //initializeGaragePlaces(DEFAULT_NUMBER_OF_PLACES);
-//        } catch (Exception e) {
-//            throw new ServiceManagerException("Error initializing service manager: " + e.getMessage());
-//        }
+    public void setMasters(List<Master> masters) {
+        this.masters = masters;
+    }
+
+    public void setGarage(Garage garage) {
+        this.garage = garage;
     }
 
     @Override

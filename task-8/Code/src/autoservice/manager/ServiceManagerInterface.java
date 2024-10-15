@@ -11,6 +11,12 @@ import java.util.Comparator;
 import java.util.List;
 
 public interface ServiceManagerInterface {
+    void setOrders(List<Order> orders);
+
+    void setMasters(List<Master> masters);
+
+    void setGarage(Garage garage);
+
     void addMaster(Master master);
 
     void removeMaster(Master master);

@@ -1,5 +1,6 @@
 package autoservice.ui.controller;
 
+import autoservice.DI.Inject;
 import autoservice.manager.impl.ServiceManager;
 import autoservice.ui.actions.impl.exiteAction.ExitToRootAction;
 import autoservice.ui.actions.impl.garageAction.*;
