@@ -37,5 +37,6 @@
     <orderEntry type="library" name="jackson-core-2.18.0-rc1" level="project" />
     <orderEntry type="library" name="jackson-databind-2.18.0-rc1" level="project" />
     <orderEntry type="library" name="jackson-datatype-jsr310-2.18.0" level="project" />
+    <orderEntry type="library" name="postgresql-42.7.3" level="project" />
   </component>
 </module>
