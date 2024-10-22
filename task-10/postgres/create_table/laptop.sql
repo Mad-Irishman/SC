@@ -1,13 +1,10 @@
-create table laptop
+CREATE TABLE laptop
 (
-    code   integer     not null
-        primary key,
-    model  varchar(50) not null
-        references product,
-    speed  smallint,
-    ram    smallint,
-    hd     real,
-    screen real,
-    price  money
+    code  INTEGER NOT NULL UNIQUE,
+    model VARCHAR(50) NOT NULL REFERENCES product(model),
+    speed SMALLINT NOT NULL,
+    ram   SMALLINT NOT NULL,
+    hd    REAL NOT NULL,
+    price MONEY,
+    screen SMALLINT NOT NULL
 );
-

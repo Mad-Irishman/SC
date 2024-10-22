@@ -4,14 +4,14 @@ FROM pc
 WHERE price < '500';
 
 -- 2 query
-SELECT maker
+SELECT DISTINCT maker
 FROM product as p
 WHERE p.type = 'Printer';
 
 -- 3 query
 SELECT model, ram, screen
 FROM laptop
-WHERE price < '1000';
+WHERE price > '1000';
 
 -- 4 query
 SELECT *
@@ -31,18 +31,21 @@ FROM laptop AS l
 WHERE l.hd >= 100;
 
 -- 7 query
-SELECT p.model, pc.price
+SELECT p.model,
+       COALESCE(printer.price, pc.price, laptop.price) AS price
 FROM product AS p
          LEFT JOIN pc ON p.model = pc.model
          LEFT JOIN laptop ON p.model = laptop.model
          LEFT JOIN printer ON p.model = printer.model
 WHERE p.maker LIKE 'B%';
 
+
 -- 8 query
-SELECT DISTINCT maker
-FROM product as p
-WHERE p.type = 'PC'
-  AND maker NOT IN (SELECT maker FROM product AS p WHERE p.type = 'Laptop');
+SELECT DISTINCT p.maker
+FROM product p
+         JOIN pc ON p.model = pc.model
+         LEFT JOIN laptop l ON p.model = l.model
+WHERE l.model IS NULL;
 
 -- 9 query
 SELECT DISTINCT p.maker
@@ -82,12 +85,9 @@ GROUP BY pc.hd
 HAVING COUNT(pc.hd) >= 2;
 
 -- 16 query
-SELECT pc1.model AS model1, pc2.model AS model2, pc1.speed, pc1.ram
-FROM pc pc1,
-     pc pc2
-WHERE pc1.speed = pc2.speed
-  AND pc1.ram = pc2.ram
-  AND pc1.model > pc2.model;
+SELECT a.model AS model1, b.model AS model2, a.speed, a.ram
+FROM pc a
+         JOIN pc b ON a.speed = b.speed AND a.ram = b.ram AND a.model < b.model;
 
 
 -- 17 query

@@ -1,8 +1,6 @@
-create table product
+CREATE TABLE product
 (
-    maker varchar(10),
-    model varchar(50) not null
-        primary key,
-    type  varchar(50)
+    maker varchar(10) NOT NULL,
+    model varchar(50) NOT NULL UNIQUE,
+    type  varchar(50) NOT NULL
 );
-

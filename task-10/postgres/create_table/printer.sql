@@ -1,11 +1,8 @@
-create table printer
+CREATE TABLE printer
 (
-    code  integer     not null
-        primary key,
-    model varchar(50) not null
-        references product,
-    color char,
-    type  varchar(10),
-    price money
+    code  INTEGER     NOT NULL UNIQUE,
+    model VARCHAR(50) NOT NULL REFERENCES product (model),
+    color CHAR(1),
+    type  VARCHAR(10),
+    price MONEY
 );
-
