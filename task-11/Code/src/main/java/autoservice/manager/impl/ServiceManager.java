@@ -11,11 +11,14 @@ import autoservice.models.master.Master;
 import autoservice.models.master.masterStatus.MasterStatus;
 import autoservice.models.order.Order;
 import autoservice.models.order.orderStatus.OrderStatus;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.LocalDateTime;
 import java.util.*;
 
 public class ServiceManager implements ServiceManagerInterface {
+    private static final Logger logger = LoggerFactory.getLogger(ServiceManager.class);
     private List<Master> masters;
     @Inject
     private Garage garage;
@@ -43,14 +46,17 @@ public class ServiceManager implements ServiceManagerInterface {
         }
     }
 
+    @Override
     public void setOrders(List<Order> orders) {
         this.orders = orders;
     }
 
+    @Override
     public void setMasters(List<Master> masters) {
         this.masters = masters;
     }
 
+    @Override
     public void setGarage(Garage garage) {
         this.garage = garage;
     }
@@ -63,6 +69,7 @@ public class ServiceManager implements ServiceManagerInterface {
         try {
             this.garage.addMaster(master);
             this.masters.add(master);
+            logger.info("Master was added to the garage");
         } catch (Exception e) {
             throw new ServiceManagerException("Error adding master. Please try again later.");
         }
