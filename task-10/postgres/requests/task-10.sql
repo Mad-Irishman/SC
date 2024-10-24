@@ -138,24 +138,18 @@ WHERE model IN (SELECT model FROM pc WHERE speed >= 750)
 
 
 -- 24 query (Corrected the request)
-SELECT all_products.model, all_products.price
-FROM (SELECT model, price
-      FROM pc
-      UNION ALL
-      SELECT model, price
-      FROM laptop
-      UNION ALL
-      SELECT model, price
-      FROM printer) AS all_products
-         JOIN (SELECT MAX(price) AS max_price
-               FROM (SELECT price
-                     FROM pc
-                     UNION ALL
-                     SELECT price
-                     FROM laptop
-                     UNION ALL
-                     SELECT price
-                     FROM printer) AS all_prices) AS max_prices ON all_products.price = max_prices.max_price;
+SELECT all_products.model, MAX(all_products.price)
+FROM (
+    SELECT pc.model, pc.price
+    FROM pc
+    UNION ALL
+    SELECT laptop.model, laptop.price
+    FROM laptop
+    UNION ALL
+    SELECT printer.model, printer.price
+    FROM printer
+) AS all_products
+GROUP BY all_products.model;
 
 
 -- 25 query
