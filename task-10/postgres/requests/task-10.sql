@@ -40,12 +40,15 @@ FROM product AS p
 WHERE p.maker LIKE 'B%';
 
 
--- 8 query
-SELECT DISTINCT p.maker
+-- 8 query (Corrected the request)
+SELECT maker
 FROM product p
          JOIN pc ON p.model = pc.model
-         LEFT JOIN laptop l ON p.model = l.model
-WHERE l.model IS NULL;
+WHERE maker NOT IN (SELECT maker
+                    FROM product p2
+                             JOIN laptop l ON p2.model = l.model)
+GROUP BY maker;
+
 
 -- 9 query
 SELECT DISTINCT p.maker
@@ -53,10 +56,9 @@ FROM pc
          JOIN product AS p ON p.model = pc.model
 WHERE pc.speed >= 450;
 
--- 10 query
-SELECT model, price
-FROM printer
-WHERE price = (SELECT MAX(price) FROM printer);
+-- 10 query(Corrected the request)
+SELECT model, MAX(price)
+FROM printer;
 
 -- 11 query
 SELECT AVG(pc.speed) AS avg_speed
@@ -135,25 +137,26 @@ WHERE model IN (SELECT model FROM pc WHERE speed >= 750)
   AND model IN (SELECT model FROM laptop WHERE speed >= 750);
 
 
--- 24 query
-SELECT model, price
+-- 24 query (Corrected the request)
+SELECT all_products.model, all_products.price
 FROM (SELECT model, price
       FROM pc
-      UNION
+      UNION ALL
       SELECT model, price
       FROM laptop
-      UNION
+      UNION ALL
       SELECT model, price
       FROM printer) AS all_products
-WHERE price = (SELECT MAX(price)
+         JOIN (SELECT MAX(price) AS max_price
                FROM (SELECT price
                      FROM pc
-                     UNION
+                     UNION ALL
                      SELECT price
                      FROM laptop
-                     UNION
+                     UNION ALL
                      SELECT price
-                     FROM printer) AS all_prices);
+                     FROM printer) AS all_prices) AS max_prices ON all_products.price = max_prices.max_price;
+
 
 -- 25 query
 WITH min_ram_pc AS (SELECT model, MIN(ram) AS min_ram
