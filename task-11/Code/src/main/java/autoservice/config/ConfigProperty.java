@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 public @interface ConfigProperty {
-    String configFileName() default "src/autoservice/config/config.properties";
+    String configFileName() default "src/main/java/autoservice/config/config.properties";
     String propertyName() default "";
     Class<?> type() default String.class;
 }

@@ -13,7 +13,7 @@ import java.util.List;
 
 public class OrderCSVExporter {
     private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-    private static final String filePath = "src/autoservice/resources/exportFiles/orders.csv";
+    private static final String filePath = "src/main/java/autoservice/resources/exportFiles/orders.csv";
 
     public static void exportOrdersToCSV(List<Order> orders) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {

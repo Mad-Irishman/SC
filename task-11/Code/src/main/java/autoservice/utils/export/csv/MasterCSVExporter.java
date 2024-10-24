@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class MasterCSVExporter {
-    private static final String filePath = "src/autoservice/resources/exportFiles/masters.csv";
+    private static final String filePath = "src/main/java/autoservice/resources/exportFiles/masters.csv";
 
     public static void exportMastersToCSV(List<Master> masters) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
