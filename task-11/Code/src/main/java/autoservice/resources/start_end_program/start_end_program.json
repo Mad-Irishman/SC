@@ -1,0 +1,19 @@
+{
+  "masters": [],
+  "garage": {
+    "id": "09b1dc9b-3154-48c4-bcfd-7224f295ae07",
+    "garagePlaces": [],
+    "isAvailable": "AVAILABLE",
+    "canRemoveGaragePlace": true,
+    "canAddGaragePlace": true,
+    "canRemoveOrder": true,
+    "canRescheduleOrder": true,
+    "availableMasters": [],
+    "availableGaragePlaces": [],
+    "allOrders": [],
+    "allMasters": []
+  },
+  "orders": [],
+  "allOrdersInGarage": [],
+  "allMasterInGarage": []
+}
