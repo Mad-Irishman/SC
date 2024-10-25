@@ -2,7 +2,7 @@ package autoservice.manager.impl;
 
 import autoservice.DI.Inject;
 import autoservice.assistantManager.impl.Assistant;
-import autoservice.config.Configurator;
+import autoservice.config.properties.Configurator;
 import autoservice.manager.ServiceManagerInterface;
 import autoservice.exception.managerException.ServiceManagerException;
 import autoservice.models.garage.Garage;

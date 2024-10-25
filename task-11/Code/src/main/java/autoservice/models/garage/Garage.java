@@ -1,6 +1,6 @@
 package autoservice.models.garage;
 
-import autoservice.config.ConfigProperty;
+import autoservice.config.properties.ConfigProperty;
 import autoservice.models.garagePlace.GaragePlace;
 import autoservice.models.master.Master;
 import autoservice.models.master.masterStatus.MasterStatus;

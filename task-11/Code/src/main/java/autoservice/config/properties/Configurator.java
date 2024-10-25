@@ -1,4 +1,4 @@
-package autoservice.config;
+package autoservice.config.properties;
 
 import java.io.FileInputStream;
 import java.io.IOException;
