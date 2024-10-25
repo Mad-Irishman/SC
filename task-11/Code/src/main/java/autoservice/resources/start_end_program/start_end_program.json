@@ -1,19 +1,225 @@
 {
-  "masters": [],
+  "masters": [
+    {
+      "id": "6b64f87b-fdc5-441e-9974-f4ae42432a9f",
+      "name": "oleg",
+      "ordersMaster": {
+        "idOrder": "ed51eac9-dc8b-4fb5-b1fb-f324d1dd1022",
+        "description": "Change oil",
+        "assignedGaragePlace": {
+          "placeNumber": 1,
+          "idOrder": "ed51eac9-dc8b-4fb5-b1fb-f324d1dd1022",
+          "occupied": true
+        },
+        "statusOrder": "CREATED",
+        "submissionDate": "2024-09-10T17:00:00",
+        "completionDate": "2024-09-12T14:00:00",
+        "plannedStartDate": "2024-09-12T08:00:00",
+        "price": 3412.0
+      },
+      "orderMaster": {
+        "idOrder": "ed51eac9-dc8b-4fb5-b1fb-f324d1dd1022",
+        "description": "Change oil",
+        "assignedGaragePlace": {
+          "placeNumber": 1,
+          "idOrder": "ed51eac9-dc8b-4fb5-b1fb-f324d1dd1022",
+          "occupied": true
+        },
+        "statusOrder": "CREATED",
+        "submissionDate": "2024-09-10T17:00:00",
+        "completionDate": "2024-09-12T14:00:00",
+        "plannedStartDate": "2024-09-12T08:00:00",
+        "price": 3412.0
+      }
+    },
+    {
+      "id": "a6779e7c-00c4-448f-8ba4-c6a0127fe483",
+      "name": "Roman",
+      "ordersMaster": null,
+      "orderMaster": null
+    }
+  ],
   "garage": {
-    "id": "09b1dc9b-3154-48c4-bcfd-7224f295ae07",
-    "garagePlaces": [],
+    "id": "fdc9a8a0-d6a4-4005-a370-e6400a724df9",
+    "garagePlaces": [
+      {
+        "placeNumber": 1,
+        "idOrder": "ed51eac9-dc8b-4fb5-b1fb-f324d1dd1022",
+        "occupied": true
+      },
+      {
+        "placeNumber": 2,
+        "idOrder": null,
+        "occupied": false
+      },
+      {
+        "placeNumber": 3,
+        "idOrder": null,
+        "occupied": false
+      },
+      {
+        "placeNumber": 4,
+        "idOrder": null,
+        "occupied": false
+      }
+    ],
     "isAvailable": "AVAILABLE",
     "canRemoveGaragePlace": true,
     "canAddGaragePlace": true,
     "canRemoveOrder": true,
     "canRescheduleOrder": true,
-    "availableMasters": [],
-    "availableGaragePlaces": [],
-    "allOrders": [],
-    "allMasters": []
+    "availableGaragePlaces": [
+      {
+        "placeNumber": 2,
+        "idOrder": null,
+        "occupied": false
+      },
+      {
+        "placeNumber": 3,
+        "idOrder": null,
+        "occupied": false
+      },
+      {
+        "placeNumber": 4,
+        "idOrder": null,
+        "occupied": false
+      }
+    ],
+    "availableMasters": [
+      {
+        "id": "a6779e7c-00c4-448f-8ba4-c6a0127fe483",
+        "name": "Roman",
+        "ordersMaster": null,
+        "orderMaster": null
+      }
+    ],
+    "allMasters": [
+      {
+        "id": "6b64f87b-fdc5-441e-9974-f4ae42432a9f",
+        "name": "oleg",
+        "ordersMaster": {
+          "idOrder": "ed51eac9-dc8b-4fb5-b1fb-f324d1dd1022",
+          "description": "Change oil",
+          "assignedGaragePlace": {
+            "placeNumber": 1,
+            "idOrder": "ed51eac9-dc8b-4fb5-b1fb-f324d1dd1022",
+            "occupied": true
+          },
+          "statusOrder": "CREATED",
+          "submissionDate": "2024-09-10T17:00:00",
+          "completionDate": "2024-09-12T14:00:00",
+          "plannedStartDate": "2024-09-12T08:00:00",
+          "price": 3412.0
+        },
+        "orderMaster": {
+          "idOrder": "ed51eac9-dc8b-4fb5-b1fb-f324d1dd1022",
+          "description": "Change oil",
+          "assignedGaragePlace": {
+            "placeNumber": 1,
+            "idOrder": "ed51eac9-dc8b-4fb5-b1fb-f324d1dd1022",
+            "occupied": true
+          },
+          "statusOrder": "CREATED",
+          "submissionDate": "2024-09-10T17:00:00",
+          "completionDate": "2024-09-12T14:00:00",
+          "plannedStartDate": "2024-09-12T08:00:00",
+          "price": 3412.0
+        }
+      },
+      {
+        "id": "a6779e7c-00c4-448f-8ba4-c6a0127fe483",
+        "name": "Roman",
+        "ordersMaster": null,
+        "orderMaster": null
+      }
+    ],
+    "allOrders": [
+      {
+        "idOrder": "ed51eac9-dc8b-4fb5-b1fb-f324d1dd1022",
+        "description": "Change oil",
+        "assignedGaragePlace": {
+          "placeNumber": 1,
+          "idOrder": "ed51eac9-dc8b-4fb5-b1fb-f324d1dd1022",
+          "occupied": true
+        },
+        "statusOrder": "CREATED",
+        "submissionDate": "2024-09-10T17:00:00",
+        "completionDate": "2024-09-12T14:00:00",
+        "plannedStartDate": "2024-09-12T08:00:00",
+        "price": 3412.0
+      }
+    ]
   },
-  "orders": [],
-  "allOrdersInGarage": [],
-  "allMasterInGarage": []
+  "orders": [
+    {
+      "idOrder": "ed51eac9-dc8b-4fb5-b1fb-f324d1dd1022",
+      "description": "Change oil",
+      "assignedGaragePlace": {
+        "placeNumber": 1,
+        "idOrder": "ed51eac9-dc8b-4fb5-b1fb-f324d1dd1022",
+        "occupied": true
+      },
+      "statusOrder": "CREATED",
+      "submissionDate": "2024-09-10T17:00:00",
+      "completionDate": "2024-09-12T14:00:00",
+      "plannedStartDate": "2024-09-12T08:00:00",
+      "price": 3412.0
+    }
+  ],
+  "allMasterInGarage": [
+    {
+      "id": "6b64f87b-fdc5-441e-9974-f4ae42432a9f",
+      "name": "oleg",
+      "ordersMaster": {
+        "idOrder": "ed51eac9-dc8b-4fb5-b1fb-f324d1dd1022",
+        "description": "Change oil",
+        "assignedGaragePlace": {
+          "placeNumber": 1,
+          "idOrder": "ed51eac9-dc8b-4fb5-b1fb-f324d1dd1022",
+          "occupied": true
+        },
+        "statusOrder": "CREATED",
+        "submissionDate": "2024-09-10T17:00:00",
+        "completionDate": "2024-09-12T14:00:00",
+        "plannedStartDate": "2024-09-12T08:00:00",
+        "price": 3412.0
+      },
+      "orderMaster": {
+        "idOrder": "ed51eac9-dc8b-4fb5-b1fb-f324d1dd1022",
+        "description": "Change oil",
+        "assignedGaragePlace": {
+          "placeNumber": 1,
+          "idOrder": "ed51eac9-dc8b-4fb5-b1fb-f324d1dd1022",
+          "occupied": true
+        },
+        "statusOrder": "CREATED",
+        "submissionDate": "2024-09-10T17:00:00",
+        "completionDate": "2024-09-12T14:00:00",
+        "plannedStartDate": "2024-09-12T08:00:00",
+        "price": 3412.0
+      }
+    },
+    {
+      "id": "a6779e7c-00c4-448f-8ba4-c6a0127fe483",
+      "name": "Roman",
+      "ordersMaster": null,
+      "orderMaster": null
+    }
+  ],
+  "allOrdersInGarage": [
+    {
+      "idOrder": "ed51eac9-dc8b-4fb5-b1fb-f324d1dd1022",
+      "description": "Change oil",
+      "assignedGaragePlace": {
+        "placeNumber": 1,
+        "idOrder": "ed51eac9-dc8b-4fb5-b1fb-f324d1dd1022",
+        "occupied": true
+      },
+      "statusOrder": "CREATED",
+      "submissionDate": "2024-09-10T17:00:00",
+      "completionDate": "2024-09-12T14:00:00",
+      "plannedStartDate": "2024-09-12T08:00:00",
+      "price": 3412.0
+    }
+  ]
 }

@@ -220,8 +220,8 @@ public class ServiceManager implements ServiceManagerInterface {
                 order.getAssignedMaster().setOrderMaster(order);
 
                 order.setAssignedGaragePlace(garage.getAvailableGaragePlaces().get(0));
-                order.getAssignedGaragePlace().setOccupied(true);
                 garage.getAvailableGaragePlaces().get(0).setIdOrder(order.getIdOrder());
+                order.getAssignedGaragePlace().setOccupied(true);
 
                 orders.add(order);
                 garage.addOrder(order);
