@@ -3,6 +3,7 @@ package autoservice.manager.impl;
 import autoservice.DI.Inject;
 import autoservice.assistantManager.impl.Assistant;
 import autoservice.config.properties.Configurator;
+import autoservice.dataBase.DAO.garargePlace.impl.GaragePlaceDAOImpl;
 import autoservice.manager.ServiceManagerInterface;
 import autoservice.exception.managerException.ServiceManagerException;
 import autoservice.models.garage.Garage;
@@ -27,6 +28,8 @@ public class ServiceManager implements ServiceManagerInterface {
     private Assistant assistant;
     @Inject
     private Order order;
+    @Inject
+    private GaragePlaceDAOImpl garagePlaceDAO;
 
     public ServiceManager() {
         this.masters = new ArrayList<>();
@@ -169,6 +172,7 @@ public class ServiceManager implements ServiceManagerInterface {
     public void addGaragePlace(GaragePlace garagePlace) {
         if (garage.getCanAddGaragePlace()) {
             this.garage.addGaragePlace(garagePlace);
+            garagePlaceDAO.addGaragePlace(garagePlace);
         } else {
             System.out.println("You cannot add garage spaces at this time.");
         }

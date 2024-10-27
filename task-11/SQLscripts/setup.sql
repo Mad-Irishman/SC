@@ -26,7 +26,7 @@ CREATE TABLE masters
 -- Таблица garage_places
 CREATE TABLE garage_places
 (
-    place_number INT PRIMARY KEY,
+    place_number INT UNIQUE,
     is_occupied  BOOLEAN DEFAULT FALSE
 );
 
