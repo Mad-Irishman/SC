@@ -20,7 +20,7 @@ public class DatabaseConnection {
         }
     }
 
-    private static DatabaseConnection getInstance() throws SQLException {
+    public static DatabaseConnection getInstance() throws SQLException {
         if (instance == null ||instance.getConnection().isClosed()) {
             instance = new DatabaseConnection();
         }
