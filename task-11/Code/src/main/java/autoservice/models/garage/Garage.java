@@ -1,13 +1,16 @@
 package autoservice.models.garage;
 
 import autoservice.config.properties.ConfigProperty;
+import autoservice.dataBase.DAO.garargePlace.impl.GaragePlaceDAOImpl;
+import autoservice.dataBase.DAO.master.impl.MasterDAOImpl;
+import autoservice.dataBase.DAO.order.impl.OrderDAOImpl;
 import autoservice.models.garagePlace.GaragePlace;
 import autoservice.models.master.Master;
-//import autoservice.models.master.masterStatus.MasterStatus;
 import autoservice.models.garage.garageStatus.GarageStatus;
+import autoservice.models.master.masterStatus.MasterStatus;
 import autoservice.models.order.Order;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -15,8 +18,14 @@ import java.util.UUID;
 
 public class Garage {
     private final String id;
+    @JsonIgnore
+    private final GaragePlaceDAOImpl garagePlaceDAO;
+    @JsonIgnore
+    private final MasterDAOImpl masterDAO;
+    @JsonIgnore
+    private final OrderDAOImpl orderDAO;
+
     private final List<GaragePlace> garagePlaces;
-    private final List<Order> orders;
     private GarageStatus isAvailable;
 
     @ConfigProperty(propertyName = "canRemoveGaragePlace", type = boolean.class)
@@ -34,14 +43,19 @@ public class Garage {
     public Garage() {
         this.id = generateUniqueId();
         this.garagePlaces = new ArrayList<>();
-        this.orders = new ArrayList<>();
         this.isAvailable = GarageStatus.AVAILABLE;
+        this.masterDAO = new MasterDAOImpl();
+        this.garagePlaceDAO = new GaragePlaceDAOImpl();
+        this.orderDAO = new OrderDAOImpl();
     }
 
-    public Garage(String id, List<GaragePlace> garagePlaces, List<Master> masters, List<Order> orders, GarageStatus isAvailable, boolean canRemoveGaragePlace, boolean canAddGaragePlace, boolean canRemoveOrder, boolean canRescheduleOrder) {
+
+    public Garage(String id, GaragePlaceDAOImpl garagePlaceDAO, MasterDAOImpl masterDAO, OrderDAOImpl orderDAO, List<GaragePlace> garagePlaces, GarageStatus isAvailable, boolean canRemoveGaragePlace, boolean canAddGaragePlace, boolean canRemoveOrder, boolean canRescheduleOrder) {
         this.id = id;
+        this.garagePlaceDAO = garagePlaceDAO;
+        this.masterDAO = masterDAO;
+        this.orderDAO = orderDAO;
         this.garagePlaces = garagePlaces;
-        this.orders = orders;
         this.isAvailable = isAvailable;
         this.canRemoveGaragePlace = canRemoveGaragePlace;
         this.canAddGaragePlace = canAddGaragePlace;
@@ -49,48 +63,42 @@ public class Garage {
         this.canRescheduleOrder = canRescheduleOrder;
     }
 
-    public String getId() {
-        return this.id;
+    //Работа с masters
+    public void addMaster(Master master) {
+        masterDAO.addMaster(master);
     }
 
-    public GarageStatus getIsAvailable() {
-        return isAvailable;
+    public List<Master> allMasters() {
+        return masterDAO.allMasters();
     }
 
-    public void setIsAvailable(GarageStatus isAvailable) {
-        this.isAvailable = isAvailable;
+    public void removeMaster(Master master) {
+        masterDAO.deleteMasterByName(master);
     }
 
-//    public void addMaster(Master master) {
-//        masters.add(master);
-//    }
+    public List<Master> getAvailableMasters() {
+        List<Master> availableMasters = new ArrayList<>();
+        for (Master master : masterDAO.allMasters()) {
+            if (master.isAvailable() == MasterStatus.AVAILABLE) {
+                availableMasters.add(master);
+            }
+        }
+        return availableMasters;
+    }
 
-//    public void removeMaster(Master master) {
-//        masters.remove(master);
-//    }
 
-//    public List<Master> getAvailableMasters() {
-//        List<Master> availableMasters = new ArrayList<>();
-//        for (Master master : masterDAO.allMasters()) {
-//            if (master.isAvailable() == MasterStatus.AVAILABLE) {
-//                availableMasters.add(master);
-//            }
-//        }
-//        return availableMasters;
-//    }
+    //Работа с garagePlaces
+    public void addGaragePlace(GaragePlace place) {
+        garagePlaceDAO.addGaragePlace(place);
+    }
 
-//    public List<Master> getAllMasters() {
-//        return masters;
-//    }
+    public List<GaragePlace> allGaragePlaces() {
+        return garagePlaceDAO.getAllGaragePlaces();
+    }
 
-//    public void addGaragePlace(GaragePlace place) {
-//        garagePlaces.add(place);
-//    }
-
-//    public void removeGaragePlace(GaragePlace place) {
-//        garagePlaces.remove(place);
-//
-//    }
+    public void removeGaragePlace(GaragePlace place) {
+        garagePlaceDAO.removeGaragePlace(place);
+    }
 
     public List<GaragePlace> getAvailableGaragePlaces() {
         List<GaragePlace> availablePlaces = new ArrayList<>();
@@ -106,16 +114,42 @@ public class Garage {
         return new ArrayList<>(garagePlaces);
     }
 
-    public List<Order> getAllOrders() {
-        return new ArrayList<>(orders);
+    //Работа с orders
+    public void createOrder(Order order) {
+        orderDAO.createOrder(order);
     }
 
-    public void addOrder(Order order) {
-        orders.add(order);
+    public List<Order> allOrders() {
+        return orderDAO.allOrders();
     }
 
     public void removeOrder(Order order) {
-        orders.remove(order);
+        orderDAO.deleteOrder(order);
+    }
+
+    //Все остальные getters/setters
+    public String getId() {
+        return this.id;
+    }
+
+    public GaragePlaceDAOImpl getGaragePlaceDAO() {
+        return garagePlaceDAO;
+    }
+
+    public MasterDAOImpl getMasterDAO() {
+        return masterDAO;
+    }
+
+    public OrderDAOImpl getOrderDAO() {
+        return orderDAO;
+    }
+
+    public GarageStatus getIsAvailable() {
+        return isAvailable;
+    }
+
+    public void setIsAvailable(GarageStatus isAvailable) {
+        this.isAvailable = isAvailable;
     }
 
     public boolean getCanRescheduleOrder() {
@@ -153,30 +187,4 @@ public class Garage {
     private static String generateUniqueId() {
         return UUID.randomUUID().toString();
     }
-
-//    private void loadProperties() {
-//        Properties properties = new Properties();
-//        try (InputStream input = new FileInputStream("src/autoservice/config/config.properties")) {
-//            properties.load(input);
-//
-//            this.canRemoveGaragePlace = Boolean.parseBoolean(properties.getProperty("canRemoveGaragePlace"));
-//            this.canAddGaragePlace = Boolean.parseBoolean(properties.getProperty("canAddGaragePlace"));
-//            this.canRescheduleOrder = Boolean.parseBoolean(properties.getProperty("canRescheduleOrder"));
-//            this.canRemoveOrder = Boolean.parseBoolean(properties.getProperty("canRemoveOrder"));
-//
-//
-//        } catch (FileNotFoundException e) {
-//            this.canRemoveGaragePlace = false;
-//            this.canAddGaragePlace = false;
-//            this.canRescheduleOrder = false;
-//            this.canRemoveOrder = false;
-//            throw new RuntimeException(e);
-//        } catch (IOException e) {
-//            this.canRemoveGaragePlace = false;
-//            this.canAddGaragePlace = false;
-//            this.canRescheduleOrder = false;
-//            this.canRemoveOrder = false;
-//            throw new RuntimeException(e);
-//        }
-//    }
 }

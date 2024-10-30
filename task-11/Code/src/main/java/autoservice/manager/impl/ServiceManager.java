@@ -3,9 +3,6 @@ package autoservice.manager.impl;
 import autoservice.DI.Inject;
 import autoservice.assistantManager.impl.Assistant;
 import autoservice.config.properties.Configurator;
-import autoservice.dataBase.DAO.garargePlace.impl.GaragePlaceDAOImpl;
-import autoservice.dataBase.DAO.master.impl.MasterDAOImpl;
-import autoservice.dataBase.DAO.order.impl.OrderDAOImpl;
 import autoservice.manager.ServiceManagerInterface;
 import autoservice.exception.managerException.ServiceManagerException;
 import autoservice.models.garage.Garage;
@@ -22,35 +19,17 @@ import java.util.*;
 
 public class ServiceManager implements ServiceManagerInterface {
     private static final Logger logger = LoggerFactory.getLogger(ServiceManager.class);
-    //    private List<Master> masters;
-    @Inject
-    private Master master;
     @Inject
     private Garage garage;
-    private List<Order> orders;
     @Inject
     private Assistant assistant;
-    @Inject
-    private Order order;
-    @Inject
-    private GaragePlaceDAOImpl garagePlaceDAO;
-    @Inject
-    private MasterDAOImpl masterDAO;
-    @Inject
-    private OrderDAOImpl orderDAO;
 
     public ServiceManager() {
     }
 
-    public ServiceManager(Master master, Garage garage, Assistant assistant, Order order, MasterDAOImpl masterDAO, GaragePlaceDAOImpl garagePlaceDAO, OrderDAOImpl orderDAO) {
-        this.master = master;
+    public ServiceManager(Garage garage, Assistant assistant) {
         this.garage = garage;
-        this.orders = new ArrayList<>();
         this.assistant = assistant;
-        this.order = order;
-        this.masterDAO = masterDAO;
-        this.garagePlaceDAO = garagePlaceDAO;
-        this.orderDAO = orderDAO;
         try {
             Configurator.configure(garage);
         } catch (Exception e) {
@@ -60,13 +39,15 @@ public class ServiceManager implements ServiceManagerInterface {
 
     @Override
     public void setOrders(List<Order> orders) {
-        this.orders = orders;
+        for (Order order : orders) {
+            garage.getOrderDAO().createOrder(order);
+        }
     }
 
     @Override
     public void setMasters(List<Master> masters) {
         for (Master master : masters) {
-            masterDAO.addMaster(master);
+            garage.getMasterDAO().addMaster(master);
         }
     }
 
@@ -81,7 +62,7 @@ public class ServiceManager implements ServiceManagerInterface {
             throw new ServiceManagerException("Master cannot be null");
         }
         try {
-            masterDAO.addMaster(master);
+            garage.addMaster(master);
             logger.info("Master was added to the garage");
         } catch (Exception e) {
             throw new ServiceManagerException("Error adding master. Please try again later.");
@@ -95,7 +76,7 @@ public class ServiceManager implements ServiceManagerInterface {
         }
         try {
             if (master.isAvailable() == MasterStatus.AVAILABLE) {
-                masterDAO.deleteMasterByName(master);
+                garage.removeMaster(master);
             } else {
                 System.out.println("Cannot remove the master because they have an active order.");
             }
@@ -110,7 +91,7 @@ public class ServiceManager implements ServiceManagerInterface {
             throw new ServiceManagerException("Master ID cannot be null or empty");
         }
         try {
-            for (Master master : masterDAO.allMasters()) {
+            for (Master master : garage.allMasters()) {
                 if (master.getId().equals(id)) {
                     return master;
                 }
@@ -125,7 +106,7 @@ public class ServiceManager implements ServiceManagerInterface {
     @Override
     public List<Master> getMasters() throws ServiceManagerException {
         try {
-            return masterDAO.allMasters();
+            return garage.allMasters();
         } catch (Exception e) {
             throw new ServiceManagerException("Error retrieving master list");
         }
@@ -135,7 +116,7 @@ public class ServiceManager implements ServiceManagerInterface {
     @Override
     public List<Master> getAllMasterInGarage() throws ServiceManagerException {
         try {
-            return masterDAO.allMasters();
+            return garage.allMasters();
         } catch (Exception e) {
             throw new ServiceManagerException("Error retrieving masters from garage");
         }
@@ -147,7 +128,7 @@ public class ServiceManager implements ServiceManagerInterface {
             throw new IllegalArgumentException("Master name cannot be null or empty");
         }
 
-        Optional<Master> foundMaster = masterDAO.allMasters().stream()
+        Optional<Master> foundMaster = garage.allMasters().stream()
                 .filter(master -> master.getName().equalsIgnoreCase(masterName))
                 .findFirst();
 
@@ -167,7 +148,7 @@ public class ServiceManager implements ServiceManagerInterface {
             throw new IllegalArgumentException("Invalid garage place number format: " + garagePlaceNumber);
         }
 
-        List<GaragePlace> garagePlaces = garagePlaceDAO.getAllGaragePlaces();
+        List<GaragePlace> garagePlaces = garage.allGaragePlaces();
 
         Optional<GaragePlace> foundGaragePlace = garagePlaces.stream()
                 .filter(garagePlace -> garagePlace.getPlaceNumber() == placeNumber)
@@ -180,7 +161,7 @@ public class ServiceManager implements ServiceManagerInterface {
     @Override
     public void addGaragePlace(GaragePlace garagePlace) {
         if (!garage.getCanAddGaragePlace()) {
-            garagePlaceDAO.addGaragePlace(garagePlace);
+            garage.addGaragePlace(garagePlace);
         } else {
             System.out.println("You cannot add garage spaces at this time.");
         }
@@ -188,8 +169,8 @@ public class ServiceManager implements ServiceManagerInterface {
 
     @Override
     public void removeGaragePlace(GaragePlace garagePlace) throws ServiceManagerException {
-        if (!garagePlace.isOccupied() && garage.getCanRemoveGaragePlace()) {
-            this.garagePlaceDAO.removeGaragePlace(garagePlace);
+        if (!garagePlace.isOccupied() && !garage.getCanRemoveGaragePlace()) {
+            this.garage.removeGaragePlace(garagePlace);
         } else {
             System.out.println("Cannot remove garage place because it is occupied or prohibited at administrator level");
         }
@@ -197,14 +178,14 @@ public class ServiceManager implements ServiceManagerInterface {
 
     public List<GaragePlace> allGaragePlaces() throws ServiceManagerException {
         try {
-            return garagePlaceDAO.getAllGaragePlaces();
+            return garage.allGaragePlaces();
         } catch (Exception e) {
             throw new ServiceManagerException("Error retrieving garage places: " + e.getMessage());
         }
     }
 
     public GaragePlace getGaragePlaceByNumber(int placeNumber) {
-        for (GaragePlace place : garagePlaceDAO.getAllGaragePlaces()) {
+        for (GaragePlace place : garage.allGaragePlaces()) {
             if (place.getPlaceNumber() == placeNumber) {
                 return place;
             }
@@ -212,16 +193,14 @@ public class ServiceManager implements ServiceManagerInterface {
         return null;
     }
 
-    public List<GaragePlace> getAvailableGaragePlaces() {
-        return garagePlaceDAO.getAllGaragePlaces();
-    }
-
-
     @Override
     public Garage getGarage() {
         return garage;
     }
 
+    public List<GaragePlace> getAvailableGaragePlaces() {
+        return garage.getAvailableGaragePlaces();
+    }
 
     @Override
     public void createOrder(String description, LocalDateTime submissionDate, LocalDateTime completionDate, LocalDateTime plannedStartDate, double price) throws ServiceManagerException {
@@ -229,17 +208,17 @@ public class ServiceManager implements ServiceManagerInterface {
             throw new ServiceManagerException("Order parameters cannot be null");
         }
         try {
-            if (!getAvailableMasters().isEmpty() && !garagePlaceDAO.getAllGaragePlaces().isEmpty()) {
+            if (!garage.getAvailableMasters().isEmpty() && !garage.allGaragePlaces().isEmpty()) {
                 Order order = new Order(description, submissionDate, completionDate, plannedStartDate, price);
-                order.setAssignedMaster(getAvailableMasters().get(0));
+                order.setAssignedMaster(garage.getAvailableMasters().get(0));
                 order.getAssignedMaster().setAvailable(MasterStatus.OCCUPIED);
                 order.getAssignedMaster().setOrderMaster(order);
 
-                order.setAssignedGaragePlace(garagePlaceDAO.getAllGaragePlaces().get(0));
-                garagePlaceDAO.getAllGaragePlaces().get(0).setIdOrder(order.getIdOrder());
+                order.setAssignedGaragePlace(garage.allGaragePlaces().get(0));
+                garage.allGaragePlaces().get(0).setIdOrder(order.getIdOrder());
                 order.getAssignedGaragePlace().setOccupied(true);
 
-                orderDAO.createOrder(order);
+                garage.createOrder(order);
                 System.out.println("Order created: " + order.getDescription());
             } else {
                 System.out.println("No available masters or garage places to create an order.");
@@ -256,8 +235,8 @@ public class ServiceManager implements ServiceManagerInterface {
         }
 
         try {
-            List<Master> availableMasters = getAvailableMasters();
-            List<GaragePlace> availableGaragePlaces = garagePlaceDAO.getAllGaragePlaces();
+            List<Master> availableMasters = garage.getAvailableMasters();
+            List<GaragePlace> availableGaragePlaces = garage.allGaragePlaces();
 
             if (availableMasters.isEmpty()) {
                 throw new ServiceManagerException("No available masters to assign to the order");
@@ -278,7 +257,7 @@ public class ServiceManager implements ServiceManagerInterface {
             assignedMaster.setOrderMaster(order);
             assignedGaragePlace.setOccupied(true);
 
-            orderDAO.createOrder(order);
+            garage.createOrder(order);
 
             System.out.println("Order added: " + order.getDescription());
         } catch (Exception e) {
@@ -289,11 +268,11 @@ public class ServiceManager implements ServiceManagerInterface {
 
     @Override
     public List<Order> getOrders() {
-        return orderDAO.allOrders();
+        return garage.allOrders();
     }
 
     public List<Order> getAllOrdersInGarage() {
-        return new ArrayList<>(garage.getAllOrders());
+        return garage.allOrders();
     }
 
     @Override
@@ -302,7 +281,7 @@ public class ServiceManager implements ServiceManagerInterface {
             throw new ServiceManagerException("Order description cannot be empty.");
         }
         try {
-            for (Order order : orders) {
+            for (Order order : garage.allOrders()) {
                 if (order.getDescription().equalsIgnoreCase(description)) {
                     return order;
                 }
@@ -316,7 +295,7 @@ public class ServiceManager implements ServiceManagerInterface {
     @Override
     public Order getOrderById(String id) throws ServiceManagerException {
         try {
-            for (Order order : orders) {
+            for (Order order : garage.allOrders()) {
                 if (order.getIdOrder().equals(id)) {
                     return order;
                 }
@@ -329,7 +308,7 @@ public class ServiceManager implements ServiceManagerInterface {
 
     @Override
     public void removeOrder(Order order) {
-        if (orders.remove(order) && garage.getCanRemoveOrder()) {
+        if (garage.getOrderDAO().deleteOrder(order) && !garage.getCanRemoveOrder()) {
             order.getAssignedMaster().setAvailable(MasterStatus.AVAILABLE);
             order.getAssignedMaster().assignOrderMaster(null);
             order.getAssignedGaragePlace().setOccupied(false);
@@ -366,7 +345,7 @@ public class ServiceManager implements ServiceManagerInterface {
             throw new ServiceManagerException("Order cannot be null");
         }
         try {
-            if (order.getStatusOrder() == OrderStatus.CREATED && orders.contains(order)) {
+            if (order.getStatusOrder() == OrderStatus.CREATED && garage.allOrders().contains(order)) {
                 order.setStatusOrder(OrderStatus.CANCELLED);
                 order.getAssignedMaster().setAvailable(MasterStatus.AVAILABLE);
                 order.getAssignedMaster().assignOrderMaster(null);
@@ -382,13 +361,13 @@ public class ServiceManager implements ServiceManagerInterface {
 
     @Override
     public void adjustOrdersForDelay(String orderId, int delayInHours) {
-        if (delayInHours > 0 && garage.getCanRescheduleOrder()) {
+        if (delayInHours > 0 && !garage.getCanRescheduleOrder()) {
             Order delayedOrder = getOrderById(orderId);
             LocalDateTime newCompletionDate = delayedOrder.getCompletionDate().plusHours(delayInHours);
             delayedOrder.setCompletionDate(newCompletionDate);
             System.out.println("Order " + delayedOrder.getIdOrder() + " delayed. New completion time: " + newCompletionDate);
 
-            for (Order order : orders) {
+            for (Order order : garage.allOrders()) {
                 if (!Objects.equals(order.getIdOrder(), delayedOrder.getIdOrder())) {
                     LocalDateTime newStartTime = order.getSubmissionDate().plusHours(delayInHours);
                     LocalDateTime newEstimatedEndTime = order.getCompletionDate().plusHours(delayInHours);
@@ -406,7 +385,7 @@ public class ServiceManager implements ServiceManagerInterface {
     @Override
     public void showAllOrders() {
         System.out.println("All orders:");
-        for (Order order : orders) {
+        for (Order order : garage.allOrders()) {
             System.out.println(order);
         }
     }
@@ -414,7 +393,7 @@ public class ServiceManager implements ServiceManagerInterface {
     @Override
     public void showAvailableMasters() {
         System.out.println("Available masters:");
-        for (Master master : masterDAO.allMasters()) {
+        for (Master master : garage.allMasters()) {
             if (master.isAvailable() == MasterStatus.AVAILABLE) {
                 System.out.println(master);
             }
@@ -424,7 +403,7 @@ public class ServiceManager implements ServiceManagerInterface {
     @Override
     public void showAvailableGaragePlaces() {
         System.out.println("Available garage places:");
-        for (GaragePlace place : garagePlaceDAO.getAllGaragePlaces()) {
+        for (GaragePlace place : garage.allGaragePlaces()) {
             if (!place.isOccupied()) {
                 System.out.println(place);
             }
@@ -565,37 +544,4 @@ public class ServiceManager implements ServiceManagerInterface {
             throw new ServiceManagerException("Error while retrieving orders by time frame. Please try again later.");
         }
     }
-
-
-    private List<Master> getAvailableMasters() {
-        List<Master> availableMasters = new ArrayList<>();
-        for (Master master : masterDAO.allMasters()) {
-            if (master.isAvailable() == MasterStatus.AVAILABLE) {
-                availableMasters.add(master);
-            }
-        }
-        return availableMasters;
-    }
-
-//    private void initializeMasters(int count) throws ServiceManagerException {
-//        try {
-//            for (int i = 0; i < count; i++) {
-//                Master master = new Master("Master " + (i + 1));
-//                garage.addMaster(master);
-//            }
-//        } catch (Exception e) {
-//            throw new ServiceManagerException("Error initializing masters: " + e.getMessage());
-//        }
-//    }
-
-//    private void initializeGaragePlaces(int count) throws ServiceManagerException {
-//        try {
-//            for (int i = 0; i < count; i++) {
-//                GaragePlace place = new GaragePlace(i + 1);
-//                garage.addGaragePlace(place);
-//            }
-//        } catch (Exception e) {
-//            throw new ServiceManagerException("Error initializing garage places: " + e.getMessage());
-//        }
-//    }
 }

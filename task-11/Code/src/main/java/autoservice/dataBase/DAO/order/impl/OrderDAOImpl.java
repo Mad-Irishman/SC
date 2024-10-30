@@ -15,7 +15,7 @@ import java.util.List;
 public class OrderDAOImpl implements OrderDAO {
     private static final Logger logger = LoggerFactory.getLogger(OrderDAOImpl.class);
     private static final String CREATE_ORDER = "INSERT INTO orders (id_order, description, assigned_master, assigned_garage_place, submission_date, completion_date, planned_start_date, price) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    private static final String DELETE_ORDER = "DELETE FROM orders WHERE name_order = ?";
+    private static final String DELETE_ORDER = "DELETE FROM orders WHERE description = ?";
     private static final String ALL_ORDERS = "SELECT * FROM orders";
 
     public boolean createOrder(Order order) {
@@ -62,11 +62,32 @@ public class OrderDAOImpl implements OrderDAO {
                 orders.add(order);
             }
 
-
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return orders;
     }
 
+
+    public boolean deleteOrder(Order order) {
+        logger.info("Attempting to delete order: {}", order);
+        boolean isDeleted = false;
+
+        try (Connection connection = DatabaseConnection.getInstance().getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_ORDER)) {
+
+            preparedStatement.setString(1, order.getDescription());
+
+            int rowsAffected = preparedStatement.executeUpdate();
+            if (rowsAffected > 0) {
+                isDeleted = true;
+                logger.info("Order with name '{}' was deleted successfully.", order.getDescription());
+            } else {
+                logger.info("Order with name '{}' was not deleted successfully.", order.getDescription());
+            }
+        } catch (SQLException e) {
+           logger.error("Error while trying to delete order: {}", order.getDescription(), e);
+        }
+        return isDeleted;
+    }
 }

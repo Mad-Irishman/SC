@@ -39,7 +39,7 @@ public interface ServiceManagerInterface {
 
     GaragePlace getGaragePlaceByNumber(int placeNumber);
 
-    Garage getGarage();
+    public Garage getGarage();
 
     void createOrder(String discription, LocalDateTime submissionDate, LocalDateTime completionDate, LocalDateTime plannedStartDate, double price);
 
