@@ -1,0 +1,5 @@
+PlaceId, OrderId, Place status
+1, 2d86f5db-7a6e-4918-a8d9-f5f64cf133e1, true
+2, null, false
+3, null, false
+4, null, false

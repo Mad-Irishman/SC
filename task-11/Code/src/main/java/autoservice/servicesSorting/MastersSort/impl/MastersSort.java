@@ -43,9 +43,16 @@ public class MastersSort implements MastersSortInterface {
                 throw new IllegalArgumentException("Comparator list cannot be null or empty.");
             }
 
-            return masters.stream()
-                    .sorted(combineComparators(comparators))
-                    .collect(Collectors.toList());
+            Comparator<Master> nameComparator = Comparator.comparing(Master::getName);
+            if (comparators.size() == 1 && comparators.contains(nameComparator)) {
+                return masters.stream()
+                        .sorted(nameComparator)
+                        .collect(Collectors.toList());
+            } else {
+                return masters.stream()
+                        .sorted(combineComparators(comparators))
+                        .collect(Collectors.toList());
+            }
 
         } catch (IllegalArgumentException e) {
             System.err.println("Invalid argument: " + e.getMessage());
@@ -54,6 +61,7 @@ public class MastersSort implements MastersSortInterface {
             throw new MastersSortException("Error sorting masters: " + e.getMessage());
         }
     }
+
 
     private <T> Comparator<T> combineComparators(List<Comparator<T>> comparators) {
         try {

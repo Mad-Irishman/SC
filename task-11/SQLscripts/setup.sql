@@ -4,9 +4,9 @@ CREATE TYPE master_status AS ENUM ('AVAILABLE', 'OCCUPIED');
 -- Таблица orders
 CREATE TABLE orders
 (
-    id_order              CHARACTER(16) UNIQUE NOT NULL,
+    id_order              CHARACTER(100) UNIQUE NOT NULL,
     description           TEXT                 NOT NULL,
-    assigned_master       CHARACTER(16)        NOT NULL, -- Внешний ключ на таблицу masters
+    assigned_master       CHARACTER(100)        NOT NULL, -- Внешний ключ на таблицу masters
     assigned_garage_place INT                  NOT NULL, -- Внешний ключ на таблицу garage_places
     status_order          order_status DEFAULT 'CREATED',
     submission_date       TIMESTAMP            NOT NULL,
@@ -18,7 +18,7 @@ CREATE TABLE orders
 -- Таблица masters
 CREATE TABLE masters
 (
-    id           CHARACTER(16) UNIQUE NOT NULL,
+    id           CHARACTER(100) UNIQUE NOT NULL,
     name         VARCHAR(100)         NOT NULL,
     is_available master_status DEFAULT 'AVAILABLE'
 );

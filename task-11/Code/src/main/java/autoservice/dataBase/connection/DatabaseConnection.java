@@ -10,13 +10,17 @@ import java.sql.SQLException;
 public class DatabaseConnection {
     private static DatabaseConnection instance;
     private final HikariDataSource dataSource;
+    private static final String JDBC_URL = "jdbc:postgresql://localhost:5432/autoserviceDB";
+    private static final String DB_USERNAME = "postgres";
+    private static final String DB_PASSWORD = "root";
+    private static final int MAX_POOL_SIZE = 5;
 
     private DatabaseConnection() {
         HikariConfig config = new HikariConfig();
-        config.setJdbcUrl("jdbc:postgresql://localhost:5432/autoserviceDB");
-        config.setUsername("postgres");
-        config.setPassword("root");
-        config.setMaximumPoolSize(5);
+        config.setJdbcUrl(JDBC_URL);
+        config.setUsername(DB_USERNAME);
+        config.setPassword(DB_PASSWORD);
+        config.setMaximumPoolSize(MAX_POOL_SIZE);
 
         this.dataSource = new HikariDataSource(config);
     }

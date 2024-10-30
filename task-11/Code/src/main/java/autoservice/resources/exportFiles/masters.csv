@@ -1,3 +1,6 @@
 ID, Name, Status, Order_id, Order link
-6b64f87b-fdc5-441e-9974-f4ae42432a9f, oleg, OCCUPIED, ed51eac9-dc8b-4fb5-b1fb-f324d1dd1022, Order{id='ed51eac9-dc8b-4fb5-b1fb-f324d1dd1022', description='Change oil', status='CREATED', master='oleg', garagePlace='1', submissionDate='2024-09-10T17:00', completionDate='2024-09-12T14:00', plannedStartDate='2024-09-12T08:00', price=3412,00}
-a6779e7c-00c4-448f-8ba4-c6a0127fe483, Roman, AVAILABLE, N/A, N/A
+16bed4ef-f0ec-4711-bb1a-888b209694c0, B, AVAILABLE, N/A, N/A
+9e5207b7-3997-4de4-b9f6-0a00a74abc60, A, AVAILABLE, N/A, N/A
+5c1f4b60-6397-4f49-b80f-3d2a03536cb4, P, AVAILABLE, N/A, N/A
+cd5c5dc1-cb55-49e0-84eb-1cfe1745e031, Z, AVAILABLE, N/A, N/A
+6d939ca9-563d-4a21-9d70-38a91c82f22f, V, AVAILABLE, N/A, N/A

@@ -9,26 +9,27 @@ public class Configurator {
 
     public static void configure(Object obj) throws IllegalAccessException, IOException {
         Class<?> clazz = obj.getClass();
-
         for (Field field : clazz.getDeclaredFields()) {
+            field.setAccessible(true);
             ConfigProperty annotation = field.getAnnotation(ConfigProperty.class);
             if (annotation != null) {
                 String configFileName = annotation.configFileName();
                 String propertyName = annotation.propertyName();
                 Class<?> fieldType = annotation.type();
-
                 Properties properties = loadProperties(configFileName);
-
                 String value = properties.getProperty(propertyName);
-
+                System.out.println("Считываемое значение для " + propertyName + ": " + value);
                 if (value != null) {
                     Object convertedValue = convertValue(value, fieldType);
-                    field.setAccessible(true);
                     field.set(obj, convertedValue);
+                    System.out.println("Установлено значение для " + propertyName + ": " + convertedValue);
+                } else {
+                    System.out.println("Значение для " + propertyName + " не найдено.");
                 }
             }
         }
     }
+
 
     private static Properties loadProperties(String configFileName) throws IOException {
         Properties properties = new Properties();

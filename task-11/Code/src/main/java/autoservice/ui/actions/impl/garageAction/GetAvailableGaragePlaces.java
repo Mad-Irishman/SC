@@ -18,18 +18,8 @@ public class GetAvailableGaragePlaces implements IAction {
     @Override
     public void execute() {
         try {
-            Garage garage = serviceManager.getGarage();
-            if (garage == null) {
-                System.out.println("No garage found.");
-                return;
-            }
 
-            if (garage.getIsAvailable() != GarageStatus.AVAILABLE) {
-                System.out.println("Garage is not available.");
-                return;
-            }
-
-            List<GaragePlace> availableGaragePlaces = garage.getAvailableGaragePlaces();
+            List<GaragePlace> availableGaragePlaces = serviceManager.getAvailableGaragePlaces();
             if (availableGaragePlaces == null || availableGaragePlaces.isEmpty()) {
                 System.out.println("No available garage places found.");
                 return;

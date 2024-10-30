@@ -3,10 +3,11 @@ package autoservice.models.garage;
 import autoservice.config.properties.ConfigProperty;
 import autoservice.models.garagePlace.GaragePlace;
 import autoservice.models.master.Master;
-import autoservice.models.master.masterStatus.MasterStatus;
+//import autoservice.models.master.masterStatus.MasterStatus;
 import autoservice.models.garage.garageStatus.GarageStatus;
 import autoservice.models.order.Order;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -15,7 +16,6 @@ import java.util.UUID;
 public class Garage {
     private final String id;
     private final List<GaragePlace> garagePlaces;
-    private final List<Master> masters;
     private final List<Order> orders;
     private GarageStatus isAvailable;
 
@@ -34,7 +34,6 @@ public class Garage {
     public Garage() {
         this.id = generateUniqueId();
         this.garagePlaces = new ArrayList<>();
-        this.masters = new ArrayList<>();
         this.orders = new ArrayList<>();
         this.isAvailable = GarageStatus.AVAILABLE;
     }
@@ -42,13 +41,16 @@ public class Garage {
     public Garage(String id, List<GaragePlace> garagePlaces, List<Master> masters, List<Order> orders, GarageStatus isAvailable, boolean canRemoveGaragePlace, boolean canAddGaragePlace, boolean canRemoveOrder, boolean canRescheduleOrder) {
         this.id = id;
         this.garagePlaces = garagePlaces;
-        this.masters = masters;
         this.orders = orders;
         this.isAvailable = isAvailable;
         this.canRemoveGaragePlace = canRemoveGaragePlace;
         this.canAddGaragePlace = canAddGaragePlace;
         this.canRemoveOrder = canRemoveOrder;
         this.canRescheduleOrder = canRescheduleOrder;
+    }
+
+    public String getId() {
+        return this.id;
     }
 
     public GarageStatus getIsAvailable() {
@@ -59,36 +61,36 @@ public class Garage {
         this.isAvailable = isAvailable;
     }
 
-    public void addMaster(Master master) {
-        masters.add(master);
-    }
+//    public void addMaster(Master master) {
+//        masters.add(master);
+//    }
 
-    public void removeMaster(Master master) {
-        masters.remove(master);
-    }
+//    public void removeMaster(Master master) {
+//        masters.remove(master);
+//    }
 
-    public List<Master> getAvailableMasters() {
-        List<Master> availableMasters = new ArrayList<>();
-        for (Master master : masters) {
-            if (master.isAvailable() == MasterStatus.AVAILABLE) {
-                availableMasters.add(master);
-            }
-        }
-        return availableMasters;
-    }
+//    public List<Master> getAvailableMasters() {
+//        List<Master> availableMasters = new ArrayList<>();
+//        for (Master master : masterDAO.allMasters()) {
+//            if (master.isAvailable() == MasterStatus.AVAILABLE) {
+//                availableMasters.add(master);
+//            }
+//        }
+//        return availableMasters;
+//    }
 
-    public List<Master> getAllMasters() {
-        return masters;
-    }
+//    public List<Master> getAllMasters() {
+//        return masters;
+//    }
 
-    public void addGaragePlace(GaragePlace place) {
-        garagePlaces.add(place);
-    }
+//    public void addGaragePlace(GaragePlace place) {
+//        garagePlaces.add(place);
+//    }
 
-    public void removeGaragePlace(GaragePlace place) {
-        garagePlaces.remove(place);
-
-    }
+//    public void removeGaragePlace(GaragePlace place) {
+//        garagePlaces.remove(place);
+//
+//    }
 
     public List<GaragePlace> getAvailableGaragePlaces() {
         List<GaragePlace> availablePlaces = new ArrayList<>();
@@ -130,10 +132,6 @@ public class Garage {
 
     public void setCanRemoveOrder(boolean canRemoveOrder) {
         this.canRemoveOrder = canRemoveOrder;
-    }
-
-    public String getId() {
-        return this.id;
     }
 
     public boolean getCanRemoveGaragePlace() {
