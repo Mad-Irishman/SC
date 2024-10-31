@@ -18,7 +18,7 @@ public class MasterDAOImpl implements MasterDAO {
     private static final String ADD_MASTER_QUERY = "INSERT INTO masters (id, name) VALUES (?, ?)";
     private static final String ALL_MASTER_QUERY = "SELECT * FROM masters";
     private static final String REMOVE_MASTER = "DELETE FROM masters WHERE name = ?";
-    private Connection connection;
+    private static final String GET_MASTER_BY_ID = "SELECT * FROM masters WHERE id = ?";
 
     @Override
     public boolean addMaster(Master master) {
@@ -92,4 +92,19 @@ public class MasterDAOImpl implements MasterDAO {
         return isDeleted;
     }
 
+    public Master getMasterById(String id) {
+        Master master = null;
+        try (Connection connection = DatabaseConnection.getInstance().getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(GET_MASTER_BY_ID);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            if (resultSet.next()) {
+                master = new Master(resultSet.getString("name"));
+            }
+        } catch (
+                SQLException e) {
+            logger.error("Error while trying to retrieve master with ID '{}'", id, e);
+        }
+        return master;
+    }
 }

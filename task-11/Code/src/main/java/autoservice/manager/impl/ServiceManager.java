@@ -47,9 +47,14 @@ public class ServiceManager implements ServiceManagerInterface {
     @Override
     public void setMasters(List<Master> masters) {
         for (Master master : masters) {
-            garage.getMasterDAO().addMaster(master);
+            if (garage.getMasterById(master.getId()) == null) {
+                garage.getMasterDAO().addMaster(master);
+            } else {
+                logger.info("Master with ID {} already exists, skipping addition.", master.getId());
+            }
         }
     }
+
 
     @Override
     public void setGarage(Garage garage) {

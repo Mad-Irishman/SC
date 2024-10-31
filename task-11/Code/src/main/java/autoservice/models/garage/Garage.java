@@ -25,7 +25,6 @@ public class Garage {
     @JsonIgnore
     private final OrderDAOImpl orderDAO;
 
-    private final List<GaragePlace> garagePlaces;
     private GarageStatus isAvailable;
 
     @ConfigProperty(propertyName = "canRemoveGaragePlace", type = boolean.class)
@@ -42,7 +41,6 @@ public class Garage {
 
     public Garage() {
         this.id = generateUniqueId();
-        this.garagePlaces = new ArrayList<>();
         this.isAvailable = GarageStatus.AVAILABLE;
         this.masterDAO = new MasterDAOImpl();
         this.garagePlaceDAO = new GaragePlaceDAOImpl();
@@ -50,12 +48,11 @@ public class Garage {
     }
 
 
-    public Garage(String id, GaragePlaceDAOImpl garagePlaceDAO, MasterDAOImpl masterDAO, OrderDAOImpl orderDAO, List<GaragePlace> garagePlaces, GarageStatus isAvailable, boolean canRemoveGaragePlace, boolean canAddGaragePlace, boolean canRemoveOrder, boolean canRescheduleOrder) {
+    public Garage(String id, GaragePlaceDAOImpl garagePlaceDAO, MasterDAOImpl masterDAO, OrderDAOImpl orderDAO, GarageStatus isAvailable, boolean canRemoveGaragePlace, boolean canAddGaragePlace, boolean canRemoveOrder, boolean canRescheduleOrder) {
         this.id = id;
         this.garagePlaceDAO = garagePlaceDAO;
         this.masterDAO = masterDAO;
         this.orderDAO = orderDAO;
-        this.garagePlaces = garagePlaces;
         this.isAvailable = isAvailable;
         this.canRemoveGaragePlace = canRemoveGaragePlace;
         this.canAddGaragePlace = canAddGaragePlace;
@@ -86,6 +83,10 @@ public class Garage {
         return availableMasters;
     }
 
+    public Master getMasterById(String id) {
+        return masterDAO.getMasterById(id);
+    }
+
 
     //Работа с garagePlaces
     public void addGaragePlace(GaragePlace place) {
@@ -102,7 +103,7 @@ public class Garage {
 
     public List<GaragePlace> getAvailableGaragePlaces() {
         List<GaragePlace> availablePlaces = new ArrayList<>();
-        for (GaragePlace place : garagePlaces) {
+        for (GaragePlace place : allGaragePlaces()) {
             if (!place.isOccupied()) {
                 availablePlaces.add(place);
             }
@@ -111,7 +112,7 @@ public class Garage {
     }
 
     public List<GaragePlace> getGaragePlaces() {
-        return new ArrayList<>(garagePlaces);
+        return new ArrayList<>(allGaragePlaces());
     }
 
     //Работа с orders
