@@ -41,11 +41,15 @@ public interface ServiceManagerInterface {
 
     public Garage getGarage();
 
+    public List<GaragePlace> getAvailableGaragePlaces();
+
     void createOrder(String discription, LocalDateTime submissionDate, LocalDateTime completionDate, LocalDateTime plannedStartDate, double price);
 
     void addOrder(Order order);
 
     List<Order> getOrders();
+
+    public List<Order> getAllOrdersInGarage();
 
     Order getOrderByDescription(String description);
 

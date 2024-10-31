@@ -6,7 +6,6 @@ import autoservice.models.garagePlace.GaragePlace;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.xml.crypto.Data;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -46,6 +45,7 @@ public class GaragePlaceDAOImpl implements GaragePlaceDAO {
     }
 
 
+    @Override
     public List<GaragePlace> getAllGaragePlaces() {
         logger.info("Attempting to get all garage places");
         List<GaragePlace> garagePlaces = new ArrayList<>();
@@ -66,6 +66,7 @@ public class GaragePlaceDAOImpl implements GaragePlaceDAO {
         }
     }
 
+    @Override
     public boolean removeGaragePlace(GaragePlace garagePlace) {
         logger.info("Attempting to remove garage place: {}", garagePlace);
         boolean isDeleted = false;

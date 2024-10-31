@@ -55,7 +55,6 @@ public class ServiceManager implements ServiceManagerInterface {
         }
     }
 
-
     @Override
     public void setGarage(Garage garage) {
         this.garage = garage;
@@ -181,6 +180,7 @@ public class ServiceManager implements ServiceManagerInterface {
         }
     }
 
+    @Override
     public List<GaragePlace> allGaragePlaces() throws ServiceManagerException {
         try {
             return garage.allGaragePlaces();
@@ -189,6 +189,7 @@ public class ServiceManager implements ServiceManagerInterface {
         }
     }
 
+    @Override
     public GaragePlace getGaragePlaceByNumber(int placeNumber) {
         for (GaragePlace place : garage.allGaragePlaces()) {
             if (place.getPlaceNumber() == placeNumber) {
@@ -203,6 +204,7 @@ public class ServiceManager implements ServiceManagerInterface {
         return garage;
     }
 
+    @Override
     public List<GaragePlace> getAvailableGaragePlaces() {
         return garage.getAvailableGaragePlaces();
     }
@@ -276,6 +278,7 @@ public class ServiceManager implements ServiceManagerInterface {
         return garage.allOrders();
     }
 
+    @Override
     public List<Order> getAllOrdersInGarage() {
         return garage.allOrders();
     }

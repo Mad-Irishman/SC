@@ -18,6 +18,7 @@ public class OrderDAOImpl implements OrderDAO {
     private static final String DELETE_ORDER = "DELETE FROM orders WHERE description = ?";
     private static final String ALL_ORDERS = "SELECT * FROM orders";
 
+    @Override
     public boolean createOrder(Order order) {
         logger.info("Attempting to create order: {}", order);
 
@@ -49,6 +50,7 @@ public class OrderDAOImpl implements OrderDAO {
         }
     }
 
+    @Override
     public List<Order> allOrders() {
         logger.info("Attempting to all orders");
         List<Order> orders = new ArrayList<>();
@@ -69,6 +71,7 @@ public class OrderDAOImpl implements OrderDAO {
     }
 
 
+    @Override
     public boolean deleteOrder(Order order) {
         logger.info("Attempting to delete order: {}", order);
         boolean isDeleted = false;

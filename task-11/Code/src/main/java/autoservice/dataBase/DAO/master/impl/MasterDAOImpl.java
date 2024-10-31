@@ -45,6 +45,7 @@ public class MasterDAOImpl implements MasterDAO {
         }
     }
 
+    @Override
     public List<Master> allMasters() {
         logger.info("Attempting to all masters");
         List<Master> allMasters = new ArrayList<>();
@@ -68,6 +69,7 @@ public class MasterDAOImpl implements MasterDAO {
         return allMasters;
     }
 
+    @Override
     public boolean deleteMasterByName(Master master) {
         logger.info("Attempting to remove master: {}", master);
         boolean isDeleted = false;
@@ -92,6 +94,7 @@ public class MasterDAOImpl implements MasterDAO {
         return isDeleted;
     }
 
+    @Override
     public Master getMasterById(String id) {
         Master master = null;
         try (Connection connection = DatabaseConnection.getInstance().getConnection();
