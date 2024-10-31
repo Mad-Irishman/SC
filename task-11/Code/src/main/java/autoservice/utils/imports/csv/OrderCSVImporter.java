@@ -15,7 +15,7 @@ import java.util.List;
 
 public class OrderCSVImporter {
     private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-    private static final String filePath = "src/main/java/autoservice/resources/importFiles/orders.csv";
+    private static final String filePath = "src/main/resources/importFiles/orders.csv";
 
     public static void importOrdersFromCSV(ServiceManager serviceManager) throws IOException {
         List<Order> existingOrders = serviceManager.getOrders();

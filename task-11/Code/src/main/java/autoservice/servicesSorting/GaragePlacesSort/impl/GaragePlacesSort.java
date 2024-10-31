@@ -3,7 +3,7 @@ package autoservice.servicesSorting.GaragePlacesSort.impl;
 import autoservice.models.garage.Garage;
 import autoservice.models.garagePlace.GaragePlace;
 import autoservice.servicesSorting.GaragePlacesSort.GaragePlacesSortInterface;
-import autoservice.servicesSorting.GaragePlacesSort.exception.GaragePlacesSortException;
+import autoservice.exception.garagePlaceSortException.GaragePlacesSortException;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class GarageCSVImporter {
-    private static final String filePath = "src/main/java/autoservice/resources/importFiles/garages.csv";
+    private static final String filePath = "src/main/resources/importFiles/garages.csv";
 
     public static void importGaragePlacesFromCSV(ServiceManager serviceManager) throws IOException {
         List<GaragePlace> existingGragePlaces = serviceManager.allGaragePlaces();

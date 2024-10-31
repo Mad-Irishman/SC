@@ -1,6 +1,5 @@
 import autoservice.DI.DIContainer;
 import autoservice.manager.impl.ServiceManager;
-import autoservice.dataBase.DAO.master.impl.MasterDAOImpl;
 import autoservice.ui.controller.MenuController;
 import autoservice.utils.deserialization.Deserializer;
 import autoservice.utils.serialization.Serializer;

@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class Deserializer {
     private static final ObjectMapper objectMapper = new ObjectMapper();
-    private static final String filePath = "src/main/java/autoservice/resources/start_end_program/start_end_program.json";
+    private static final String filePath = "src/main/resources/start_end_program/start_end_program.json";
     private static final Logger logger = LoggerFactory.getLogger(Deserializer.class);
 
     public static <T> T deserializeFromFile(Class<T> clazz) {

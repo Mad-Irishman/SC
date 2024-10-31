@@ -4,7 +4,7 @@ import autoservice.models.master.Master;
 import autoservice.models.order.Order;
 import autoservice.models.order.orderStatus.OrderStatus;
 import autoservice.servicesSorting.OrdersSort.OrdersSortInterface;
-import autoservice.servicesSorting.OrdersSort.exception.OrdersSortException;
+import autoservice.exception.orderSortException.OrdersSortException;
 
 import java.time.LocalDateTime;
 import java.util.Comparator;

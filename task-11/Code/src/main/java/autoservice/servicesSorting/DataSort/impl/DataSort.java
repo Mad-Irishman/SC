@@ -6,7 +6,7 @@ import autoservice.models.master.Master;
 import autoservice.models.order.Order;
 import autoservice.models.order.orderStatus.OrderStatus;
 import autoservice.servicesSorting.DataSort.DataSortInterface;
-import autoservice.servicesSorting.DataSort.exception.DataSortException;
+import autoservice.exception.dataSortException.DataSortException;
 
 import java.time.LocalDateTime;
 import java.util.List;

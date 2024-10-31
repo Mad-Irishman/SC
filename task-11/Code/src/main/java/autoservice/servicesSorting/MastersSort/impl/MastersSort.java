@@ -3,7 +3,7 @@ package autoservice.servicesSorting.MastersSort.impl;
 import autoservice.models.master.Master;
 import autoservice.models.order.Order;
 import autoservice.servicesSorting.MastersSort.MastersSortInterface;
-import autoservice.servicesSorting.MastersSort.exception.MastersSortException;
+import autoservice.exception.masterSortException.MastersSortException;
 
 import java.util.Comparator;
 import java.util.List;

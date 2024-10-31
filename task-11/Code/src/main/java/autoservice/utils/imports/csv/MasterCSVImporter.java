@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class MasterCSVImporter {
-    private static final String filePath = "src/main/java/autoservice/resources/importFiles/masters.csv";
+    private static final String filePath = "src/main/resources/importFiles/masters.csv";
 
     public static void importMastersFromCSV(ServiceManager serviceManager) throws IOException {
         List<Master> existingMasters = serviceManager.getMasters();

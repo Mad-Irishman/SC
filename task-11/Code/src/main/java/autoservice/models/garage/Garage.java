@@ -1,9 +1,9 @@
 package autoservice.models.garage;
 
 import autoservice.config.properties.ConfigProperty;
-import autoservice.dataBase.DAO.garargePlace.impl.GaragePlaceDAOImpl;
-import autoservice.dataBase.DAO.master.impl.MasterDAOImpl;
-import autoservice.dataBase.DAO.order.impl.OrderDAOImpl;
+import autoservice.dataBase.repository.impl.GaragePlaceRepositoryImpl;
+import autoservice.dataBase.repository.impl.MasterRepositoryImpl;
+import autoservice.dataBase.repository.impl.OrderRepositoryImpl;
 import autoservice.models.garagePlace.GaragePlace;
 import autoservice.models.master.Master;
 import autoservice.models.garage.garageStatus.GarageStatus;
@@ -19,11 +19,11 @@ import java.util.UUID;
 public class Garage {
     private final String id;
     @JsonIgnore
-    private final GaragePlaceDAOImpl garagePlaceDAO;
+    private final GaragePlaceRepositoryImpl garagePlaceDAO;
     @JsonIgnore
-    private final MasterDAOImpl masterDAO;
+    private final MasterRepositoryImpl masterDAO;
     @JsonIgnore
-    private final OrderDAOImpl orderDAO;
+    private final OrderRepositoryImpl orderDAO;
 
     private GarageStatus isAvailable;
 
@@ -42,13 +42,13 @@ public class Garage {
     public Garage() {
         this.id = generateUniqueId();
         this.isAvailable = GarageStatus.AVAILABLE;
-        this.masterDAO = new MasterDAOImpl();
-        this.garagePlaceDAO = new GaragePlaceDAOImpl();
-        this.orderDAO = new OrderDAOImpl();
+        this.masterDAO = new MasterRepositoryImpl();
+        this.garagePlaceDAO = new GaragePlaceRepositoryImpl();
+        this.orderDAO = new OrderRepositoryImpl();
     }
 
 
-    public Garage(String id, GaragePlaceDAOImpl garagePlaceDAO, MasterDAOImpl masterDAO, OrderDAOImpl orderDAO, GarageStatus isAvailable, boolean canRemoveGaragePlace, boolean canAddGaragePlace, boolean canRemoveOrder, boolean canRescheduleOrder) {
+    public Garage(String id, GaragePlaceRepositoryImpl garagePlaceDAO, MasterRepositoryImpl masterDAO, OrderRepositoryImpl orderDAO, GarageStatus isAvailable, boolean canRemoveGaragePlace, boolean canAddGaragePlace, boolean canRemoveOrder, boolean canRescheduleOrder) {
         this.id = id;
         this.garagePlaceDAO = garagePlaceDAO;
         this.masterDAO = masterDAO;
@@ -133,15 +133,15 @@ public class Garage {
         return this.id;
     }
 
-    public GaragePlaceDAOImpl getGaragePlaceDAO() {
+    public GaragePlaceRepositoryImpl getGaragePlaceDAO() {
         return garagePlaceDAO;
     }
 
-    public MasterDAOImpl getMasterDAO() {
+    public MasterRepositoryImpl getMasterDAO() {
         return masterDAO;
     }
 
-    public OrderDAOImpl getOrderDAO() {
+    public OrderRepositoryImpl getOrderDAO() {
         return orderDAO;
     }
 
