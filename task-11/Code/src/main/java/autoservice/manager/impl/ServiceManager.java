@@ -326,6 +326,8 @@ public class ServiceManager implements ServiceManagerInterface {
             order.getAssignedMaster().assignOrderMaster(null);
             order.getAssignedGaragePlace().setOccupied(false);
             garage.removeOrder(order);
+            garage.getMasterDAO().updateMaster(order.getAssignedMaster());
+            garage.getGaragePlaceDAO().updateGaragePlace(order.getAssignedGaragePlace());
             System.out.println("Order removed: " + order);
         } else {
             System.out.println("Order not found or cannot be removed.");
