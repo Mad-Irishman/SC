@@ -1,4 +1,4 @@
-package autoservice.dataBase.repository;
+package autoservice.repository;
 
 import autoservice.models.order.Order;
 

@@ -1,15 +1,13 @@
-package autoservice.dataBase.repository.impl;
+package autoservice.repository.impl;
 
 import autoservice.config.database.connection.DatabaseConnection;
-import autoservice.dataBase.repository.MasterRepository;
+import autoservice.models.master.masterStatus.MasterStatus;
+import autoservice.repository.MasterRepository;
 import autoservice.models.master.Master;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +17,7 @@ public class MasterRepositoryImpl implements MasterRepository {
     private static final String ALL_MASTER_QUERY = "SELECT * FROM masters";
     private static final String REMOVE_MASTER = "DELETE FROM masters WHERE name = ?";
     private static final String GET_MASTER_BY_ID = "SELECT * FROM masters WHERE id = ?";
+    private static final String UPDATE_MASTER = "UPDATE masters SET is_available = ? WHERE name = ?";
 
     @Override
     public boolean addMaster(Master master) {
@@ -56,7 +55,9 @@ public class MasterRepositoryImpl implements MasterRepository {
 
             while (resultSet.next()) {
                 Master master = new Master(
-                        resultSet.getString("name")
+                        resultSet.getString("id"),
+                        resultSet.getString("name"),
+                        MasterStatus.valueOf(resultSet.getString("is_available"))
                 );
 
                 allMasters.add(master);
@@ -98,16 +99,45 @@ public class MasterRepositoryImpl implements MasterRepository {
     public Master getMasterById(String id) {
         Master master = null;
         try (Connection connection = DatabaseConnection.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(GET_MASTER_BY_ID);
-             ResultSet resultSet = preparedStatement.executeQuery()) {
-
+             PreparedStatement preparedStatement = connection.prepareStatement(GET_MASTER_BY_ID)) {
+            preparedStatement.setString(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                master = new Master(resultSet.getString("name"));
+                master = new Master(
+                        resultSet.getString("id"),
+                        resultSet.getString("name"),
+                        MasterStatus.valueOf(resultSet.getString("is_available"))
+                );
             }
-        } catch (
-                SQLException e) {
+        } catch (SQLException e) {
             logger.error("Error while trying to retrieve master with ID '{}'", id, e);
         }
         return master;
     }
+
+
+    @Override
+    public boolean updateMaster(Master master) {
+        logger.info("Attempting to update master: {}", master);
+        boolean isUpdated = false;
+
+        try (Connection connection = DatabaseConnection.getInstance().getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_MASTER)) {
+            preparedStatement.setObject(1, master.isAvailable().name(), Types.OTHER);
+            preparedStatement.setString(2, master.getName());
+
+            int rowsAffected = preparedStatement.executeUpdate();
+            if (rowsAffected > 0) {
+                isUpdated = true;
+                logger.info("Master updated successfully: {}", master);
+            } else {
+                logger.info("Failed to update master: {}", master);
+            }
+        } catch (SQLException e) {
+            logger.error("Error updating master: {}", master, e);
+            throw new RuntimeException(e);
+        }
+        return isUpdated;
+    }
+
 }

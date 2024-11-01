@@ -34,6 +34,18 @@ public class Order {
         this.price = price;
     }
 
+    public Order(String idOrder, String description, Master assignedMaster, GaragePlace assignedGaragePlace, OrderStatus statusOrder, LocalDateTime submissionDate, LocalDateTime completionDate, LocalDateTime plannedStartDate, double price) {
+        this.idOrder = idOrder;
+        this.description = description;
+        this.assignedMaster = assignedMaster;
+        this.assignedGaragePlace = assignedGaragePlace;
+        this.statusOrder = statusOrder;
+        this.submissionDate = submissionDate;
+        this.completionDate = completionDate;
+        this.plannedStartDate = plannedStartDate;
+        this.price = price;
+    }
+
     public String getIdOrder() {
         return idOrder;
     }

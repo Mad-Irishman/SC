@@ -16,9 +16,9 @@ public class AllMastersAction implements IAction {
 
     @Override
     public void execute() {
+        List<Master> allMasters = serviceManager.getMasters();
         try {
-            List<Master> allMasters = new ArrayList<>(serviceManager.getAllMasterInGarage());
-            if (allMasters.isEmpty()) {
+            if (serviceManager.getAllMasterInGarage().isEmpty()) {
                 System.out.println("No masters available in the garage.");
             } else {
                 for (int i = 0; i < allMasters.size(); i++) {

@@ -1,4 +1,4 @@
-package autoservice.dataBase.repository;
+package autoservice.repository;
 
 import autoservice.models.master.Master;
 
@@ -12,4 +12,7 @@ public interface MasterRepository {
     public boolean deleteMasterByName(Master master);
 
     public Master getMasterById(String id);
+
+    public boolean updateMaster(Master master);
+
 }

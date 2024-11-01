@@ -17,7 +17,7 @@ public class AllOrdersAction implements IAction {
     @Override
     public void execute() {
         try {
-            List<Order> allOrders = new ArrayList<>(serviceManager.getOrders());
+            List<Order> allOrders = serviceManager.getOrders();
 
             if (allOrders.isEmpty()) {
                 System.out.println("No orders found.");

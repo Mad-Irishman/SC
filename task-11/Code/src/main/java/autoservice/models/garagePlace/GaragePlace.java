@@ -7,6 +7,11 @@ public class GaragePlace {
 
     public GaragePlace() {}
 
+    public GaragePlace(int placeNumber, boolean isOccupied) {
+        this.placeNumber = placeNumber;
+        this.isOccupied = isOccupied;
+    }
+
     public GaragePlace(int placeNumber, boolean isOccupied, String idOrder) {
         this.placeNumber = placeNumber;
         this.isOccupied = isOccupied;

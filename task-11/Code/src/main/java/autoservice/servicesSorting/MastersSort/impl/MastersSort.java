@@ -19,7 +19,7 @@ public class MastersSort implements MastersSortInterface {
             }
 
             List<Master> mastersByOrder = masters.stream()
-                    .filter(master -> order.contains(master))
+                    .filter(order::contains)
                     .collect(Collectors.toList());
 
             if (mastersByOrder.isEmpty()) {

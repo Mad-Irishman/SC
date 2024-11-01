@@ -3,7 +3,7 @@ package autoservice.ui.actions.impl.garageAction;
 import autoservice.manager.impl.ServiceManager;
 import autoservice.models.garagePlace.GaragePlace;
 import autoservice.ui.actions.IAction;
-import autoservice.ui.actions.impl.garageAction.exception.GaragePlaceNotFoundException;
+import autoservice.exception.garagePlaceException.GaragePlaceNotFoundException;
 
 import java.util.Scanner;
 

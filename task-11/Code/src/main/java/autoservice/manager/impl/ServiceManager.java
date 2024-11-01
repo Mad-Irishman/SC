@@ -40,7 +40,7 @@ public class ServiceManager implements ServiceManagerInterface {
     @Override
     public void setOrders(List<Order> orders) {
         for (Order order : orders) {
-            garage.getOrderDAO().createOrder(order);
+            garage.createOrder(order);
         }
     }
 
@@ -48,7 +48,7 @@ public class ServiceManager implements ServiceManagerInterface {
     public void setMasters(List<Master> masters) {
         for (Master master : masters) {
             if (garage.getMasterById(master.getId()) == null) {
-                garage.getMasterDAO().addMaster(master);
+                garage.addMaster(master);
             } else {
                 logger.info("Master with ID {} already exists, skipping addition.", master.getId());
             }
@@ -209,7 +209,7 @@ public class ServiceManager implements ServiceManagerInterface {
         return garage.getAvailableGaragePlaces();
     }
 
-    @Override
+    @Override // надо придумать как после создания заказа обновить данные в бд
     public void createOrder(String description, LocalDateTime submissionDate, LocalDateTime completionDate, LocalDateTime plannedStartDate, double price) throws ServiceManagerException {
         if (description == null || submissionDate == null || completionDate == null || plannedStartDate == null) {
             throw new ServiceManagerException("Order parameters cannot be null");
@@ -221,11 +221,14 @@ public class ServiceManager implements ServiceManagerInterface {
                 order.getAssignedMaster().setAvailable(MasterStatus.OCCUPIED);
                 order.getAssignedMaster().setOrderMaster(order);
 
-                order.setAssignedGaragePlace(garage.allGaragePlaces().get(0));
-                garage.allGaragePlaces().get(0).setIdOrder(order.getIdOrder());
+                order.setAssignedGaragePlace(garage.getAvailableGaragePlaces().get(0));
+                garage.getAvailableGaragePlaces().get(0).setIdOrder(order.getIdOrder());
                 order.getAssignedGaragePlace().setOccupied(true);
 
                 garage.createOrder(order);
+                garage.getGaragePlaceDAO().updateGaragePlace(order.getAssignedGaragePlace());
+                garage.getMasterDAO().updateMaster(order.getAssignedMaster());
+
                 System.out.println("Order created: " + order.getDescription());
             } else {
                 System.out.println("No available masters or garage places to create an order.");
@@ -236,14 +239,14 @@ public class ServiceManager implements ServiceManagerInterface {
     }
 
     @Override
-    public void addOrder(Order order) throws ServiceManagerException {
+    public void addOrder(Order order) throws ServiceManagerException { // короче надо придумать как после создания или добавления заказа обновить данные в бд
         if (order == null) {
             throw new ServiceManagerException("Order cannot be null");
         }
 
         try {
             List<Master> availableMasters = garage.getAvailableMasters();
-            List<GaragePlace> availableGaragePlaces = garage.allGaragePlaces();
+            List<GaragePlace> availableGaragePlaces = garage.getAvailableGaragePlaces();
 
             if (availableMasters.isEmpty()) {
                 throw new ServiceManagerException("No available masters to assign to the order");
@@ -265,6 +268,8 @@ public class ServiceManager implements ServiceManagerInterface {
             assignedGaragePlace.setOccupied(true);
 
             garage.createOrder(order);
+            garage.getGaragePlaceDAO().updateGaragePlace(order.getAssignedGaragePlace());
+            garage.getMasterDAO().updateMaster(order.getAssignedMaster());
 
             System.out.println("Order added: " + order.getDescription());
         } catch (Exception e) {

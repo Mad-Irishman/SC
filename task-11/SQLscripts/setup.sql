@@ -47,16 +47,15 @@ VALUES
 
 INSERT INTO garage_places (place_number, is_occupied)
 VALUES
-    (1, TRUE),
-    (2, TRUE),
-    (3, TRUE),
-    (4, FALSE),
-    (5, FALSE);
+    (1, true),
+    (2, true),
+    (3, true),
+    (4, false),
+    (5, false);
 
 
 INSERT INTO orders (id_order, description, assigned_master, assigned_garage_place, status_order, submission_date, completion_date, planned_start_date, price)
 VALUES
-    ('6d939ca9-563d-4a21-9d70-38a91c82f22f', 'Замена масла', '16bed4ef-f0ec-4711-bb1a-888b209694c0', 1, 'CREATED', '2024-10-31 09:00', '2024-10-31 12:00', '2024-10-31 10:00', 1500.00),
-    ('6d939ca9-563d-4a21-9d70-38a91c82f22a', 'Ремонт тормозной системы', '9e5207b7-3997-4de4-b9f6-0a00a74abc60', 2, 'CREATED', '2024-10-30 08:30', '2024-10-30 16:00', '2024-10-30 09:00', 5000.00),
-    ('6d939ca9-563d-4a21-9d70-38a91c82f22s', 'Шиномонтаж', '5c1f4b60-6397-4f49-b80f-3d2a03536cb4', 3, 'CREATED', '2024-10-28 13:00', '2024-10-28 14:30', '2024-10-28 13:15', 1200.00);
-
+    ('6d939ca9-563d-4a21-9d70-38a91c82f22f', 'Change Oil', '16bed4ef-f0ec-4711-bb1a-888b209694c0', 1, 'CREATED', '2024-10-31 09:00', '2024-10-31 12:00', '2024-10-31 10:00', 1500.00),
+    ('6d939ca9-563d-4a21-9d70-38a91c82f22a', 'Change Motor', '9e5207b7-3997-4de4-b9f6-0a00a74abc60', 2, 'CREATED', '2024-10-30 08:30', '2024-10-30 16:00', '2024-10-30 09:00', 5000.00),
+    ('6d939ca9-563d-4a21-9d70-38a91c82f22s', 'Something', '5c1f4b60-6397-4f49-b80f-3d2a03536cb4', 3, 'CREATED', '2024-10-28 13:00', '2024-10-28 14:30', '2024-10-28 13:15', 1200.00);

@@ -1,4 +1,4 @@
-package autoservice.dataBase.repository;
+package autoservice.repository;
 
 import autoservice.models.garagePlace.GaragePlace;
 
@@ -10,4 +10,8 @@ public interface GaragePlaceRepository {
     public List<GaragePlace> getAllGaragePlaces();
 
     public boolean removeGaragePlace(GaragePlace garagePlace);
+
+    public boolean updateGaragePlace(GaragePlace garagePlace);
+
+    public GaragePlace getGaragePlaceByNumber(int placeNumber);
 }

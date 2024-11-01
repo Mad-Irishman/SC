@@ -1,9 +1,9 @@
 package autoservice.models.garage;
 
 import autoservice.config.properties.ConfigProperty;
-import autoservice.dataBase.repository.impl.GaragePlaceRepositoryImpl;
-import autoservice.dataBase.repository.impl.MasterRepositoryImpl;
-import autoservice.dataBase.repository.impl.OrderRepositoryImpl;
+import autoservice.repository.impl.GaragePlaceRepositoryImpl;
+import autoservice.repository.impl.MasterRepositoryImpl;
+import autoservice.repository.impl.OrderRepositoryImpl;
 import autoservice.models.garagePlace.GaragePlace;
 import autoservice.models.master.Master;
 import autoservice.models.garage.garageStatus.GarageStatus;

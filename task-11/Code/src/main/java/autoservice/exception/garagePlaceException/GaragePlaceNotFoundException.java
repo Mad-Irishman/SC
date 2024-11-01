@@ -1,4 +1,4 @@
-package autoservice.ui.actions.impl.garageAction.exception;
+package autoservice.exception.garagePlaceException;
 
 public class GaragePlaceNotFoundException extends Exception {
     public GaragePlaceNotFoundException(String message) {

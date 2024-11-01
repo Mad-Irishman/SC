@@ -22,6 +22,11 @@ public class Master {
         this.isAvailable = MasterStatus.AVAILABLE;
     }
 
+    public Master(String id, String name, MasterStatus isAvailable) {
+        this.id = id;
+        this.name = name;
+        this.isAvailable = isAvailable;
+    }
 
     public String getName() {
         return name;
