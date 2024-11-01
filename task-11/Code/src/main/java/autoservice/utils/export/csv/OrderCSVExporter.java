@@ -21,28 +21,28 @@ public class OrderCSVExporter {
             writer.newLine();
 
             for (Order order : orders) {
-                String id = String.valueOf(order.getIdOrder());
-                String description = order.getDescription();
-                Master master = order.getAssignedMaster();
-                GaragePlace garagePlace = order.getAssignedGaragePlace();
-                OrderStatus status = order.getStatusOrder();
-                String submissionDate = order.getSubmissionDate() != null ? order.getSubmissionDate().format(DATE_FORMAT) : "";
-                String completionDate = order.getCompletionDate() != null ? order.getCompletionDate().format(DATE_FORMAT) : "";
-                String plannedStartDate = order.getPlannedStartDate() != null ? order.getPlannedStartDate().format(DATE_FORMAT) : "";
+                String id = order.getIdOrder() != null ? order.getIdOrder() : "N/A";
+                String description = order.getDescription() != null ? order.getDescription() : "N/A";
+                String masterName = order.getAssignedMaster() != null ? order.getAssignedMaster().getName() : "N/A";
+                String garagePlaceNumber = order.getAssignedGaragePlace() != null ? String.valueOf(order.getAssignedGaragePlace().getPlaceNumber()) : "N/A";
+                String status = order.getStatusOrder() != null ? order.getStatusOrder().name() : "N/A";
+                String submissionDate = order.getSubmissionDate() != null ? order.getSubmissionDate().format(DATE_FORMAT) : "N/A";
+                String completionDate = order.getCompletionDate() != null ? order.getCompletionDate().format(DATE_FORMAT) : "N/A";
+                String plannedStartDate = order.getPlannedStartDate() != null ? order.getPlannedStartDate().format(DATE_FORMAT) : "N/A";
                 String price = String.valueOf(order.getPrice());
 
                 String line = String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s",
                         id,
                         description,
-                        (master != null ? master.getName() : "N/A"),
-                        (garagePlace != null ? garagePlace.getPlaceNumber() : "N/A"),
+                        masterName,
+                        garagePlaceNumber,
                         status,
                         submissionDate,
                         completionDate,
                         plannedStartDate,
                         price
                 );
-
+                
                 writer.write(line);
                 writer.newLine();
             }
@@ -50,4 +50,5 @@ public class OrderCSVExporter {
             throw new IOException("Error writing orders to file: " + e.getMessage(), e);
         }
     }
+
 }

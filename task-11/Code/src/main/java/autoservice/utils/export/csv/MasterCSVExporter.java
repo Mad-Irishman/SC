@@ -2,7 +2,6 @@ package autoservice.utils.export.csv;
 
 import autoservice.models.master.Master;
 import autoservice.models.master.masterStatus.MasterStatus;
-import autoservice.models.order.Order;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -14,7 +13,7 @@ public class MasterCSVExporter {
 
     public static void exportMastersToCSV(List<Master> masters) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
-            writer.write("ID, Name, Status, Order_id, Order link");
+            writer.write("ID,Name,Status");
             writer.newLine();
 
             for (Master master : masters) {
@@ -22,22 +21,15 @@ public class MasterCSVExporter {
                 String name = master.getName();
                 MasterStatus status = master.isAvailable();
 
-                if (master.getOrderMaster() == null) {
-                    String line = String.format("%s, %s, %s, %s, %s", id, name, status, "N/A", "N/A");
-                    writer.write(line);
-                    writer.newLine();
-                } else {
-                    Order order = master.getOrderMaster();
-                    String order_id = order.getIdOrder();
-                    String orderLink = order.toString();
-
-                    String line = String.format("%s, %s, %s, %s, %s", id, name, status, order_id, orderLink);
-                    writer.write(line);
-                    writer.newLine();
-                }
+                String line = String.format("%s,%s,%s", id, name, status);
+                writer.write(line);
+                writer.newLine();
             }
+            System.out.println("Export completed successfully.");
+
         } catch (IOException e) {
             throw new IOException("Error writing to file: " + e.getMessage(), e);
         }
     }
+
 }

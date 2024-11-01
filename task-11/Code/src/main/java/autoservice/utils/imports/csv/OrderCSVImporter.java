@@ -11,6 +11,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 public class OrderCSVImporter {
@@ -23,6 +24,7 @@ public class OrderCSVImporter {
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             boolean isFirstLine = true;
+            List<Order> newOrders = new ArrayList<>();
 
             while ((line = br.readLine()) != null) {
                 if (isFirstLine) {
@@ -37,40 +39,47 @@ public class OrderCSVImporter {
 
                 String id = values[0].trim();
                 String description = values[1].trim();
-                String masterName = values[2].trim();
-                String garagePlaceNumber = values[3].trim();
+                String masterId = values[2].trim();
+                int garagePlaceNumber = Integer.parseInt(values[3].trim());
                 String statusString = values[4].trim();
                 String submissionDateStr = values[5].trim();
                 String completionDateStr = values[6].trim();
                 String plannedStartDateStr = values[7].trim();
-                String priceStr = values[8].trim();
+                double price = Double.parseDouble(values[8].trim());
 
                 OrderStatus status = OrderStatus.valueOf(statusString.toUpperCase());
-                LocalDateTime submissionDate = submissionDateStr.isEmpty() ? null : LocalDateTime.parse(submissionDateStr, DATE_FORMAT);
-                LocalDateTime completionDate = completionDateStr.isEmpty() ? null : LocalDateTime.parse(completionDateStr, DATE_FORMAT);
-                LocalDateTime plannedStartDate = plannedStartDateStr.isEmpty() ? null : LocalDateTime.parse(plannedStartDateStr, DATE_FORMAT);
-                double price = Double.parseDouble(priceStr);
 
-                Master assignedMaster = serviceManager.findMasterByName(masterName);
-                GaragePlace assignedGaragePlace = serviceManager.findGaragePlaceByNumber(garagePlaceNumber);
+                LocalDateTime submissionDate = LocalDateTime.parse(submissionDateStr, DATE_FORMAT);
+                LocalDateTime completionDate = LocalDateTime.parse(completionDateStr, DATE_FORMAT);
+                LocalDateTime plannedStartDate = LocalDateTime.parse(plannedStartDateStr, DATE_FORMAT);
+
+                Master assignedMaster = serviceManager.getMasterById(masterId);
+                GaragePlace assignedGaragePlace = serviceManager.findGaragePlaceByNumber(String.valueOf(garagePlaceNumber));
 
                 boolean orderExists = existingOrders.stream()
                         .anyMatch(order -> order.getIdOrder().equals(id) || order.getDescription().equals(description));
 
-                if (!orderExists) {
-                    Order newOrder = new Order(description, submissionDate, completionDate, plannedStartDate, price);
-                    newOrder.setStatusOrder(status);
-                    newOrder.setAssignedMaster(assignedMaster);
-                    newOrder.setAssignedGaragePlace(assignedGaragePlace);
-
-                    serviceManager.addOrder(newOrder);
-                    System.out.println("Order added: " + newOrder.getDescription());
-                } else {
-                    System.out.println("Order already exists: " + description);
+                if (orderExists) {
+                    System.out.println("Duplicate order found with ID: " + id + ". Import cancelled.");
+                    return;
                 }
+
+                Order newOrder = new Order(id, description, submissionDate, completionDate, plannedStartDate, price);
+                newOrder.setStatusOrder(status);
+                newOrder.setAssignedMaster(assignedMaster);
+                newOrder.setAssignedGaragePlace(assignedGaragePlace);
+
+                newOrders.add(newOrder);
             }
+
+            for (Order order : newOrders) {
+                serviceManager.addOrder(order);
+                System.out.println("Order added: " + order.getDescription());
+            }
+
         } catch (IOException | IllegalArgumentException e) {
             throw new IOException("Error reading the file or processing data: " + e.getMessage(), e);
         }
     }
+
 }

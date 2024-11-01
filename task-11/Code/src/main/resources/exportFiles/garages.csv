@@ -1,5 +1,2 @@
-PlaceId, OrderId, Place status
-1, null, false
-2, null, false
-3, null, false
-4, null, false
+PlaceId, Place status
+1, false

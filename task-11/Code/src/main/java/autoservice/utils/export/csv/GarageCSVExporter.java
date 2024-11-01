@@ -12,16 +12,15 @@ import java.util.List;
 public class GarageCSVExporter {
     private static final String filePath = "src/main/resources/exportFiles/garages.csv";
 
-    public static void exportGaragesToCSV(List<GaragePlace> garagePlaces, List<Master> masters, List<Order> orders) throws IOException {
+    public static void exportGaragesToCSV(List<GaragePlace> garagePlaces) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
-            writer.write("PlaceId, OrderId, Place status");
+            writer.write("PlaceId, Place status");
             writer.newLine();
             for (GaragePlace garagePlace : garagePlaces) {
                 int placeId = garagePlace.getPlaceNumber();
-                String orderId = garagePlace.getIdOrder();
                 boolean placeStatus = garagePlace.isOccupied();
 
-                String line = String.format("%s, %s, %s", placeId, orderId, placeStatus);
+                String line = String.format("%s, %s", placeId, placeStatus);
                 writer.write(line);
                 writer.newLine();
             }

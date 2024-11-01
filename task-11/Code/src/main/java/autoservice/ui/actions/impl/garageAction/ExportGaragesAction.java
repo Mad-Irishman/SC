@@ -16,7 +16,7 @@ public class ExportGaragesAction implements IAction {
     @Override
     public void execute() {
         try {
-            GarageCSVExporter.exportGaragesToCSV(serviceManager.allGaragePlaces(), serviceManager.getAllMasterInGarage(), serviceManager.getAllOrdersInGarage());
+            GarageCSVExporter.exportGaragesToCSV(serviceManager.allGaragePlaces());
             System.out.println("Export successful.");
         } catch (IOException e) {
             System.out.println("Error during export: " + e.getMessage());

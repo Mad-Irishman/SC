@@ -46,6 +46,15 @@ public class Order {
         this.price = price;
     }
 
+    public Order(String id, String description, LocalDateTime submissionDate, LocalDateTime completionDate, LocalDateTime plannedStartDate, double price) {
+        this.idOrder = id;
+        this.description = description;
+        this.submissionDate = submissionDate;
+        this.completionDate = completionDate;
+        this.plannedStartDate = plannedStartDate;
+        this.price = price;
+    }
+
     public String getIdOrder() {
         return idOrder;
     }
