@@ -4,10 +4,13 @@ import autoservice.models.garagePlace.GaragePlace;
 import autoservice.models.master.Master;
 import autoservice.models.order.orderStatus.OrderStatus;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Order {
     private final String idOrder;
     private String description;

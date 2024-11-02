@@ -1,5 +1,9 @@
 package autoservice.models.garagePlace;
 
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class GaragePlace {
     private int placeNumber;
     private boolean isOccupied = false;

@@ -2,9 +2,11 @@ package autoservice.models.master;
 
 import autoservice.models.master.masterStatus.MasterStatus;
 import autoservice.models.order.Order;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.util.UUID;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Master {
     private final String id;
     private String name;
@@ -63,7 +65,6 @@ public class Master {
     public String getId() {
         return id;
     }
-
 
 
     private static String generateUniqueId() {

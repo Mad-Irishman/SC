@@ -1,3 +1,4 @@
 ID, Description, Assigned Master, Assigned Garage Place, Status, Submission Date, Completion Date, Planned Start Date, Price
-46d8875e-0d7e-4750-8796-f19dabcf6554                                                                ,Change Oik,Oleg,1,CREATED,2024-09-11 11:00,2024-09-13 11:00,2024-09-12 11:00,1234.0
-46d8875e-0d7e-4750-8796-f19dsbcf6554                                                                ,Change oil,Roman,2,CREATED,2024-09-10 17:00,2024-09-12 14:00,2024-09-12 08:00,3412.0
+6d939ca9-563d-4a21-9d70-38a91c82f22f                                                                ,Change Oil,Ivan Petrov,1,CREATED,2024-10-31 09:00,2024-10-31 12:00,2024-10-31 10:00,1500.0
+6d939ca9-563d-4a21-9d70-38a91c82f22a                                                                ,Change Motor,Sergey Ivanov,2,CREATED,2024-10-30 08:30,2024-10-30 16:00,2024-10-30 09:00,5000.0
+6d939ca9-563d-4a21-9d70-38a91c82f22s                                                                ,Something,Alexey Sidorov,3,CREATED,2024-10-28 13:00,2024-10-28 14:30,2024-10-28 13:15,1200.0
