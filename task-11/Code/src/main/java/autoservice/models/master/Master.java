@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.util.UUID;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Master {
     private final String id;
     private String name;
@@ -46,21 +45,21 @@ public class Master {
         this.isAvailable = available;
     }
 
-    public Order getOrderMaster() {
-        return this.ordersMaster;
-    }
+//    public Order getOrderMaster() {
+//        return this.ordersMaster;
+//    }
 
-    public void setOrderMaster(Order orderMaster) {
-        this.ordersMaster = orderMaster;
-    }
+//    public void setOrderMaster(Order orderMaster) {
+//        this.ordersMaster = orderMaster;
+//    }
+//
+//    public void assignOrderMaster(Order order) {
+//        this.ordersMaster = order;
+//    }
 
-    public void assignOrderMaster(Order order) {
-        this.ordersMaster = order;
-    }
-
-    public Order getOrdersMaster() {
-        return this.ordersMaster;
-    }
+//    public Order getOrdersMaster() {
+//        return this.ordersMaster;
+//    }
 
     public String getId() {
         return id;

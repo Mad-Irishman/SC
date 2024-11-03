@@ -10,15 +10,12 @@ import autoservice.models.garage.garageStatus.GarageStatus;
 import autoservice.models.master.masterStatus.MasterStatus;
 import autoservice.models.order.Order;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.util.List;
 import java.util.ArrayList;
 
 import java.util.UUID;
 
-
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Garage {
     private final String id;
     @JsonIgnore

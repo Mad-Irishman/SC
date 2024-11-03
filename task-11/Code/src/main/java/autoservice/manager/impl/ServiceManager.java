@@ -219,7 +219,6 @@ public class ServiceManager implements ServiceManagerInterface {
                 Order order = new Order(description, submissionDate, completionDate, plannedStartDate, price);
                 order.setAssignedMaster(garage.getAvailableMasters().get(0));
                 order.getAssignedMaster().setAvailable(MasterStatus.OCCUPIED);
-                order.getAssignedMaster().setOrderMaster(order);
 
                 order.setAssignedGaragePlace(garage.getAvailableGaragePlaces().get(0));
                 garage.getAvailableGaragePlaces().get(0).setIdOrder(order.getIdOrder());
@@ -264,7 +263,6 @@ public class ServiceManager implements ServiceManagerInterface {
             order.setAssignedGaragePlace(assignedGaragePlace);
 
             assignedMaster.setAvailable(MasterStatus.OCCUPIED);
-            assignedMaster.setOrderMaster(order);
             assignedGaragePlace.setOccupied(true);
 
             garage.createOrder(order);
@@ -323,7 +321,6 @@ public class ServiceManager implements ServiceManagerInterface {
     public void removeOrder(Order order) {
         if (garage.getOrderDAO().deleteOrder(order) && !garage.getCanRemoveOrder()) {
             order.getAssignedMaster().setAvailable(MasterStatus.AVAILABLE);
-            order.getAssignedMaster().assignOrderMaster(null);
             order.getAssignedGaragePlace().setOccupied(false);
             garage.removeOrder(order);
             garage.getMasterDAO().updateMaster(order.getAssignedMaster());
@@ -343,7 +340,6 @@ public class ServiceManager implements ServiceManagerInterface {
             if (order.getStatusOrder() == OrderStatus.CREATED) {
                 order.setStatusOrder(OrderStatus.COMPLETED);
                 order.getAssignedMaster().setAvailable(MasterStatus.AVAILABLE);
-                order.getAssignedMaster().assignOrderMaster(null);
                 order.getAssignedGaragePlace().setOccupied(false);
                 System.out.println("Order completed: " + order);
             } else {
@@ -363,7 +359,6 @@ public class ServiceManager implements ServiceManagerInterface {
             if (order.getStatusOrder() == OrderStatus.CREATED && garage.allOrders().contains(order)) {
                 order.setStatusOrder(OrderStatus.CANCELLED);
                 order.getAssignedMaster().setAvailable(MasterStatus.AVAILABLE);
-                order.getAssignedMaster().assignOrderMaster(null);
                 order.getAssignedGaragePlace().setOccupied(false);
                 System.out.println("Order cancelled: " + order);
             } else {

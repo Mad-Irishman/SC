@@ -5,16 +5,20 @@ import autoservice.models.master.Master;
 import autoservice.models.order.orderStatus.OrderStatus;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Order {
     private final String idOrder;
     private String description;
+
+    @JsonInclude(JsonInclude.Include.ALWAYS)
     private Master assignedMaster;
+
     private GaragePlace assignedGaragePlace;
     private OrderStatus statusOrder;
     private LocalDateTime submissionDate;
@@ -82,7 +86,7 @@ public class Order {
         return this.assignedMaster;
     }
 
-    @JsonIgnore
+    @JsonSetter(nulls = Nulls.SKIP)
     public void setAssignedMaster(Master assignedMaster) {
         this.assignedMaster = assignedMaster;
     }
