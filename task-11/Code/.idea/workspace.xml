@@ -4,7 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eb7b89f8-4ba4-46f2-8022-c39978c27adf" name="Changes" comment="" />
+    <list default="true" id="eb7b89f8-4ba4-46f2-8022-c39978c27adf" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../task-10/postgres/create_table/laptop.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-10/postgres/create_table/pc.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-10/postgres/create_table/printer.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-10/postgres/create_table/product.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-10/postgres/insert_table/DML.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-10/postgres/requests/task-10.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-4/UML/4.vpp.bak_000f" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-4/UML/4.vpp.bak_001d" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9b8f43ae-aef8-4a1d-928c-259ca25ee1e3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9b8f43ae-aef8-4a1d-928c-259ca25ee1e3/storage_v2/_src_/database/autoserviceDB.JA28Ow.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9b8f43ae-aef8-4a1d-928c-259ca25ee1e3/storage_v2/_src_/database/autoserviceDB.JA28Ow/schema/public.abK9xQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../task-4/UML/4.vpp" beforeDir="false" afterPath="$PROJECT_DIR$/../../task-4/UML/4.vpp" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -71,7 +87,7 @@
     "Repository.Attach.JavaDocs": "false",
     "Repository.Attach.Sources": "false",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Task-13",
+    "git-widget-placeholder": "Merging master",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/_madgic_/Desktop/lesson1/task-11/Code/src",
     "node.js.detected.package.eslint": "true",
