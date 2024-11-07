@@ -8,22 +8,35 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-
+@Entity
+@Table(name = "orders")
 public class Order {
+    @Id
+    @Column(name = "id_order", unique = true, nullable = false)
     private final String idOrder;
+    @Column(name = "description", nullable = false)
     private String description;
-
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "assigned_master", referencedColumnName = "id", nullable = false)
     @JsonInclude(JsonInclude.Include.ALWAYS)
     private Master assignedMaster;
-
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "assigned_garage_place", referencedColumnName = "place_number", nullable = false)
     private GaragePlace assignedGaragePlace;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status_order",  columnDefinition = "status_order default 'CREATED'")
     private OrderStatus statusOrder;
+    @Column(name = "submission_date", nullable = false)
     private LocalDateTime submissionDate;
+    @Column(name = "completion_date", nullable = false)
     private LocalDateTime completionDate;
+    @Column(name = "planned_start_date", nullable = false)
     private LocalDateTime plannedStartDate;
+    @Column(name = "price", nullable = false)
     private double price;
 
     public Order() {

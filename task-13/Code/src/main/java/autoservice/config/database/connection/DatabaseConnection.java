@@ -1,28 +1,24 @@
 package autoservice.config.database.connection;
 
-import com.zaxxer.hikari.HikariConfig;
-import com.zaxxer.hikari.HikariDataSource;
-
-import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.SQLException;
+import autoservice.models.garagePlace.GaragePlace;
+import autoservice.models.master.Master;
+import autoservice.models.order.Order;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 
 public class DatabaseConnection {
     private static DatabaseConnection instance;
-    private final HikariDataSource dataSource;
-    private static final String JDBC_URL = "jdbc:postgresql://localhost:5432/autoserviceDB";
-    private static final String DB_USERNAME = "postgres";
-    private static final String DB_PASSWORD = "root";
-    private static final int MAX_POOL_SIZE = 5;
+    private final SessionFactory sessionFactory;
 
     private DatabaseConnection() {
-        HikariConfig config = new HikariConfig();
-        config.setJdbcUrl(JDBC_URL);
-        config.setUsername(DB_USERNAME);
-        config.setPassword(DB_PASSWORD);
-        config.setMaximumPoolSize(MAX_POOL_SIZE);
+        Configuration configuration = new Configuration();
+        configuration.configure("hibernate.cfg.xml");
 
-        this.dataSource = new HikariDataSource(config);
+        configuration.addAnnotatedClass(GaragePlace.class);
+        configuration.addAnnotatedClass(Master.class);
+        configuration.addAnnotatedClass(Order.class);
+        this.sessionFactory = configuration.buildSessionFactory();
     }
 
     public static synchronized DatabaseConnection getInstance() {
@@ -32,12 +28,13 @@ public class DatabaseConnection {
         return instance;
     }
 
-    public Connection getConnection() throws SQLException {
-        return dataSource.getConnection();
+    public Session getSession() {
+        return sessionFactory.openSession();
     }
 
-    public DataSource getDataSource() {
-        return dataSource;
+    public void shutdown() {
+        if (sessionFactory != null) {
+            sessionFactory.close();
+        }
     }
 }
-

@@ -1,16 +1,22 @@
 package autoservice.models.master;
 
 import autoservice.models.master.masterStatus.MasterStatus;
-import autoservice.models.order.Order;
-import com.fasterxml.jackson.annotation.JsonInclude;
 
+import javax.persistence.*;
 import java.util.UUID;
 
+@Entity
+@Table(name = "masters")
 public class Master {
+    @Id
+    @Column(name = "id", unique = true, nullable = false)
     private final String id;
+    @Column(name = "name", nullable = false)
     private String name;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "is_available",  columnDefinition = "master_status default 'AVAILABLE'")
     private MasterStatus isAvailable;
-    private Order ordersMaster;
+//    private Order ordersMaster;
 
     public Master() {
         this.id = generateUniqueId();

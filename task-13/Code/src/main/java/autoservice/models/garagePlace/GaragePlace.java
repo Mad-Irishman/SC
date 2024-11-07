@@ -3,23 +3,26 @@ package autoservice.models.garagePlace;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "garage_places")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class GaragePlace {
+    @Id
+    @Column(name = "place_number")
     private int placeNumber;
+    @Column(name = "is_occupied")
     private boolean isOccupied = false;
-    private String idOrder = null;
 
     public GaragePlace() {}
 
     public GaragePlace(int placeNumber, boolean isOccupied) {
         this.placeNumber = placeNumber;
         this.isOccupied = isOccupied;
-    }
-
-    public GaragePlace(int placeNumber, boolean isOccupied, String idOrder) {
-        this.placeNumber = placeNumber;
-        this.isOccupied = isOccupied;
-        this.idOrder = idOrder;
     }
 
     public GaragePlace(int placeNumber) {
@@ -41,13 +44,5 @@ public class GaragePlace {
 
     public void setOccupied(boolean isOccupied) {
         this.isOccupied = isOccupied;
-    }
-
-    public String getIdOrder() {
-        return idOrder;
-    }
-
-    public void setIdOrder(String idOrder) {
-        this.idOrder = idOrder;
     }
 }
