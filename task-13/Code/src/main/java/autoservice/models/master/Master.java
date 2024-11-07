@@ -13,8 +13,7 @@ public class Master {
     private final String id;
     @Column(name = "name", nullable = false)
     private String name;
-    @Enumerated(EnumType.STRING)
-    @Column(name = "is_available",  columnDefinition = "master_status default 'AVAILABLE'")
+
     private MasterStatus isAvailable;
 //    private Order ordersMaster;
 
