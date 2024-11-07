@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ad5e4017-ceaa-4eaf-a7d7-d01f6d20d54e" name="Changes" comment="Добавил экспортные данные по заказам (мне кажется, что реализация не верна, потому что при импорте я не имею возможности создать новый заказ)" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="package-info" />
+        <option value="Interface" />
+        <option value="Class" />
+        <option value="Exception" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/../.." value="Task-9" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;history&quot;: [
+    {
+      &quot;state&quot;: &quot;OPEN&quot;,
+      &quot;assignee&quot;: &quot;SenlaCoursesAdmin&quot;
+    }
+  ],
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;SenlaCoursesAdmin&quot;
+  }
+}</component>
+  <component name="GitHubPullRequestState">{
+  &quot;prStates&quot;: [
+    {
+      &quot;id&quot;: {
+        &quot;id&quot;: &quot;PR_kwDOMXrHms56kdkA&quot;,
+        &quot;number&quot;: 6
+      },
+      &quot;lastSeen&quot;: 1725962546741
+    }
+  ]
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:Mad-Irishman/lesson-git.git&quot;,
+    &quot;accountId&quot;: &quot;0c16845f-bec3-4c7a-ad06-8fce12774fe6&quot;
+  }
+}</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$PROJECT_DIR$/../../../../../../Program Files/Java/jdk-17/lib/src.zip!/java.base/java/io/FileNotFoundException.java" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2k1hR6EsUKkF9U0iji9f1lpWZUM" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main (1).executor": "Run",
+    "Application.Main.executor": "Run",
+    "Application.main.java.autoservice.Main.executor": "Debug",
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "Task-9",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/_madgic_/Desktop/lesson1/task-9/9",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "C:/Users/_madgic_/Desktop/lesson1/task-3/4/src/Main.java",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\_madgic_\Desktop\lesson1\task-6\Code\src\autoservice\resources\importFiles" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\_madgic_\Desktop\lesson1\task-6\Code\src\autoservice\resources\exportFiles" />
+      <recent name="C:\Users\_madgic_\Desktop\lesson1\task-4\Code\lib" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="5" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="5" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="4" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value=".*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142" />
+        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ad5e4017-ceaa-4eaf-a7d7-d01f6d20d54e" name="Changes" comment="" />
+      <created>1722456979679</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1722456979679</updated>
+      <workItem from="1725488800862" duration="165000" />
+      <workItem from="1725526938240" duration="180000" />
+      <workItem from="1725546339747" duration="5344000" />
+      <workItem from="1725553224545" duration="9101000" />
+      <workItem from="1725574785298" duration="185000" />
+      <workItem from="1725612315103" duration="3592000" />
+      <workItem from="1725797435673" duration="4978000" />
+      <workItem from="1725892012241" duration="1431000" />
+      <workItem from="1725893760979" duration="61000" />
+      <workItem from="1725898131786" duration="9011000" />
+      <workItem from="1725953357453" duration="2864000" />
+      <workItem from="1725962122535" duration="3594000" />
+      <workItem from="1726042393456" duration="58000" />
+      <workItem from="1726308520766" duration="447000" />
+      <workItem from="1726310067932" duration="2585000" />
+      <workItem from="1726335646601" duration="33000" />
+      <workItem from="1726335701219" duration="4397000" />
+      <workItem from="1726472388854" duration="747000" />
+      <workItem from="1726521427667" duration="1627000" />
+      <workItem from="1726576201098" duration="10891000" />
+      <workItem from="1726645896240" duration="5631000" />
+      <workItem from="1726654181999" duration="4579000" />
+      <workItem from="1726666378565" duration="2585000" />
+      <workItem from="1726698544729" duration="942000" />
+      <workItem from="1726727111964" duration="7499000" />
+      <workItem from="1726830478765" duration="633000" />
+      <workItem from="1726831360249" duration="20000" />
+      <workItem from="1726831476970" duration="13000" />
+      <workItem from="1726831671821" duration="87000" />
+      <workItem from="1726831935510" duration="4000" />
+      <workItem from="1726832207719" duration="20000" />
+      <workItem from="1728047843050" duration="853000" />
+    </task>
+    <task id="LOCAL-00001" summary="Добавил экспортные данные по заказам (мне кажется, что реализация не верна, потому что при импорте я не имею возможности создать новый заказ)">
+      <option name="closed" value="true" />
+      <created>1725918625530</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1725918625530</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="Task-5" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Merge pull request #4 from Mad-Irishman/Task-4&#10;&#10;Implemented methods" />
+    <MESSAGE value="Добавил экспортные данные по заказам (мне кажется, что реализация не верна, потому что при импорте я не имею возможности создать новый заказ)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавил экспортные данные по заказам (мне кажется, что реализация не верна, потому что при импорте я не имею возможности создать новый заказ)" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/autoservice/ui/actions/impl/garageAction/ExportGaragesAction.java</url>
+          <line>18</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="autoservice.manager.impl.ServiceManager" memberName="masters" />
+        <PinnedItemInfo parentTag="autoservice.models.Garage" memberName="garagePlaces" />
+      </pinned-members>
+    </pin-to-top-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="master1" />
+        <watch expression="manager" />
+        <watch expression="manager" />
+        <watch expression="manager.garage" />
+        <watch expression="manager" />
+        <watch expression="((ServiceManager)((Builder)((MenuController)this).builder).serviceManager).masters" custom="ui.controller.MenuController,ui.controller.Builder,autoservice.manager.impl.ServiceManager" />
+      </configuration>
+    </watches-manager>
+  </component>
+</project>
