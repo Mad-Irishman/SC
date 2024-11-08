@@ -1,26 +1,26 @@
-CREATE TYPE order_status AS ENUM ('CREATED', 'COMPLETED', 'CANCELLED', 'IN_PROGRESS');
-CREATE TYPE master_status AS ENUM ('AVAILABLE', 'OCCUPIED');
+-- CREATE TYPE order_status AS ENUM ('CREATED', 'COMPLETED', 'CANCELLED', 'IN_PROGRESS');
+-- CREATE TYPE master_status AS ENUM ('AVAILABLE', 'OCCUPIED');
 
 -- Таблица orders
 CREATE TABLE orders
 (
     id_order              CHARACTER(100) UNIQUE NOT NULL,
-    description           TEXT                 NOT NULL,
+    description           TEXT                  NOT NULL,
     assigned_master       CHARACTER(100)        NOT NULL, -- Внешний ключ на таблицу masters
-    assigned_garage_place INT                  NOT NULL, -- Внешний ключ на таблицу garage_places
-    status_order          order_status DEFAULT 'CREATED',
-    submission_date       TIMESTAMP            NOT NULL,
-    completion_date       TIMESTAMP            NOT NULL,
-    planned_start_date    TIMESTAMP            NOT NULL,
-    price                 NUMERIC(10, 2)       NOT NULL
+    assigned_garage_place INT                   NOT NULL, -- Внешний ключ на таблицу garage_places
+    status_order          VARCHAR(10) DEFAULT 'CREATED',
+    submission_date       TIMESTAMP             NOT NULL,
+    completion_date       TIMESTAMP             NOT NULL,
+    planned_start_date    TIMESTAMP             NOT NULL,
+    price                 NUMERIC(10, 2)        NOT NULL
 );
 
 -- Таблица masters
 CREATE TABLE masters
 (
     id           CHARACTER(100) UNIQUE NOT NULL,
-    name         VARCHAR(100)         NOT NULL,
-    is_available master_status DEFAULT 'AVAILABLE'
+    name         VARCHAR(100)          NOT NULL,
+    is_available VARCHAR(10) DEFAULT 'AVAILABLE'
 );
 
 -- Таблица garage_places

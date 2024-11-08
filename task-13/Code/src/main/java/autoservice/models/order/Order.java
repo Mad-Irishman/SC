@@ -27,8 +27,8 @@ public class Order {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "assigned_garage_place", referencedColumnName = "place_number", nullable = false)
     private GaragePlace assignedGaragePlace;
-
-
+    @Column(name = "status_order", nullable = false)
+    @Enumerated(EnumType.STRING)
     private OrderStatus statusOrder;
     @Column(name = "submission_date", nullable = false)
     private LocalDateTime submissionDate;

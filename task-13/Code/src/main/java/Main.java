@@ -4,7 +4,7 @@ import autoservice.ui.controller.MenuController;
 import autoservice.utils.deserialization.Deserializer;
 import autoservice.utils.serialization.Serializer;
 
-public class Main {
+public class    Main {
 
     private static ServiceManager serviceManager;
 
