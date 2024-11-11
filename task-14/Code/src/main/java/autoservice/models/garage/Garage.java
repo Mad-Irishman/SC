@@ -10,14 +10,19 @@ import autoservice.models.garage.garageStatus.GarageStatus;
 import autoservice.models.master.masterStatus.MasterStatus;
 import autoservice.models.order.Order;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.ArrayList;
 
 import java.util.UUID;
 
+@Component
 public class Garage {
-    private final String id;
+    @Value("${garage.id}")
+    private String id;
     @JsonIgnore
     private final GaragePlaceRepositoryImpl garagePlaceDAO;
     @JsonIgnore
@@ -46,7 +51,6 @@ public class Garage {
         this.garagePlaceDAO = new GaragePlaceRepositoryImpl();
         this.orderDAO = new OrderRepositoryImpl();
     }
-
 
     public Garage(String id, GaragePlaceRepositoryImpl garagePlaceDAO, MasterRepositoryImpl masterDAO, OrderRepositoryImpl orderDAO, GarageStatus isAvailable, boolean canRemoveGaragePlace, boolean canAddGaragePlace, boolean canRemoveOrder, boolean canRescheduleOrder) {
         this.id = id;
