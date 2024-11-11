@@ -1,0 +1,144 @@
+<mxfile host="app.diagrams.net" modified="2024-07-23T13:29:53.857Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36" etag="XeVfeMj8RLBxf8X-hcRO" version="24.7.1" type="device" pages="2">
+  <diagram name="Страница — 1" id="UCQbAM6jX2rPLn9khl6p">
+    <mxGraphModel dx="2049" dy="1126" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="2336" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="EOtlCAxbhML1fY_JEtG5-3" value="Employee     " style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="146" y="2" width="310" height="280" as="geometry">
+            <mxRectangle x="32" y="2" width="90" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EOtlCAxbhML1fY_JEtG5-4" value="&lt;div&gt;- id: int&lt;/div&gt;&lt;div&gt;- name: String&lt;/div&gt;&lt;div&gt;- age: int&lt;/div&gt;&lt;div&gt;- address: String&lt;/div&gt;&lt;div&gt;- position: Position&lt;/div&gt;&lt;div&gt;- department: Department&amp;nbsp;&lt;/div&gt;&lt;div&gt;- skills: List&amp;lt;Skill&amp;gt;&lt;/div&gt;&lt;div&gt;- projects: List&amp;lt;Project&amp;gt;&amp;nbsp;&lt;br&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="EOtlCAxbhML1fY_JEtG5-3">
+          <mxGeometry y="26" width="310" height="124" as="geometry" />
+        </mxCell>
+        <mxCell id="EOtlCAxbhML1fY_JEtG5-5" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="EOtlCAxbhML1fY_JEtG5-3">
+          <mxGeometry y="150" width="310" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="EOtlCAxbhML1fY_JEtG5-6" value=" + getDetails(): String&lt;div&gt;+ updateAddress(newAddress: String): void&lt;/div&gt;&lt;div&gt;+ assignToDepartment(department: Department): void&lt;/div&gt;&lt;div&gt;+ assignPosition(position: Position): void&lt;/div&gt;&lt;div&gt;+ addSkill(skill: Skill): boolean&lt;/div&gt;&lt;div&gt;+ assignProject(project: Project): void&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="EOtlCAxbhML1fY_JEtG5-3">
+          <mxGeometry y="158" width="310" height="122" as="geometry" />
+        </mxCell>
+        <mxCell id="EOtlCAxbhML1fY_JEtG5-7" value="Position    " style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="510" y="370" width="308" height="140" as="geometry">
+            <mxRectangle x="610" y="430" width="80" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EOtlCAxbhML1fY_JEtG5-8" value="&lt;div&gt;- id: int&lt;/div&gt;&lt;div&gt;- title: String&lt;/div&gt;&lt;div&gt;- salary: double&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="EOtlCAxbhML1fY_JEtG5-7">
+          <mxGeometry y="26" width="308" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="EOtlCAxbhML1fY_JEtG5-9" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="EOtlCAxbhML1fY_JEtG5-7">
+          <mxGeometry y="80" width="308" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="EOtlCAxbhML1fY_JEtG5-10" value="+ getPositionDetails(): String&lt;div&gt;+ setTitle(newTitle: String): void&lt;/div&gt;&lt;div&gt;+ setSalary(newSalary: double): void&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="EOtlCAxbhML1fY_JEtG5-7">
+          <mxGeometry y="88" width="308" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="EOtlCAxbhML1fY_JEtG5-11" value="Manager         " style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="590" y="2" width="308" height="110" as="geometry">
+            <mxRectangle x="450" y="2" width="90" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EOtlCAxbhML1fY_JEtG5-12" value="- managedEmployees:&amp;nbsp;List&amp;lt;Employee&amp;gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="EOtlCAxbhML1fY_JEtG5-11">
+          <mxGeometry y="26" width="308" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="EOtlCAxbhML1fY_JEtG5-13" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="EOtlCAxbhML1fY_JEtG5-11">
+          <mxGeometry y="50" width="308" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="EOtlCAxbhML1fY_JEtG5-14" value="+ getManagedEmployees(): List&amp;lt;Employee&amp;gt;&lt;div&gt;+ addEmployee(employee: Employee): boolean&lt;/div&gt;&lt;div&gt;+ removeEmployee(employee: Employee): void&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="EOtlCAxbhML1fY_JEtG5-11">
+          <mxGeometry y="58" width="308" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="EOtlCAxbhML1fY_JEtG5-15" value="Department            " style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="146" y="370" width="308" height="170" as="geometry">
+            <mxRectangle x="710" y="840" width="100" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EOtlCAxbhML1fY_JEtG5-16" value="&lt;div&gt;- id: int&lt;/div&gt;&lt;div&gt;- name: String&lt;/div&gt;&lt;div&gt;- manager: Manager&lt;/div&gt;&lt;div&gt;- projects: Llist&amp;lt;Project&amp;gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="EOtlCAxbhML1fY_JEtG5-15">
+          <mxGeometry y="26" width="308" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="EOtlCAxbhML1fY_JEtG5-17" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="EOtlCAxbhML1fY_JEtG5-15">
+          <mxGeometry y="90" width="308" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="EOtlCAxbhML1fY_JEtG5-18" value="+ getDepartmentDetails(): String&lt;div&gt;+ addProject(project: Project): boolean&lt;/div&gt;&lt;div&gt;+ removeProject(project: Project): boolean&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ setManager(manager: Manager): void&lt;br&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="EOtlCAxbhML1fY_JEtG5-15">
+          <mxGeometry y="98" width="308" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="EOtlCAxbhML1fY_JEtG5-19" value="Project                 " style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="146" y="630" width="308" height="170" as="geometry">
+            <mxRectangle x="400" y="800" width="100" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EOtlCAxbhML1fY_JEtG5-20" value="&lt;div&gt;- id: int&lt;/div&gt;&lt;div&gt;- name: String&lt;/div&gt;&lt;div&gt;- description: String&lt;/div&gt;&lt;div&gt;- employees: List&amp;lt;Employee&amp;gt;&lt;/div&gt;&lt;div&gt;-department: Department&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="EOtlCAxbhML1fY_JEtG5-19">
+          <mxGeometry y="26" width="308" height="84" as="geometry" />
+        </mxCell>
+        <mxCell id="EOtlCAxbhML1fY_JEtG5-21" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="EOtlCAxbhML1fY_JEtG5-19">
+          <mxGeometry y="110" width="308" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="EOtlCAxbhML1fY_JEtG5-22" value="+ getProjectDetails(): String&lt;div&gt;+ addEmployee(employee: Employee):&amp;nbsp;&lt;span style=&quot;background-color: initial;&quot;&gt;boolean&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+ removeEmployee(employee: Employee):&amp;nbsp;&lt;span style=&quot;background-color: initial;&quot;&gt;boolean&lt;/span&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="EOtlCAxbhML1fY_JEtG5-19">
+          <mxGeometry y="118" width="308" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="EOtlCAxbhML1fY_JEtG5-23" value="Skill                  " style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="146" y="890" width="308" height="140" as="geometry">
+            <mxRectangle x="270" y="810" width="60" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EOtlCAxbhML1fY_JEtG5-24" value="&lt;div&gt;- id: int&lt;/div&gt;&lt;div&gt;- name: String&lt;br&gt;&lt;/div&gt;&lt;div&gt;- level: String&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="EOtlCAxbhML1fY_JEtG5-23">
+          <mxGeometry y="26" width="308" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="EOtlCAxbhML1fY_JEtG5-25" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="EOtlCAxbhML1fY_JEtG5-23">
+          <mxGeometry y="90" width="308" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="EOtlCAxbhML1fY_JEtG5-26" value="+ getSkillDetails(): String&lt;div&gt;+ setLevel(newLevel: String): void&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="EOtlCAxbhML1fY_JEtG5-23">
+          <mxGeometry y="98" width="308" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="EOtlCAxbhML1fY_JEtG5-33" value="Extends" style="endArrow=block;endSize=16;endFill=0;html=1;rounded=0;fontSize=12;curved=1;" edge="1" parent="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="590" y="20" as="sourcePoint" />
+            <mxPoint x="456" y="20.46366782006919" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EOtlCAxbhML1fY_JEtG5-38" value="Relation" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=0;edgeStyle=orthogonalEdgeStyle;rounded=0;fontSize=12;curved=1;entryX=0.477;entryY=-0.021;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="EOtlCAxbhML1fY_JEtG5-7">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="370.63" y="283" as="sourcePoint" />
+            <mxPoint x="370" y="430" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EOtlCAxbhML1fY_JEtG5-39" value="0..n" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;" connectable="0" vertex="1" parent="EOtlCAxbhML1fY_JEtG5-38">
+          <mxGeometry x="-1" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="EOtlCAxbhML1fY_JEtG5-40" value="Relation" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=0;edgeStyle=orthogonalEdgeStyle;rounded=0;fontSize=12;curved=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="290" y="282" as="sourcePoint" />
+            <mxPoint x="290" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EOtlCAxbhML1fY_JEtG5-41" value="0..n" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;" connectable="0" vertex="1" parent="EOtlCAxbhML1fY_JEtG5-40">
+          <mxGeometry x="-1" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="EOtlCAxbhML1fY_JEtG5-47" value="Relation" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=0;edgeStyle=orthogonalEdgeStyle;rounded=0;fontSize=12;curved=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="290" y="540" as="sourcePoint" />
+            <mxPoint x="290" y="630" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EOtlCAxbhML1fY_JEtG5-48" value="0..n" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;" connectable="0" vertex="1" parent="EOtlCAxbhML1fY_JEtG5-47">
+          <mxGeometry x="-1" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rmxaTYY90yij1GXyoVw5-1" value="Relation" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=0;edgeStyle=orthogonalEdgeStyle;rounded=0;fontSize=12;curved=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="290" y="800" as="sourcePoint" />
+            <mxPoint x="290" y="890" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rmxaTYY90yij1GXyoVw5-2" value="0..n" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;" connectable="0" vertex="1" parent="rmxaTYY90yij1GXyoVw5-1">
+          <mxGeometry x="-1" relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="yAHg94l1_OY88lTAub3X" name="Страница — 2">
+    <mxGraphModel dx="1434" dy="788" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="4681" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
