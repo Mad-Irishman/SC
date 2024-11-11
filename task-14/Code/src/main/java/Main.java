@@ -1,16 +1,21 @@
-import autoservice.DI.DIContainer;
+import autoservice.DI.AppConfig;
 import autoservice.manager.impl.ServiceManager;
 import autoservice.ui.controller.MenuController;
-import autoservice.utils.deserialization.Deserializer;
-import autoservice.utils.serialization.Serializer;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-public class    Main {
-
-    private static ServiceManager serviceManager;
-
+public class Main {
     public static void main(String[] args) {
-        DIContainer diContainer = new DIContainer();
-        serviceManager = diContainer.getInstance(ServiceManager.class);
+        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+        ServiceManager serviceManager = context.getBean(ServiceManager.class);
+        MenuController menuController = new MenuController(serviceManager);
+        menuController.run();
+
+
+
+
+//        DIContainer diContainer = new DIContainer();
+//        serviceManager = diContainer.getInstance(ServiceManager.class);
 
 //        ServiceManager deserializedServiceManager = deserializeServiceManager();
 //        if (deserializedServiceManager != null) {
@@ -20,14 +25,14 @@ public class    Main {
 //            System.out.println("Данные не найдены, используется новый ServiceManager.");
 //        }
 
-        MenuController controller = diContainer.getInstance(MenuController.class);
+//        MenuController controller = diContainer.getInstance(MenuController.class);
 
 //        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
 //            serializeServiceManager(serviceManager);
 //            System.out.println("ServiceManager сериализован перед завершением программы.");
 //        }));
 
-        controller.run();
+//        controller.run();
     }
 
 //    private static void serializeServiceManager(ServiceManager serviceManager) {

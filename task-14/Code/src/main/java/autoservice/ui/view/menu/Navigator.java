@@ -1,10 +1,7 @@
 package autoservice.ui.view.menu;
 
-import autoservice.DI.Inject;
-
 public class Navigator {
     private Menu currentMenu;
-    @Inject
     private final Menu rootMenu;
 
     public Navigator(Menu rootMenu) {

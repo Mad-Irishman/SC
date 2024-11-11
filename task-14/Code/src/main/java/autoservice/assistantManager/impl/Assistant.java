@@ -1,6 +1,5 @@
 package autoservice.assistantManager.impl;
 
-import autoservice.DI.Inject;
 import autoservice.assistantManager.AssistantInterface;
 import autoservice.exception.assistantException.exception.AssistantException;
 import autoservice.models.garage.Garage;
@@ -12,21 +11,21 @@ import autoservice.servicesSorting.DataSort.impl.DataSort;
 import autoservice.servicesSorting.GaragePlacesSort.impl.GaragePlacesSort;
 import autoservice.servicesSorting.MastersSort.impl.MastersSort;
 import autoservice.servicesSorting.OrdersSort.impl.OrdersSort;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
 
+@Component
 public class Assistant implements AssistantInterface {
-    @Inject
     private final MastersSort mastersSort;
-    @Inject
     private final GaragePlacesSort garagePlacesSort;
-    @Inject
     private final DataSort dataSort;
-    @Inject
     private final OrdersSort ordersSort;
 
+    @Autowired
     public Assistant(MastersSort mastersSort, GaragePlacesSort garagePlacesSort, DataSort dataSort, OrdersSort ordersSort) {
         this.mastersSort = mastersSort;
         this.garagePlacesSort = garagePlacesSort;

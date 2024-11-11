@@ -1,6 +1,5 @@
 package autoservice.manager.impl;
 
-import autoservice.DI.Inject;
 import autoservice.assistantManager.impl.Assistant;
 import autoservice.config.properties.Configurator;
 import autoservice.manager.ServiceManagerInterface;
@@ -13,20 +12,23 @@ import autoservice.models.order.Order;
 import autoservice.models.order.orderStatus.OrderStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.util.*;
 
+@Component
 public class ServiceManager implements ServiceManagerInterface {
     private static final Logger logger = LoggerFactory.getLogger(ServiceManager.class);
-    @Inject
     private Garage garage;
-    @Inject
     private Assistant assistant;
 
     public ServiceManager() {
     }
 
+
+    @Autowired
     public ServiceManager(Garage garage, Assistant assistant) {
         this.garage = garage;
         this.assistant = assistant;
@@ -164,7 +166,7 @@ public class ServiceManager implements ServiceManagerInterface {
 
     @Override
     public void addGaragePlace(GaragePlace garagePlace) {
-        if (!garage.getCanAddGaragePlace()) {
+        if (garage.getCanAddGaragePlace()) {
             garage.addGaragePlace(garagePlace);
         } else {
             System.out.println("You cannot add garage spaces at this time.");
@@ -173,7 +175,7 @@ public class ServiceManager implements ServiceManagerInterface {
 
     @Override
     public void removeGaragePlace(GaragePlace garagePlace) throws ServiceManagerException {
-        if (!garagePlace.isOccupied() && !garage.getCanRemoveGaragePlace()) {
+        if (!garagePlace.isOccupied() && garage.getCanRemoveGaragePlace()) {
             this.garage.removeGaragePlace(garagePlace);
         } else {
             System.out.println("Cannot remove garage place because it is occupied or prohibited at administrator level");
@@ -317,7 +319,7 @@ public class ServiceManager implements ServiceManagerInterface {
 
     @Override
     public void removeOrder(Order order) {
-        if (garage.getOrderDAO().deleteOrder(order) && !garage.getCanRemoveOrder()) {
+        if (garage.getOrderDAO().deleteOrder(order) && garage.getCanRemoveOrder()) {
             order.getAssignedMaster().setAvailable(MasterStatus.AVAILABLE);
             order.getAssignedGaragePlace().setOccupied(false);
             garage.removeOrder(order);
@@ -369,7 +371,7 @@ public class ServiceManager implements ServiceManagerInterface {
 
     @Override
     public void adjustOrdersForDelay(String orderId, int delayInHours) {
-        if (delayInHours > 0 && !garage.getCanRescheduleOrder()) {
+        if (delayInHours > 0 && garage.getCanRescheduleOrder()) {
             Order delayedOrder = getOrderById(orderId);
             LocalDateTime newCompletionDate = delayedOrder.getCompletionDate().plusHours(delayInHours);
             delayedOrder.setCompletionDate(newCompletionDate);
