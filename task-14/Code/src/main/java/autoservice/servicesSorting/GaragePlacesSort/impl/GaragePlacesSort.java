@@ -4,10 +4,12 @@ import autoservice.models.garage.Garage;
 import autoservice.models.garagePlace.GaragePlace;
 import autoservice.servicesSorting.GaragePlacesSort.GaragePlacesSortInterface;
 import autoservice.exception.garagePlaceSortException.GaragePlacesSortException;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class GaragePlacesSort implements GaragePlacesSortInterface {
 
     @Override

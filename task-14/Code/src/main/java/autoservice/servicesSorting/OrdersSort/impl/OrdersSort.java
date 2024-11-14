@@ -5,12 +5,14 @@ import autoservice.models.order.Order;
 import autoservice.models.order.orderStatus.OrderStatus;
 import autoservice.servicesSorting.OrdersSort.OrdersSortInterface;
 import autoservice.exception.orderSortException.OrdersSortException;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class OrdersSort implements OrdersSortInterface {
 
     @Override

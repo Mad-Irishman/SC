@@ -9,10 +9,12 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.criteria.*;
 import java.util.List;
 
+@Repository
 public class GaragePlaceRepositoryImpl implements GaragePlaceRepository {
     private static final Logger logger = LoggerFactory.getLogger(GaragePlaceRepositoryImpl.class);
 //    private static final String ADD_GARAGE_PLACE = "INSERT INTO garage_places (place_number, is_occupied) VALUES (?, ?)";

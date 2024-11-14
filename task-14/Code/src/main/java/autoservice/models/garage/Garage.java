@@ -52,30 +52,19 @@ public class Garage {
         this.orderDAO = new OrderRepositoryImpl();
     }
 
-    public Garage(String id, GaragePlaceRepositoryImpl garagePlaceDAO, MasterRepositoryImpl masterDAO, OrderRepositoryImpl orderDAO, GarageStatus isAvailable, boolean canRemoveGaragePlace, boolean canAddGaragePlace, boolean canRemoveOrder, boolean canRescheduleOrder) {
-        this.id = id;
-        this.garagePlaceDAO = garagePlaceDAO;
-        this.masterDAO = masterDAO;
-        this.orderDAO = orderDAO;
-        this.isAvailable = isAvailable;
-        this.canRemoveGaragePlace = canRemoveGaragePlace;
-        this.canAddGaragePlace = canAddGaragePlace;
-        this.canRemoveOrder = canRemoveOrder;
-        this.canRescheduleOrder = canRescheduleOrder;
-    }
 
     //Работа с masters
-    public void addMaster(Master master) {
-        masterDAO.addMaster(master);
-    }
-
-    public List<Master> allMasters() {
-        return masterDAO.allMasters();
-    }
-
-    public void removeMaster(Master master) {
-        masterDAO.deleteMasterByName(master);
-    }
+//    public void addMaster(Master master) {
+//        masterDAO.addMaster(master);
+//    }
+//
+//    public List<Master> allMasters() {
+//        return masterDAO.allMasters();
+//    }
+//
+//    public void removeMaster(Master master) {
+//        masterDAO.deleteMasterByName(master);
+//    }
 
     public List<Master> getAvailableMasters() {
         List<Master> availableMasters = new ArrayList<>();
@@ -87,27 +76,27 @@ public class Garage {
         return availableMasters;
     }
 
-    public Master getMasterById(String id) {
-        return masterDAO.getMasterById(id);
-    }
+//    public Master getMasterById(String id) {
+//        return masterDAO.getMasterById(id);
+//    }
 
 
     //Работа с garagePlaces
-    public void addGaragePlace(GaragePlace place) {
-        garagePlaceDAO.addGaragePlace(place);
-    }
-
-    public List<GaragePlace> allGaragePlaces() {
-        return garagePlaceDAO.getAllGaragePlaces();
-    }
-
-    public void removeGaragePlace(GaragePlace place) {
-        garagePlaceDAO.removeGaragePlace(place);
-    }
+//    public void addGaragePlace(GaragePlace place) {
+//        garagePlaceDAO.addGaragePlace(place);
+//    }
+//
+//    public List<GaragePlace> allGaragePlaces() {
+//        return garagePlaceDAO.getAllGaragePlaces();
+//    }
+//
+//    public void removeGaragePlace(GaragePlace place) {
+//        garagePlaceDAO.removeGaragePlace(place);
+//    }
 
     public List<GaragePlace> getAvailableGaragePlaces() {
         List<GaragePlace> availablePlaces = new ArrayList<>();
-        for (GaragePlace place : allGaragePlaces()) {
+        for (GaragePlace place : getGaragePlaceDAO().getAllGaragePlaces()) {
             if (!place.isOccupied()) {
                 availablePlaces.add(place);
             }
@@ -115,22 +104,22 @@ public class Garage {
         return availablePlaces;
     }
 
-    public List<GaragePlace> getGaragePlaces() {
-        return new ArrayList<>(allGaragePlaces());
-    }
+//    public List<GaragePlace> getGaragePlaces() {
+//        return new ArrayList<>(getGaragePlaceDAO().getAllGaragePlaces());
+//    }
 
     //Работа с orders
-    public void createOrder(Order order) {
-        orderDAO.createOrder(order);
-    }
-
-    public List<Order> allOrders() {
-        return orderDAO.allOrders();
-    }
-
-    public void removeOrder(Order order) {
-        orderDAO.deleteOrder(order);
-    }
+//    public void createOrder(Order order) {
+//        orderDAO.createOrder(order);
+//    }
+//
+//    public List<Order> allOrders() {
+//        return orderDAO.allOrders();
+//    }
+//
+//    public void removeOrder(Order order) {
+//        orderDAO.deleteOrder(order);
+//    }
 
     //Все остальные getters/setters
     public String getId() {

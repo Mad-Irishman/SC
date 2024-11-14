@@ -12,13 +12,13 @@ import autoservice.servicesSorting.GaragePlacesSort.impl.GaragePlacesSort;
 import autoservice.servicesSorting.MastersSort.impl.MastersSort;
 import autoservice.servicesSorting.OrdersSort.impl.OrdersSort;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
 
-@Component
+@Service
 public class Assistant implements AssistantInterface {
     private final MastersSort mastersSort;
     private final GaragePlacesSort garagePlacesSort;

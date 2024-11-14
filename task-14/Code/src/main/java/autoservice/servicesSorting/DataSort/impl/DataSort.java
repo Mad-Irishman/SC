@@ -7,12 +7,14 @@ import autoservice.models.order.Order;
 import autoservice.models.order.orderStatus.OrderStatus;
 import autoservice.servicesSorting.DataSort.DataSortInterface;
 import autoservice.exception.dataSortException.DataSortException;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+@Service
 public class DataSort implements DataSortInterface {
 
     @Override
@@ -95,7 +97,7 @@ public class DataSort implements DataSortInterface {
                     );
 
             boolean freePlaceExists = garages.stream()
-                    .flatMap(garage -> garage.getGaragePlaces().stream())
+                    .flatMap(garage -> garage.getGaragePlaceDAO().getAllGaragePlaces().stream())
                     .noneMatch(place -> orders.stream()
                             .anyMatch(order -> order.getAssignedGaragePlace().equals(place) &&
                                     order.getSubmissionDate().isBefore(dateTime) &&
