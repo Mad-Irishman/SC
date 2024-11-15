@@ -15,7 +15,7 @@ public interface ServiceManagerInterface {
 
     void setMasters(List<Master> masters);
 
-    void setGarage(Garage garage);
+//    void setGarage(Garage garage);
 
     void addMaster(Master master);
 
@@ -39,7 +39,7 @@ public interface ServiceManagerInterface {
 
     GaragePlace getGaragePlaceByNumber(int placeNumber);
 
-    public Garage getGarage();
+//    public Garage getGarage();
 
     public List<GaragePlace> getAvailableGaragePlaces();
 

@@ -7,6 +7,8 @@ import autoservice.models.order.Order;
 import autoservice.models.order.orderStatus.OrderStatus;
 import autoservice.servicesSorting.DataSort.DataSortInterface;
 import autoservice.exception.dataSortException.DataSortException;
+import autoservice.service.impl.GarageServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -17,13 +19,16 @@ import java.util.stream.Stream;
 @Service
 public class DataSort implements DataSortInterface {
 
+    @Autowired
+    private GarageServiceImpl garageService;
+
     @Override
     public int getFreePlacesOnDate(List<Order> orders, List<Master> masters, List<Garage> garages, LocalDateTime date) {
-        try {
-            if (date == null) {
-                throw new IllegalArgumentException("Date cannot be null.");
-            }
+        if (date == null) {
+            throw new DataSortException("Date cannot be null.");
+        }
 
+        try {
             List<Master> occupiedMasters = orders.stream()
                     .filter(order -> order.getStatusOrder() == OrderStatus.IN_PROGRESS || order.getStatusOrder() == OrderStatus.CREATED)
                     .filter(order -> order.getSubmissionDate().isBefore(date) && order.getCompletionDate().isAfter(date))
@@ -42,8 +47,8 @@ public class DataSort implements DataSortInterface {
                     .filter(master -> !occupiedMasters.contains(master))
                     .count();
 
-            long freePlacesCount = garages.stream()
-                    .flatMap(garage -> garage.getAvailableGaragePlaces().stream())
+            List<GaragePlace> availablePlaces = garageService.getAvailableGaragePlaces();
+            long freePlacesCount = availablePlaces.stream()
                     .filter(place -> !occupiedPlaces.contains(place))
                     .count();
 
@@ -52,8 +57,6 @@ public class DataSort implements DataSortInterface {
             }
 
             return Math.min((int) freeMastersCount, (int) freePlacesCount);
-        } catch (IllegalArgumentException e) {
-            throw new DataSortException("Invalid argument: " + e.getMessage());
         } catch (Exception e) {
             throw new DataSortException("Error calculating free places on date: " + e.getMessage());
         }
@@ -71,7 +74,7 @@ public class DataSort implements DataSortInterface {
                     .collect(Collectors.toList());
 
             for (LocalDateTime occupiedDate : occupiedDates) {
-                if (occupiedDate.isAfter(nearestFreeDate) && isFreeAt(masters, orders, garages, occupiedDate)) {
+                if (occupiedDate.isAfter(nearestFreeDate) && isFreeAt(masters, orders, occupiedDate)) {
                     nearestFreeDate = occupiedDate;
                     break;
                 }
@@ -83,12 +86,12 @@ public class DataSort implements DataSortInterface {
         }
     }
 
-    private boolean isFreeAt(List<Master> masters, List<Order> orders, List<Garage> garages, LocalDateTime dateTime) {
-        try {
-            if (dateTime == null) {
-                throw new IllegalArgumentException("DateTime cannot be null.");
-            }
+    private boolean isFreeAt(List<Master> masters, List<Order> orders, LocalDateTime dateTime) {
+        if (dateTime == null) {
+            throw new DataSortException("DateTime cannot be null.");
+        }
 
+        try {
             boolean freeMasterExists = masters.stream()
                     .noneMatch(master -> orders.stream()
                             .anyMatch(order -> order.getAssignedMaster().equals(master) &&
@@ -96,8 +99,8 @@ public class DataSort implements DataSortInterface {
                                     order.getCompletionDate().isAfter(dateTime))
                     );
 
-            boolean freePlaceExists = garages.stream()
-                    .flatMap(garage -> garage.getGaragePlaceDAO().getAllGaragePlaces().stream())
+            List<GaragePlace> availablePlaces = garageService.getAvailableGaragePlaces();
+            boolean freePlaceExists = availablePlaces.stream()
                     .noneMatch(place -> orders.stream()
                             .anyMatch(order -> order.getAssignedGaragePlace().equals(place) &&
                                     order.getSubmissionDate().isBefore(dateTime) &&
@@ -105,8 +108,6 @@ public class DataSort implements DataSortInterface {
                     );
 
             return freeMasterExists && freePlaceExists;
-        } catch (IllegalArgumentException e) {
-            throw new DataSortException("Invalid argument: " + e.getMessage());
         } catch (Exception e) {
             throw new DataSortException("Error checking availability at date: " + e.getMessage());
         }
