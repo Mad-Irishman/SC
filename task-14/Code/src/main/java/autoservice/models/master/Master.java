@@ -1,10 +1,14 @@
 package autoservice.models.master;
 
 import autoservice.models.master.masterStatus.MasterStatus;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.UUID;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "masters")
 public class Master {
@@ -15,62 +19,24 @@ public class Master {
     private String name;
     @Column(name = "is_available", nullable = false)
     @Enumerated(EnumType.STRING)
-    private MasterStatus isAvailable;
-//    private Order ordersMaster;
+    private MasterStatus available;
 
     public Master() {
         this.id = generateUniqueId();
-        this.isAvailable = MasterStatus.AVAILABLE;
+        this.available = MasterStatus.AVAILABLE;
     }
 
     public Master(String name) {
         this.id = generateUniqueId();
         this.name = name;
-        this.isAvailable = MasterStatus.AVAILABLE;
+        this.available = MasterStatus.AVAILABLE;
     }
 
-    public Master(String id, String name, MasterStatus isAvailable) {
+    public Master(String id, String name, MasterStatus available) {
         this.id = id;
         this.name = name;
-        this.isAvailable = isAvailable;
+        this.available = available;
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public MasterStatus isAvailable() {
-        return isAvailable;
-    }
-
-    public void setAvailable(MasterStatus available) {
-        this.isAvailable = available;
-    }
-
-//    public Order getOrderMaster() {
-//        return this.ordersMaster;
-//    }
-
-//    public void setOrderMaster(Order orderMaster) {
-//        this.ordersMaster = orderMaster;
-//    }
-//
-//    public void assignOrderMaster(Order order) {
-//        this.ordersMaster = order;
-//    }
-
-//    public Order getOrdersMaster() {
-//        return this.ordersMaster;
-//    }
-
-    public String getId() {
-        return id;
-    }
-
 
     private static String generateUniqueId() {
         return UUID.randomUUID().toString();

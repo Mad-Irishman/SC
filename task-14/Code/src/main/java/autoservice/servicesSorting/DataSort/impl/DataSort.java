@@ -19,8 +19,12 @@ import java.util.stream.Stream;
 @Service
 public class DataSort implements DataSortInterface {
 
+    private final GarageServiceImpl garageService;
+
     @Autowired
-    private GarageServiceImpl garageService;
+    public DataSort(GarageServiceImpl garageService) {
+        this.garageService = garageService;
+    }
 
     @Override
     public int getFreePlacesOnDate(List<Order> orders, List<Master> masters, List<Garage> garages, LocalDateTime date) {

@@ -21,9 +21,6 @@ import java.util.List;
 @Repository
 public class OrderRepositoryImpl implements OrderRepository {
     private static final Logger logger = LoggerFactory.getLogger(OrderRepositoryImpl.class);
-//    private static final String CREATE_ORDER = "INSERT INTO orders (id_order, description, assigned_master, assigned_garage_place, submission_date, completion_date, planned_start_date, price) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-//    private static final String DELETE_ORDER = "DELETE FROM orders WHERE description = ?";
-//    private static final String ALL_ORDERS = "SELECT * FROM orders";
 
     @Override
     public boolean createOrder(Order order) {

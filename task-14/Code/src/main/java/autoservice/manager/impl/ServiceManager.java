@@ -58,11 +58,6 @@ public class ServiceManager implements ServiceManagerInterface {
         }
     }
 
-//    @Override
-//    public void setGarage(Garage garage) {
-//        this.garage = garage;
-//    }
-
     @Override
     public void addMaster(Master master) throws ServiceManagerException {
         if (master == null) {
@@ -82,7 +77,7 @@ public class ServiceManager implements ServiceManagerInterface {
             throw new ServiceManagerException("Master cannot be null");
         }
         try {
-            if (master.isAvailable() == MasterStatus.AVAILABLE) {
+            if (master.getAvailable() == MasterStatus.AVAILABLE) {
                 garageService.removeMaster(master);
             } else {
                 System.out.println("Cannot remove the master because they have an active order.");
@@ -202,10 +197,6 @@ public class ServiceManager implements ServiceManagerInterface {
         return null;
     }
 
-//    @Override
-//    public Garage getGarage() {
-//        return garage;
-//    }
 
     @Override
     public List<GaragePlace> getAvailableGaragePlaces() {
@@ -226,7 +217,8 @@ public class ServiceManager implements ServiceManagerInterface {
                 order.setAssignedGaragePlace(garageService.getAvailableGaragePlaces().get(0));
                 order.getAssignedGaragePlace().setOccupied(true);
 
-                garageService.createOrder(order);;
+                garageService.createOrder(order);
+                ;
                 garageService.updateGaragePlace(order.getAssignedGaragePlace());
                 garageService.updateMaster(order.getAssignedMaster());
 
@@ -240,7 +232,7 @@ public class ServiceManager implements ServiceManagerInterface {
     }
 
     @Override
-    public void addOrder(Order order) throws ServiceManagerException { // короче надо придумать как после создания или добавления заказа обновить данные в бд
+    public void addOrder(Order order) throws ServiceManagerException {
         if (order == null) {
             throw new ServiceManagerException("Order cannot be null");
         }
@@ -266,7 +258,8 @@ public class ServiceManager implements ServiceManagerInterface {
             assignedMaster.setAvailable(MasterStatus.OCCUPIED);
             assignedGaragePlace.setOccupied(true);
 
-            garageService.createOrder(order);;
+            garageService.createOrder(order);
+            ;
             garageService.updateGaragePlace(order.getAssignedGaragePlace());
             garageService.updateMaster(order.getAssignedMaster());
 
@@ -405,7 +398,7 @@ public class ServiceManager implements ServiceManagerInterface {
     public void showAvailableMasters() {
         System.out.println("Available masters:");
         for (Master master : garageService.allMasters()) {
-            if (master.isAvailable() == MasterStatus.AVAILABLE) {
+            if (master.getAvailable() == MasterStatus.AVAILABLE) {
                 System.out.println(master);
             }
         }

@@ -7,12 +7,12 @@ import java.util.List;
 public interface MasterRepository {
     boolean addMaster(Master master);
 
-    public List<Master> allMasters();
+    List<Master> allMasters();
 
-    public boolean deleteMasterByName(Master master);
+    boolean deleteMasterByName(Master master);
 
-    public Master getMasterById(String id);
+    Master getMasterById(String id);
 
-    public boolean updateMaster(Master master);
+    boolean updateMaster(Master master);
 
 }

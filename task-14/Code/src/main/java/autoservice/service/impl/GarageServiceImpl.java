@@ -52,7 +52,7 @@ public class GarageServiceImpl implements GarageServiceInterface {
     public List<Master> getAvailableMasters() {
         List<Master> availableMasters = new ArrayList<>();
         for (Master master : masterDAO.allMasters()) {
-            if (master.isAvailable() == MasterStatus.AVAILABLE) {
+            if (master.getAvailable() == MasterStatus.AVAILABLE) {
                 availableMasters.add(master);
             }
         }

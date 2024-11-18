@@ -3,15 +3,16 @@ package autoservice.models.order;
 import autoservice.models.garagePlace.GaragePlace;
 import autoservice.models.master.Master;
 import autoservice.models.order.orderStatus.OrderStatus;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonSetter;
-import com.fasterxml.jackson.annotation.Nulls;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "orders")
 public class Order {
@@ -72,75 +73,6 @@ public class Order {
         this.submissionDate = submissionDate;
         this.completionDate = completionDate;
         this.plannedStartDate = plannedStartDate;
-        this.price = price;
-    }
-
-    public String getIdOrder() {
-        return idOrder;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public OrderStatus getStatusOrder() {
-        return statusOrder;
-    }
-
-    public void setStatusOrder(OrderStatus statusOrder) {
-        this.statusOrder = statusOrder;
-    }
-
-    public Master getAssignedMaster() {
-        return this.assignedMaster;
-    }
-
-    @JsonSetter(nulls = Nulls.SKIP)
-    public void setAssignedMaster(Master assignedMaster) {
-        this.assignedMaster = assignedMaster;
-    }
-
-    public GaragePlace getAssignedGaragePlace() {
-        return this.assignedGaragePlace;
-    }
-
-    public void setAssignedGaragePlace(GaragePlace assignedGaragePlace) {
-        this.assignedGaragePlace = assignedGaragePlace;
-    }
-
-    public LocalDateTime getSubmissionDate() {
-        return this.submissionDate;
-    }
-
-    public void setSubmissionDate(LocalDateTime submissionDate) {
-        this.submissionDate = submissionDate;
-    }
-
-    public LocalDateTime getCompletionDate() {
-        return completionDate;
-    }
-
-    public void setCompletionDate(LocalDateTime completionDate) {
-        this.completionDate = completionDate;
-    }
-
-    public LocalDateTime getPlannedStartDate() {
-        return plannedStartDate;
-    }
-
-    public void setPlannedStartDate(LocalDateTime plannedStartDate) {
-        this.plannedStartDate = plannedStartDate;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
         this.price = price;
     }
 

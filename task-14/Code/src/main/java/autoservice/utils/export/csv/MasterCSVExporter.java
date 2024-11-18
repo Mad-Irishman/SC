@@ -19,7 +19,7 @@ public class MasterCSVExporter {
             for (Master master : masters) {
                 String id = master.getId();
                 String name = master.getName();
-                MasterStatus status = master.isAvailable();
+                MasterStatus status = master.getAvailable();
 
                 String line = String.format("%s,%s,%s", id, name, status);
                 writer.write(line);

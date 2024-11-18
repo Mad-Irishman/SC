@@ -19,11 +19,6 @@ import java.util.List;
 @Repository
 public class MasterRepositoryImpl implements MasterRepository {
     private static final Logger logger = LoggerFactory.getLogger(MasterRepositoryImpl.class);
-//    private static final String ADD_MASTER_QUERY = "INSERT INTO masters (id, name) VALUES (?, ?)";
-//    private static final String ALL_MASTER_QUERY = "SELECT * FROM masters";
-//    private static final String REMOVE_MASTER = "DELETE FROM masters WHERE name = ?";
-//    private static final String GET_MASTER_BY_ID = "SELECT * FROM masters WHERE id = ?";
-//    private static final String UPDATE_MASTER = "UPDATE masters SET is_available = ? WHERE name = ?";
 
     @Override
     public boolean addMaster(Master master) {
@@ -125,7 +120,7 @@ public class MasterRepositoryImpl implements MasterRepository {
                 CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
                 CriteriaUpdate<Master> criteriaUpdate = criteriaBuilder.createCriteriaUpdate(Master.class);
                 Root<Master> root = criteriaUpdate.from(Master.class);
-                criteriaUpdate.set(root.get("isAvailable"), master.isAvailable());
+                criteriaUpdate.set(root.get("isAvailable"), master.getAvailable());
                 criteriaUpdate.where(criteriaBuilder.equal(root.get("name"), master.getName()));
                 int rowsAffected = session.createQuery(criteriaUpdate).executeUpdate();
                 if (rowsAffected > 0) {

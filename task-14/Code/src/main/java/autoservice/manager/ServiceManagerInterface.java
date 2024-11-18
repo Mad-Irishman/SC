@@ -15,8 +15,6 @@ public interface ServiceManagerInterface {
 
     void setMasters(List<Master> masters);
 
-//    void setGarage(Garage garage);
-
     void addMaster(Master master);
 
     void removeMaster(Master master);
@@ -39,9 +37,7 @@ public interface ServiceManagerInterface {
 
     GaragePlace getGaragePlaceByNumber(int placeNumber);
 
-//    public Garage getGarage();
-
-    public List<GaragePlace> getAvailableGaragePlaces();
+    List<GaragePlace> getAvailableGaragePlaces();
 
     void createOrder(String discription, LocalDateTime submissionDate, LocalDateTime completionDate, LocalDateTime plannedStartDate, double price);
 
@@ -49,7 +45,7 @@ public interface ServiceManagerInterface {
 
     List<Order> getOrders();
 
-    public List<Order> getAllOrdersInGarage();
+    List<Order> getAllOrdersInGarage();
 
     Order getOrderByDescription(String description);
 

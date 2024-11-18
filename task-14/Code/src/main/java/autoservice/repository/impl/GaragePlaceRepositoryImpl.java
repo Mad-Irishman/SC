@@ -17,11 +17,6 @@ import java.util.List;
 @Repository
 public class GaragePlaceRepositoryImpl implements GaragePlaceRepository {
     private static final Logger logger = LoggerFactory.getLogger(GaragePlaceRepositoryImpl.class);
-//    private static final String ADD_GARAGE_PLACE = "INSERT INTO garage_places (place_number, is_occupied) VALUES (?, ?)";
-//    private static final String ALL_GARAGE_PLACE = "SELECT * FROM garage_places";
-//    private static final String REMOVE_GARAGE_PLACE = "DELETE FROM garage_places WHERE place_number = ?";
-//    private static final String UPDATE_GARAGE_PLACE = "UPDATE garage_places SET is_occupied = ? WHERE place_number = ?";
-//    private static final String GET_GARAGE_PLACE_BY_NUMBER = "SELECT * FROM garage_places WHERE place_number = ?";
 
     @Override
     public boolean addGaragePlace(GaragePlace garagePlace) {

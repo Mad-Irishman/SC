@@ -7,11 +7,11 @@ import java.util.List;
 public interface GaragePlaceRepository {
     boolean addGaragePlace(GaragePlace garagePlace);
 
-    public List<GaragePlace> getAllGaragePlaces();
+    List<GaragePlace> getAllGaragePlaces();
 
-    public boolean removeGaragePlace(GaragePlace garagePlace);
+    boolean removeGaragePlace(GaragePlace garagePlace);
 
-    public boolean updateGaragePlace(GaragePlace garagePlace);
+    boolean updateGaragePlace(GaragePlace garagePlace);
 
-    public GaragePlace getGaragePlaceByNumber(int placeNumber);
+    GaragePlace getGaragePlaceByNumber(int placeNumber);
 }

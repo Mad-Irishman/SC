@@ -13,8 +13,13 @@ import java.util.List;
 @Service
 public class GaragePlacesSort implements GaragePlacesSortInterface {
 
+
+    private final GarageServiceImpl garageService;
+
     @Autowired
-    private GarageServiceImpl garageService;
+    public GaragePlacesSort(GarageServiceImpl garageService) {
+        this.garageService = garageService;
+    }
 
     @Override
     public List<GaragePlace> getAvailableGaragePlaces(List<Garage> garages) throws GaragePlacesSortException {

@@ -42,7 +42,7 @@ public class RemoveMasterAction implements IAction {
                 }
 
                 if (masterToRemove != null) {
-                    if (masterToRemove.isAvailable() == MasterStatus.AVAILABLE) {
+                    if (masterToRemove.getAvailable() == MasterStatus.AVAILABLE) {
                         serviceManager.removeMaster(masterToRemove);
                         System.out.println("Master " + nameMaster + " has been successfully removed.");
                     } else {
