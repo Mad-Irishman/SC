@@ -1,0 +1,604 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="942d31e9-d089-4221-b149-9c3b9848bbf4" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../task-11/Code/.idea/dataSources/6c3f11c4-51b9-4c2f-8be2-f494adb82b55.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-11/Code/.idea/dataSources/6c3f11c4-51b9-4c2f-8be2-f494adb82b55/storage_v2/_src_/database/autoserviceDB.JA28Ow.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-11/Code/.idea/dataSources/6c3f11c4-51b9-4c2f-8be2-f494adb82b55/storage_v2/_src_/database/autoserviceDB.JA28Ow/schema/public.abK9xQ.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/.idea/Code.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/.idea/dataSources.local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/.idea/dataSources/f0a7f796-2568-480d-8bb1-da884deed861.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/.idea/dataSources/f0a7f796-2568-480d-8bb1-da884deed861/storage_v2/_src_/database/autoserviceDB.JA28Ow.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/.idea/dataSources/f0a7f796-2568-480d-8bb1-da884deed861/storage_v2/_src_/database/autoserviceDB.JA28Ow/schema/public.abK9xQ.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/.idea/jsonSchemas.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/DI/DIContainer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/DI/Inject.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/assistantManager/AssistantInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/assistantManager/impl/Assistant.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/config/database/connection/DatabaseConnection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/config/properties/ConfigProperty.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/config/properties/Configurator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/config/properties/config.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/exception/assistantException/exception/AssistantException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/exception/controllerException/BuilderException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/exception/dataSortException/DataSortException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/exception/garageException/GarageException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/exception/garageException/GaragePlaceNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/exception/garageException/MasterNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/exception/garagePlaceException/GaragePlaceException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/exception/garagePlaceException/GaragePlaceNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/exception/garagePlaceSortException/GaragePlacesSortException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/exception/managerException/ServiceManagerException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/exception/masterException/MasterException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/exception/masterSortException/MastersSortException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/exception/orderException/OrderException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/exception/orderSortException/OrdersSortException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/manager/ServiceManagerInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/manager/impl/ServiceManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/models/garage/Garage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/models/garage/garageStatus/GarageStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/models/garagePlace/GaragePlace.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/models/master/Master.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/models/master/masterStatus/MasterStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/models/order/Order.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/models/order/orderStatus/OrderStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/repository/GaragePlaceRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/repository/MasterRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/repository/OrderRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/repository/impl/GaragePlaceRepositoryImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/repository/impl/MasterRepositoryImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/repository/impl/OrderRepositoryImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/servicesSorting/DataSort/DataSortInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/servicesSorting/DataSort/impl/DataSort.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/servicesSorting/GaragePlacesSort/GaragePlacesSortInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/servicesSorting/GaragePlacesSort/impl/GaragePlacesSort.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/servicesSorting/MastersSort/MastersSortInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/servicesSorting/MastersSort/impl/MastersSort.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/servicesSorting/OrdersSort/OrdersSortInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/servicesSorting/OrdersSort/impl/OrdersSort.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/ui/actions/IAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/ui/actions/impl/exiteAction/ExitToRootAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/ui/actions/impl/garageAction/AddGaragePlaceAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/ui/actions/impl/garageAction/AllGaragePlacesAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/ui/actions/impl/garageAction/ExportGaragesAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/ui/actions/impl/garageAction/GetAvailableGaragePlaces.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/ui/actions/impl/garageAction/ImportGaragePlacesAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/ui/actions/impl/garageAction/RemoveGaragePlaceAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/ui/actions/impl/masterAction/AddMasterAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/ui/actions/impl/masterAction/AllMastersAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/ui/actions/impl/masterAction/ExportMastersAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/ui/actions/impl/masterAction/GetMastersByOrderAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/ui/actions/impl/masterAction/GetSortedMastersAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/ui/actions/impl/masterAction/ImportMastersAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/ui/actions/impl/masterAction/RemoveMasterAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/ui/actions/impl/orderAction/AllOrdersAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/ui/actions/impl/orderAction/CreateOrderAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/ui/actions/impl/orderAction/ExportOrdersAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/ui/actions/impl/orderAction/GetCurentOrdersAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/ui/actions/impl/orderAction/GetSortedOrdersAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/ui/actions/impl/orderAction/ImportOrdersAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/ui/actions/impl/orderAction/RemoveOrderAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/ui/controller/Builder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/ui/controller/MenuController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/ui/view/menu/Menu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/ui/view/menu/MenuItem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/ui/view/menu/Navigator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/utils/deserialization/Deserializer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/utils/export/csv/GarageCSVExporter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/utils/export/csv/MasterCSVExporter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/utils/export/csv/OrderCSVExporter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/utils/imports/csv/GarageCSVImporter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/utils/imports/csv/MasterCSVImporter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/utils/imports/csv/OrderCSVImporter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/java/autoservice/utils/serialization/Serializer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/resources/checkstyle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/resources/exportFiles/garages.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/resources/exportFiles/masters.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/resources/exportFiles/orders.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/resources/hibernate.cfg.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/resources/importFiles/garages.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/resources/importFiles/masters.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/resources/importFiles/orders.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/resources/logback.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/resources/start_end_program/start_end_program" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/src/main/resources/start_end_program/start_end_program.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/Main.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/DI/DIContainer.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/DI/Inject.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/assistantManager/AssistantInterface.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/assistantManager/impl/Assistant.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/config/database/connection/DatabaseConnection.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/config/properties/ConfigProperty.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/config/properties/Configurator.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/exception/assistantException/exception/AssistantException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/exception/controllerException/BuilderException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/exception/dataSortException/DataSortException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/exception/garageException/GarageException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/exception/garageException/GaragePlaceNotFoundException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/exception/garageException/MasterNotFoundException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/exception/garagePlaceException/GaragePlaceException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/exception/garagePlaceException/GaragePlaceNotFoundException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/exception/garagePlaceSortException/GaragePlacesSortException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/exception/managerException/ServiceManagerException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/exception/masterException/MasterException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/exception/masterSortException/MastersSortException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/exception/orderException/OrderException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/exception/orderSortException/OrdersSortException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/manager/ServiceManagerInterface.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/manager/impl/ServiceManager.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/models/garage/Garage.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/models/garage/garageStatus/GarageStatus.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/models/garagePlace/GaragePlace.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/models/master/Master.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/models/master/masterStatus/MasterStatus.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/models/order/Order.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/models/order/orderStatus/OrderStatus.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/repository/GaragePlaceRepository.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/repository/MasterRepository.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/repository/OrderRepository.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/repository/impl/GaragePlaceRepositoryImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/repository/impl/MasterRepositoryImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/repository/impl/OrderRepositoryImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/servicesSorting/DataSort/DataSortInterface.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/servicesSorting/DataSort/impl/DataSort.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/servicesSorting/GaragePlacesSort/GaragePlacesSortInterface.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/servicesSorting/GaragePlacesSort/impl/GaragePlacesSort.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/servicesSorting/MastersSort/MastersSortInterface.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/servicesSorting/MastersSort/impl/MastersSort.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/servicesSorting/OrdersSort/OrdersSortInterface.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/servicesSorting/OrdersSort/impl/OrdersSort.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/ui/actions/IAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/ui/actions/impl/exiteAction/ExitToRootAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/ui/actions/impl/garageAction/AddGaragePlaceAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/ui/actions/impl/garageAction/AllGaragePlacesAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/ui/actions/impl/garageAction/ExportGaragesAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/ui/actions/impl/garageAction/GetAvailableGaragePlaces.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/ui/actions/impl/garageAction/ImportGaragePlacesAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/ui/actions/impl/garageAction/RemoveGaragePlaceAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/ui/actions/impl/masterAction/AddMasterAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/ui/actions/impl/masterAction/AllMastersAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/ui/actions/impl/masterAction/ExportMastersAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/ui/actions/impl/masterAction/GetMastersByOrderAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/ui/actions/impl/masterAction/GetSortedMastersAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/ui/actions/impl/masterAction/ImportMastersAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/ui/actions/impl/masterAction/RemoveMasterAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/ui/actions/impl/orderAction/AllOrdersAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/ui/actions/impl/orderAction/CreateOrderAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/ui/actions/impl/orderAction/ExportOrdersAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/ui/actions/impl/orderAction/GetCurentOrdersAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/ui/actions/impl/orderAction/GetSortedOrdersAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/ui/actions/impl/orderAction/ImportOrdersAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/ui/actions/impl/orderAction/RemoveOrderAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/ui/controller/Builder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/ui/controller/MenuController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/ui/view/menu/Menu.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/ui/view/menu/MenuItem.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/ui/view/menu/Navigator.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/utils/deserialization/Deserializer.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/utils/export/csv/GarageCSVExporter.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/utils/export/csv/MasterCSVExporter.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/utils/export/csv/OrderCSVExporter.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/utils/imports/csv/GarageCSVImporter.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/utils/imports/csv/MasterCSVImporter.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/utils/imports/csv/OrderCSVImporter.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/autoservice/utils/serialization/Serializer.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/checkstyle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/exportFiles/garages.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/exportFiles/masters.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/exportFiles/orders.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/hibernate.cfg.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/importFiles/garages.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/importFiles/masters.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/importFiles/orders.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/logback.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/start_end_program/start_end_program" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/Code/target/classes/start_end_program/start_end_program.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/SQLscripts/autoserviceDB.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/SQLscripts/setup.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-13/SQLscripts/setup_DB.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-15/Hello World.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-15/WWW/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-15/WWW/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-15/WWW/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-15/WWW/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-15/WWW/HelloServlet.war" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-15/WWW/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-15/WWW/src/main/java/Senla/HelloServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-15/WWW/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-3/1/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-3/1/1/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-3/2/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-3/2/1/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-3/3/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-3/3/out/production/3/AssemblyLine/IAssemblyLine.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-3/3/out/production/3/AssemblyLine/impl/LaptopAssemblyLine.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-3/3/out/production/3/LineStep/ILineStep.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-3/3/out/production/3/LineStep/impl/CaseStep.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-3/3/out/production/3/LineStep/impl/MonitorStep.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-3/3/out/production/3/LineStep/impl/MotherboardStep.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-3/3/out/production/3/Main.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-3/3/out/production/3/Product/IProduct.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-3/3/out/production/3/Product/IProductPart.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-3/3/out/production/3/Product/impl/Laptop.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-3/3/out/production/3/ProductPartRealization/LaptopCase.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-3/3/out/production/3/ProductPartRealization/Monitor.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-3/3/out/production/3/ProductPartRealization/Motherboard.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-3/4/Code/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-3/4/Code/out/production/4/Main.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-3/4/Code/out/production/4/autoservice/manager/ServiceManagerInterface.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-3/4/Code/out/production/4/autoservice/manager/impl/ServiceManager.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-3/4/Code/out/production/4/autoservice/models/Garage.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-3/4/Code/out/production/4/autoservice/models/GaragePlace.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-3/4/Code/out/production/4/autoservice/models/Master.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-3/4/Code/out/production/4/autoservice/models/Order$OrderStatus.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-3/4/Code/out/production/4/autoservice/models/Order.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-4/Code/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-4/Code/out/production/4/Main.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-4/Code/out/production/4/autoservice/assistantManager/AssistantInterface.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-4/Code/out/production/4/autoservice/assistantManager/exception/AssistantException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-4/Code/out/production/4/autoservice/assistantManager/impl/Assistant.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-4/Code/out/production/4/autoservice/manager/ServiceManagerInterface.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-4/Code/out/production/4/autoservice/manager/exception/ServiceManagerException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-4/Code/out/production/4/autoservice/manager/impl/ServiceManager.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-4/Code/out/production/4/autoservice/models/actions/IAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-4/Code/out/production/4/autoservice/models/actions/impl/CreateOrderAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-4/Code/out/production/4/autoservice/models/garage/Garage.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-4/Code/out/production/4/autoservice/models/garage/exceptions/GarageException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-4/Code/out/production/4/autoservice/models/garage/exceptions/GaragePlaceNotFoundException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-4/Code/out/production/4/autoservice/models/garage/exceptions/MasterNotFoundException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-4/Code/out/production/4/autoservice/models/garage/garageStatus/GarageStatue.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-4/Code/out/production/4/autoservice/models/garagePlace/GaragePlace.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-4/Code/out/production/4/autoservice/models/garagePlace/exception/GaragePlaceException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-4/Code/out/production/4/autoservice/models/master/Master.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-4/Code/out/production/4/autoservice/models/master/exception/MasterException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-4/Code/out/production/4/autoservice/models/master/masterStatus/MasterStatus.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-4/Code/out/production/4/autoservice/models/order/Order.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-4/Code/out/production/4/autoservice/models/order/exception/OrderException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-4/Code/out/production/4/autoservice/models/order/orderStatus/OrderStatus.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-4/Code/out/production/4/autoservice/servicesSorting/DataSort/DataSortInterface.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-4/Code/out/production/4/autoservice/servicesSorting/DataSort/exception/DataSortException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-4/Code/out/production/4/autoservice/servicesSorting/DataSort/impl/DataSort.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-4/Code/out/production/4/autoservice/servicesSorting/GaragePlacesSort/GaragePlacesSortInterface.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-4/Code/out/production/4/autoservice/servicesSorting/GaragePlacesSort/exception/GaragePlacesSortException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-4/Code/out/production/4/autoservice/servicesSorting/GaragePlacesSort/impl/GaragePlacesSort.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-4/Code/out/production/4/autoservice/servicesSorting/MastersSort/MastersSortInterface.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-4/Code/out/production/4/autoservice/servicesSorting/MastersSort/exception/MastersSortException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-4/Code/out/production/4/autoservice/servicesSorting/MastersSort/impl/MastersSort.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-4/Code/out/production/4/autoservice/servicesSorting/OrdersSort/OrdersSortInterface.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-4/Code/out/production/4/autoservice/servicesSorting/OrdersSort/exception/OrdersSortException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-4/Code/out/production/4/autoservice/servicesSorting/OrdersSort/impl/OrdersSort.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-4/Code/out/production/4/controller/Builder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-4/Code/out/production/4/controller/MenuController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-4/Code/out/production/4/view/menu/Menu.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-4/Code/out/production/4/view/menu/MenuItem.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-4/Code/out/production/4/view/menu/Navigator.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/CSVUtils/CSVExporter.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/CSVUtils/CSVImporter.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/Main.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/autoservice/assistantManager/AssistantInterface.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/autoservice/assistantManager/exception/AssistantException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/autoservice/assistantManager/impl/Assistant.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/autoservice/manager/ServiceManagerInterface.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/autoservice/manager/exception/ServiceManagerException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/autoservice/manager/impl/ServiceManager.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/autoservice/models/garage/Garage.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/autoservice/models/garage/exceptions/GarageException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/autoservice/models/garage/exceptions/GaragePlaceNotFoundException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/autoservice/models/garage/exceptions/MasterNotFoundException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/autoservice/models/garage/garageStatus/GarageStatue.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/autoservice/models/garagePlace/GaragePlace.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/autoservice/models/garagePlace/exception/GaragePlaceException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/autoservice/models/master/Master.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/autoservice/models/master/exception/MasterException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/autoservice/models/master/masterStatus/MasterStatus.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/autoservice/models/order/Order.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/autoservice/models/order/exception/OrderException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/autoservice/models/order/orderStatus/OrderStatus.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/autoservice/servicesSorting/DataSort/DataSortInterface.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/autoservice/servicesSorting/DataSort/exception/DataSortException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/autoservice/servicesSorting/DataSort/impl/DataSort.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/autoservice/servicesSorting/GaragePlacesSort/GaragePlacesSortInterface.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/autoservice/servicesSorting/GaragePlacesSort/exception/GaragePlacesSortException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/autoservice/servicesSorting/GaragePlacesSort/impl/GaragePlacesSort.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/autoservice/servicesSorting/MastersSort/MastersSortInterface.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/autoservice/servicesSorting/MastersSort/exception/MastersSortException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/autoservice/servicesSorting/MastersSort/impl/MastersSort.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/autoservice/servicesSorting/OrdersSort/OrdersSortInterface.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/autoservice/servicesSorting/OrdersSort/exception/OrdersSortException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/autoservice/servicesSorting/OrdersSort/impl/OrdersSort.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/ui/actions/IAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/ui/actions/impl/exiteAction/ExitToRootAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/ui/actions/impl/garageAction/AddGaragePlaceAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/ui/actions/impl/garageAction/AllGaragePlacesAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/ui/actions/impl/garageAction/GetAvailableGaragePlaces.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/ui/actions/impl/garageAction/RemoveGaragePlaceAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/ui/actions/impl/garageAction/exception/GaragePlaceNotFoundException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/ui/actions/impl/masterAction/AddMasterAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/ui/actions/impl/masterAction/AllMastersAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/ui/actions/impl/masterAction/GetMastersByOrderAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/ui/actions/impl/masterAction/GetSortedMastersAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/ui/actions/impl/masterAction/RemoveMasterAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/ui/actions/impl/orderAction/AllOrdersAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/ui/actions/impl/orderAction/CreateOrderAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/ui/actions/impl/orderAction/GetCurentOrdersAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/ui/actions/impl/orderAction/GetSortedOrdersAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/ui/actions/impl/orderAction/RemoveOrderAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/ui/controller/Builder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/ui/controller/MenuController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/ui/controller/exception/BuilderException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/ui/view/menu/Menu.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/ui/view/menu/MenuItem.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/out/production/5/ui/view/menu/Navigator.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-5/Code/src/test/ServiceManagerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/Main.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/assistantManager/AssistantInterface.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/assistantManager/exception/AssistantException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/assistantManager/impl/Assistant.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/config/config.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/exception/managerException/ServiceManagerException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/manager/ServiceManagerInterface.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/manager/impl/ServiceManager.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/models/garage/Garage.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/models/garage/garageStatus/GarageStatus.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/models/garagePlace/GaragePlace.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/models/master/Master.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/models/master/masterStatus/MasterStatus.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/models/order/Order.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/models/order/orderStatus/OrderStatus.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/resources/exportFiles/garages.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/resources/exportFiles/masters.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/resources/exportFiles/orders.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/resources/importFiles/garages.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/resources/importFiles/masters.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/resources/importFiles/orders.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/servicesSorting/DataSort/DataSortInterface.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/servicesSorting/DataSort/exception/DataSortException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/servicesSorting/DataSort/impl/DataSort.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/servicesSorting/GaragePlacesSort/GaragePlacesSortInterface.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/servicesSorting/GaragePlacesSort/exception/GaragePlacesSortException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/servicesSorting/GaragePlacesSort/impl/GaragePlacesSort.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/servicesSorting/MastersSort/MastersSortInterface.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/servicesSorting/MastersSort/exception/MastersSortException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/servicesSorting/MastersSort/impl/MastersSort.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/servicesSorting/OrdersSort/OrdersSortInterface.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/servicesSorting/OrdersSort/exception/OrdersSortException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/servicesSorting/OrdersSort/impl/OrdersSort.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/ui/actions/IAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/ui/actions/impl/exiteAction/ExitToRootAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/ui/actions/impl/garageAction/AddGaragePlaceAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/ui/actions/impl/garageAction/AllGaragePlacesAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/ui/actions/impl/garageAction/ExportGaragesAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/ui/actions/impl/garageAction/GetAvailableGaragePlaces.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/ui/actions/impl/garageAction/ImportGaragePlacesAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/ui/actions/impl/garageAction/RemoveGaragePlaceAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/ui/actions/impl/garageAction/exception/GaragePlaceNotFoundException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/ui/actions/impl/masterAction/AddMasterAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/ui/actions/impl/masterAction/AllMastersAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/ui/actions/impl/masterAction/ExportMastersAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/ui/actions/impl/masterAction/GetMastersByOrderAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/ui/actions/impl/masterAction/GetSortedMastersAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/ui/actions/impl/masterAction/ImportMastersAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/ui/actions/impl/masterAction/RemoveMasterAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/ui/actions/impl/orderAction/AllOrdersAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/ui/actions/impl/orderAction/CreateOrderAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/ui/actions/impl/orderAction/ExportOrdersAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/ui/actions/impl/orderAction/GetCurentOrdersAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/ui/actions/impl/orderAction/GetSortedOrdersAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/ui/actions/impl/orderAction/ImportOrdersAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/ui/actions/impl/orderAction/RemoveOrderAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/ui/controller/Builder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/ui/controller/MenuController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/ui/view/menu/Menu.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/ui/view/menu/MenuItem.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/ui/view/menu/Navigator.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/utils/export/csv/GarageCSVExporter.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/utils/export/csv/MasterCSVExporter.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/utils/export/csv/OrderCSVExporter.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/utils/imports/csv/GarageCSVImporter.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/utils/imports/csv/MasterCSVImporter.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-6/Code/out/production/5/autoservice/utils/imports/csv/OrderCSVImporter.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/Main.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/DI/DIContainer.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/DI/Inject.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/assistantManager/AssistantInterface.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/assistantManager/impl/Assistant.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/config/ConfigProperty.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/config/Configurator.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/config/config.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/exception/assistantException/exception/AssistantException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/exception/managerException/ServiceManagerException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/manager/ServiceManagerInterface.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/manager/exception/ServiceManagerException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/manager/impl/ServiceManager.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/models/garage/Garage.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/models/garage/exceptions/GarageException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/models/garage/exceptions/GaragePlaceNotFoundException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/models/garage/exceptions/MasterNotFoundException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/models/garage/garageStatus/GarageStatus.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/models/garagePlace/GaragePlace.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/models/garagePlace/exception/GaragePlaceException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/models/master/Master.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/models/master/exception/MasterException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/models/master/masterStatus/MasterStatus.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/models/order/Order.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/models/order/exception/OrderException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/models/order/orderStatus/OrderStatus.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/resources/exportFiles/garages.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/resources/exportFiles/masters.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/resources/exportFiles/orders.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/resources/importFiles/garages.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/resources/importFiles/masters.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/resources/importFiles/orders.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/resources/start_end_program/start_end_program" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/resources/start_end_program/start_end_program.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/servicesSorting/DataSort/DataSortInterface.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/servicesSorting/DataSort/exception/DataSortException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/servicesSorting/DataSort/impl/DataSort.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/servicesSorting/GaragePlacesSort/GaragePlacesSortInterface.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/servicesSorting/GaragePlacesSort/exception/GaragePlacesSortException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/servicesSorting/GaragePlacesSort/impl/GaragePlacesSort.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/servicesSorting/MastersSort/MastersSortInterface.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/servicesSorting/MastersSort/exception/MastersSortException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/servicesSorting/MastersSort/impl/MastersSort.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/servicesSorting/OrdersSort/OrdersSortInterface.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/servicesSorting/OrdersSort/exception/OrdersSortException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/servicesSorting/OrdersSort/impl/OrdersSort.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/ui/actions/IAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/ui/actions/impl/exiteAction/ExitToRootAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/ui/actions/impl/garageAction/AddGaragePlaceAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/ui/actions/impl/garageAction/AllGaragePlacesAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/ui/actions/impl/garageAction/ExportGaragesAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/ui/actions/impl/garageAction/GetAvailableGaragePlaces.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/ui/actions/impl/garageAction/ImportGaragePlacesAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/ui/actions/impl/garageAction/RemoveGaragePlaceAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/ui/actions/impl/garageAction/exception/GaragePlaceNotFoundException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/ui/actions/impl/masterAction/AddMasterAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/ui/actions/impl/masterAction/AllMastersAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/ui/actions/impl/masterAction/ExportMastersAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/ui/actions/impl/masterAction/GetMastersByOrderAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/ui/actions/impl/masterAction/GetSortedMastersAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/ui/actions/impl/masterAction/ImportMastersAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/ui/actions/impl/masterAction/RemoveMasterAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/ui/actions/impl/orderAction/AllOrdersAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/ui/actions/impl/orderAction/CreateOrderAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/ui/actions/impl/orderAction/ExportOrdersAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/ui/actions/impl/orderAction/GetCurentOrdersAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/ui/actions/impl/orderAction/GetSortedOrdersAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/ui/actions/impl/orderAction/ImportOrdersAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/ui/actions/impl/orderAction/RemoveOrderAction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/ui/controller/Builder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/ui/controller/MenuController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/ui/controller/exception/BuilderException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/ui/view/menu/Menu.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/ui/view/menu/MenuItem.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/ui/view/menu/Navigator.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/utils/deserialization/Deserializer.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/utils/export/csv/GarageCSVExporter.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/utils/export/csv/MasterCSVExporter.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/utils/export/csv/OrderCSVExporter.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/utils/imports/csv/GarageCSVImporter.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/utils/imports/csv/MasterCSVImporter.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/utils/imports/csv/OrderCSVImporter.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../task-8/Code/out/production/5/autoservice/utils/serialization/Serializer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../task-11/SQLscripts/setup.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../../task-11/SQLscripts/setup.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../task-15/WWW/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../task-15/WWW/.idea/misc.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/../.." value="Task-14" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Mad-Irishman&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:Mad-Irishman/lesson-git.git&quot;,
+    &quot;accountId&quot;: &quot;0c16845f-bec3-4c7a-ad06-8fce12774fe6&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2ohgx3v13KZvPMFXK5MPvFvUFVc" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Merging Task-14",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/_madgic_/Desktop/lesson1/task-15/Web",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\_madgic_\Desktop\lesson1\task-14\Code\src\main\resources" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="Code" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142" />
+        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="942d31e9-d089-4221-b149-9c3b9848bbf4" name="Changes" comment="" />
+      <created>1731327467451</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1731327467451</updated>
+      <workItem from="1731327469364" duration="420000" />
+      <workItem from="1731360790324" duration="7725000" />
+      <workItem from="1731414033411" duration="39000" />
+      <workItem from="1731568278405" duration="2437000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
