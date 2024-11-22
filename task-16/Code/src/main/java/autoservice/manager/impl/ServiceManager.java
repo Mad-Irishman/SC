@@ -1,7 +1,6 @@
 package autoservice.manager.impl;
 
 import autoservice.assistantManager.impl.Assistant;
-import autoservice.config.properties.Configurator;
 import autoservice.manager.ServiceManagerInterface;
 import autoservice.exception.managerException.ServiceManagerException;
 import autoservice.models.garage.Garage;
@@ -33,11 +32,6 @@ public class ServiceManager implements ServiceManagerInterface {
     public ServiceManager(GarageServiceImpl garageService, Assistant assistant) {
         this.garageService = garageService;
         this.assistant = assistant;
-        try {
-            Configurator.configure(garageService.getGarage());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     @Override

@@ -28,27 +28,33 @@ public class GarageServiceImpl implements GarageServiceInterface {
         this.orderDAO = new OrderRepositoryImpl();
     }
 
+    @Override
     public Garage getGarage() {
         return garage;
     }
 
+    @Override
     //Работа с masters
     public MasterRepositoryImpl getMasterDAO() {
         return masterDAO;
     }
 
+    @Override
     public void addMaster(Master master) {
         masterDAO.addMaster(master);
     }
 
+    @Override
     public List<Master> allMasters() {
         return masterDAO.allMasters();
     }
 
+    @Override
     public void removeMaster(Master master) {
         masterDAO.deleteMasterByName(master);
     }
 
+    @Override
     public List<Master> getAvailableMasters() {
         List<Master> availableMasters = new ArrayList<>();
         for (Master master : masterDAO.allMasters()) {
@@ -59,31 +65,38 @@ public class GarageServiceImpl implements GarageServiceInterface {
         return availableMasters;
     }
 
+    @Override
     public Master getMasterById(String id) {
         return masterDAO.getMasterById(id);
     }
 
+    @Override
     public void updateMaster(Master master) {
         masterDAO.updateMaster(master);
     }
 
+    @Override
     //Работа с garagePlaces
     public GaragePlaceRepositoryImpl getGaragePlaceDAO() {
         return garagePlaceDAO;
     }
 
+    @Override
     public void addGaragePlace(GaragePlace place) {
         garagePlaceDAO.addGaragePlace(place);
     }
 
+    @Override
     public List<GaragePlace> allGaragePlaces() {
         return garagePlaceDAO.getAllGaragePlaces();
     }
 
+    @Override
     public void removeGaragePlace(GaragePlace place) {
         garagePlaceDAO.removeGaragePlace(place);
     }
 
+    @Override
     public List<GaragePlace> getAvailableGaragePlaces() {
         List<GaragePlace> availablePlaces = new ArrayList<>();
         for (GaragePlace place : getGaragePlaceDAO().getAllGaragePlaces()) {
@@ -94,23 +107,28 @@ public class GarageServiceImpl implements GarageServiceInterface {
         return availablePlaces;
     }
 
+    @Override
     public void updateGaragePlace(GaragePlace garagePlace) {
         garagePlaceDAO.updateGaragePlace(garagePlace);
     }
 
+    @Override
     //    Работа с orders
     public void createOrder(Order order) {
         orderDAO.createOrder(order);
     }
 
+    @Override
     public List<Order> allOrders() {
         return orderDAO.allOrders();
     }
 
+    @Override
     public boolean removeOrder(Order order) {
         return orderDAO.deleteOrder(order);
     }
 
+    @Override
     public OrderRepositoryImpl getOrderDAO() {
         return orderDAO;
     }

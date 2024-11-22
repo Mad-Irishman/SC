@@ -1,6 +1,5 @@
 package autoservice.models.garage;
 
-import autoservice.config.properties.ConfigProperty;
 import autoservice.models.garage.garageStatus.GarageStatus;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,16 +17,12 @@ public class Garage {
 
     private GarageStatus isAvailable;
 
-    @ConfigProperty(propertyName = "canRemoveGaragePlace", type = boolean.class)
     private boolean canRemoveGaragePlace;
 
-    @ConfigProperty(propertyName = "canAddGaragePlace", type = boolean.class)
     private boolean canAddGaragePlace;
 
-    @ConfigProperty(propertyName = "canRemoveOrder", type = boolean.class)
     private boolean canRemoveOrder;
 
-    @ConfigProperty(propertyName = "canRescheduleOrder", type = boolean.class)
     private boolean canRescheduleOrder;
 
     public Garage() {
