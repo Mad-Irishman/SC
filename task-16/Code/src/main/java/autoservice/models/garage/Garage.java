@@ -17,12 +17,16 @@ public class Garage {
 
     private GarageStatus isAvailable;
 
+    @Value("true")
     private boolean canRemoveGaragePlace;
 
+    @Value("${garage.canAddGaragePlace}")
     private boolean canAddGaragePlace;
 
+    @Value("${garage.canRemoveOrder}")
     private boolean canRemoveOrder;
 
+    @Value("${garage.canRescheduleOrder}")
     private boolean canRescheduleOrder;
 
     public Garage() {

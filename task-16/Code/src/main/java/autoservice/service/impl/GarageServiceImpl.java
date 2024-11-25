@@ -9,6 +9,7 @@ import autoservice.repository.impl.GaragePlaceRepositoryImpl;
 import autoservice.repository.impl.MasterRepositoryImpl;
 import autoservice.repository.impl.OrderRepositoryImpl;
 import autoservice.service.GarageServiceInterface;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

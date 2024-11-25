@@ -1,6 +1,6 @@
 package autoservice.repository.impl;
 
-import autoservice.config.database.connection.DatabaseConnection;
+import autoservice.database.connection.DatabaseConnection;
 import autoservice.repository.OrderRepository;
 import autoservice.models.garagePlace.GaragePlace;
 import autoservice.models.master.Master;

@@ -1,6 +1,6 @@
 package autoservice.repository.impl;
 
-import autoservice.config.database.connection.DatabaseConnection;
+import autoservice.database.connection.DatabaseConnection;
 import autoservice.repository.MasterRepository;
 import autoservice.models.master.Master;
 import org.hibernate.Session;

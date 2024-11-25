@@ -12,7 +12,6 @@ autoservice\ui\actions\impl\garageAction\AddGaragePlaceAction.class
 autoservice\ui\actions\impl\garageAction\GetAvailableGaragePlaces.class
 autoservice\exception\orderSortException\OrdersSortException.class
 autoservice\manager\impl\ServiceManager.class
-autoservice\MyRestController.class
 autoservice\ui\actions\impl\garageAction\ImportGaragePlacesAction.class
 autoservice\ui\view\menu\MenuItem.class
 autoservice\utils\export\csv\MasterCSVExporter.class
@@ -22,6 +21,7 @@ autoservice\utils\serialization\Serializer.class
 autoservice\exception\garageException\GarageException.class
 autoservice\repository\impl\MasterRepositoryImpl.class
 autoservice\ui\controller\Builder.class
+autoservice\database\connection\DatabaseConnection.class
 autoservice\utils\imports\csv\MasterCSVImporter.class
 autoservice\exception\garagePlaceException\GaragePlaceNotFoundException.class
 autoservice\servicesSorting\DataSort\DataSortInterface.class
@@ -63,9 +63,8 @@ autoservice\ui\actions\impl\orderAction\RemoveOrderAction.class
 autoservice\repository\GaragePlaceRepository.class
 autoservice\ui\actions\impl\garageAction\RemoveGaragePlaceAction.class
 autoservice\models\garage\Garage.class
-autoservice\DI\AppConfig.class
+autoservice\controller\MyRestController.class
 autoservice\ui\actions\impl\garageAction\AllGaragePlacesAction.class
-autoservice\config\database\connection\DatabaseConnection.class
 autoservice\ui\actions\impl\masterAction\RemoveMasterAction.class
 autoservice\utils\deserialization\Deserializer.class
 autoservice\exception\masterSortException\MastersSortException.class
