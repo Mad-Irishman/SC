@@ -21,12 +21,8 @@ import java.util.*;
 @Service
 public class ServiceManager implements ServiceManagerInterface {
     private static final Logger logger = LoggerFactory.getLogger(ServiceManager.class);
-    private GarageServiceImpl garageService;
-    private Assistant assistant;
-
-    public ServiceManager() {
-    }
-
+    private final GarageServiceImpl garageService;
+    private final Assistant assistant;
 
     @Autowired
     public ServiceManager(GarageServiceImpl garageService, Assistant assistant) {
