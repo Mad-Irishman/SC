@@ -22,7 +22,7 @@ public class Main {
         File baseDir = Files.createTempDirectory("embedded-tomcat").toFile();
 
         Context context= tomcat.addWebapp("",baseDir.getAbsolutePath());
-        
+
         AnnotationConfigWebApplicationContext appContext = new AnnotationConfigWebApplicationContext();
         appContext.register(AppConfig.class);
 

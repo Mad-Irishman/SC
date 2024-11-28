@@ -49,32 +49,40 @@ public class ServiceManager implements ServiceManagerInterface {
     }
 
     @Override
-    public void addMaster(Master master) throws ServiceManagerException {
+    public boolean addMaster(Master master) throws ServiceManagerException {
+        boolean isAdded = false;
         if (master == null) {
             throw new ServiceManagerException("Master cannot be null");
         }
         try {
             garageService.addMaster(master);
             logger.info("Master was added to the garage");
+            isAdded = true;
         } catch (Exception e) {
             throw new ServiceManagerException("Error adding master. Please try again later.");
         }
+
+        return isAdded;
+
     }
 
     @Override
-    public void removeMaster(Master master) throws ServiceManagerException {
+    public boolean removeMaster(Master master) throws ServiceManagerException {
+        boolean isRemoved = false;
         if (master == null) {
             throw new ServiceManagerException("Master cannot be null");
         }
         try {
             if (master.getAvailable() == MasterStatus.AVAILABLE) {
                 garageService.removeMaster(master);
+                isRemoved = true;
             } else {
                 System.out.println("Cannot remove the master because they have an active order.");
             }
         } catch (Exception e) {
             throw new ServiceManagerException("Error removing master. Please try again later.");
         }
+        return isRemoved;
     }
 
     @Override
@@ -151,12 +159,15 @@ public class ServiceManager implements ServiceManagerInterface {
     }
 
     @Override
-    public void addGaragePlace(GaragePlace garagePlace) {
+    public boolean addGaragePlace(GaragePlace garagePlace) {
+        boolean isAdded = false;
         if (garageService.getGarage().getCanAddGaragePlace()) {
             garageService.addGaragePlace(garagePlace);
+            isAdded = true;
         } else {
             System.out.println("You cannot add garage spaces at this time.");
         }
+        return isAdded;
     }
 
     @Override

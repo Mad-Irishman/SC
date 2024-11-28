@@ -17,7 +17,7 @@ public class Garage {
 
     private GarageStatus isAvailable;
 
-    @Value("true")
+    @Value("${garage.canRemoveGaragePlace}")
     private boolean canRemoveGaragePlace;
 
     @Value("${garage.canAddGaragePlace}")

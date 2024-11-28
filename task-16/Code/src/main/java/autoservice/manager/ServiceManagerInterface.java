@@ -15,11 +15,11 @@ public interface ServiceManagerInterface {
 
     void setMasters(List<Master> masters);
 
-    void addMaster(Master master);
+    boolean addMaster(Master master);
 
-    void removeMaster(Master master);
+    boolean removeMaster(Master master);
 
-    void addGaragePlace(GaragePlace garagePlace);
+    boolean addGaragePlace(GaragePlace garagePlace);
 
     void removeGaragePlace(GaragePlace garagePlace);
 
