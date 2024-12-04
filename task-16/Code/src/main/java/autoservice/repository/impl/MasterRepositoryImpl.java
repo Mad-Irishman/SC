@@ -1,8 +1,9 @@
 package autoservice.repository.impl;
 
-import autoservice.database.connection.DatabaseConnection;
+import autoservice.config.database.DatabaseConnection;
 import autoservice.repository.MasterRepository;
 import autoservice.models.master.Master;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -10,10 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.CriteriaUpdate;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 import java.util.List;
 
 @Repository
@@ -21,28 +19,26 @@ public class MasterRepositoryImpl implements MasterRepository {
     private static final Logger logger = LoggerFactory.getLogger(MasterRepositoryImpl.class);
 
     @Override
-    public boolean addMaster(Master master) {
+    public String addMaster(Master master) {
         logger.info("Attempting to add master: {}", master);
-        boolean isAdded = false;
-        try (Session session = DatabaseConnection.getInstance().getSession()) {
-            Transaction transaction = null;
-            try {
-                transaction = session.beginTransaction();
-                session.save(master);
-                transaction.commit();
-                isAdded = true;
-                logger.info("Master added successfully: {}", master);
-            } catch (Exception e) {
-                if (transaction != null) {
-                    transaction.rollback();
-                }
-                logger.error("Error while adding master: {}", master, e);
-            }
-        } catch (Exception e) {
-            logger.error("Error while opening session to add master: {}", master, e);
-        }
 
-        return isAdded;
+        try (Session session = DatabaseConnection.getInstance().getSession()) {
+            Transaction transaction = session.beginTransaction();
+
+            try {
+                String id = (String) session.save(master);
+                transaction.commit();
+                logger.info("Master added successfully: {}", master);
+                return id;
+            } catch (HibernateException e) {
+                transaction.rollback();
+                logger.error("Error while adding master: {}", master, e);
+                throw new RuntimeException("Failed to add master", e);
+            }
+        } catch (HibernateException e) {
+            logger.error("Error while opening session to add master: {}", master, e);
+            throw new RuntimeException("Database connection error", e);
+        }
     }
 
 
@@ -57,40 +53,49 @@ public class MasterRepositoryImpl implements MasterRepository {
 
             Query<Master> query = session.createQuery(criteriaQuery);
             return query.getResultList();
-        } catch (Exception e) {
+        } catch (HibernateException e) {
             logger.error("Error while fetching all masters", e);
+            throw new RuntimeException("Database connection error", e);
         }
-        return null;
     }
 
 
     @Override
-    public boolean deleteMasterByName(Master master) {
-        logger.info("Attempting to remove master: {}", master);
-        boolean isDeleted = false;
+    public String removeMasterByName(Master master) {
+        logger.info("Attempting to remove master with ID: {}", master.getId());
 
         try (Session session = DatabaseConnection.getInstance().getSession()) {
             Transaction transaction = session.beginTransaction();
-            CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-            CriteriaQuery<Master> criteriaQuery = criteriaBuilder.createQuery(Master.class);
-            Root<Master> root = criteriaQuery.from(Master.class);
-            criteriaQuery.select(root).where(criteriaBuilder.equal(root.get("name"), master.getName()));
-            Master masterToDelete = session.createQuery(criteriaQuery).uniqueResult();
+            try {
+                CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+                CriteriaDelete<Master> criteriaDelete = criteriaBuilder.createCriteriaDelete(Master.class);
 
-            if (masterToDelete != null) {
-                session.delete(masterToDelete);
-                transaction.commit();
-                isDeleted = true;
-                logger.info("Master with name '{}' was deleted successfully.", master);
-            } else {
-                logger.info("No master found with name '{}'.", master);
+                Root<Master> root = criteriaDelete.from(Master.class);
+                criteriaDelete.where(criteriaBuilder.equal(root.get("name"), master.getId()));
+
+                int rowsAffected = session.createQuery(criteriaDelete).executeUpdate();
+
+                if (rowsAffected > 0) {
+                    transaction.commit();
+                    logger.info("Successfully removed master with ID: {}", master.getId());
+                    return master.getId();
+                } else {
+                    transaction.rollback();
+                    logger.warn("Master with ID '{}' not found. Nothing was removed.", master.getId());
+                    throw new RuntimeException("Master with ID " + master.getId() + " not found");
+                }
+            } catch (HibernateException e) {
+                transaction.rollback();
+                logger.error("Failed to remove master with ID: {}", master.getId(), e);
+                throw new RuntimeException("Failed to remove master", e);
             }
-        } catch (Exception e) {
-            logger.error("Error while trying to delete master with name '{}'", master, e);
-            isDeleted = false;
+        } catch (HibernateException e) {
+            logger.error("Error with Hibernate session while removing master with ID: {}", master.getId(), e);
+            throw new RuntimeException("Database connection error", e);
         }
-        return isDeleted;
     }
+
+
 
     @Override
     public Master getMasterById(String id) {

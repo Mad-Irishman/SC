@@ -1,4 +1,4 @@
-package autoservice.database.connection;
+package autoservice.config.database;
 
 import autoservice.models.garagePlace.GaragePlace;
 import autoservice.models.master.Master;

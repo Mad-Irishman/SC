@@ -1,6 +1,6 @@
 package autoservice.repository.impl;
 
-import autoservice.database.connection.DatabaseConnection;
+import autoservice.config.database.DatabaseConnection;
 import autoservice.repository.GaragePlaceRepository;
 import autoservice.models.garagePlace.GaragePlace;
 import org.hibernate.HibernateException;
@@ -19,28 +19,24 @@ public class GaragePlaceRepositoryImpl implements GaragePlaceRepository {
     private static final Logger logger = LoggerFactory.getLogger(GaragePlaceRepositoryImpl.class);
 
     @Override
-    public boolean addGaragePlace(GaragePlace garagePlace) {
+    public Integer addGaragePlace(GaragePlace garagePlace) {
         logger.info("Attempting to add garage_place: {}", garagePlace);
 
         try (Session session = DatabaseConnection.getInstance().getSession()) {
-            Transaction transaction = null;
+            Transaction transaction = session.beginTransaction();
             try {
-                transaction = session.beginTransaction();
-                session.save(garagePlace);
+                Integer id = (Integer) session.save(garagePlace);
                 transaction.commit();
-
                 logger.info("Successfully added garage_place: {}", garagePlace);
-                return true;
+                return id;
             } catch (HibernateException e) {
-                if (transaction != null) {
-                    transaction.rollback();
-                }
+                transaction.rollback();
                 logger.error("Failed to add garage_place: {}", garagePlace, e);
-                return false;
+                throw new RuntimeException("Failed to add garage place", e);
             }
         } catch (HibernateException e) {
             logger.error("Error with Hibernate session while adding garage place: {}", garagePlace, e);
-            return false;
+            throw new RuntimeException("Database connection error", e);
         }
     }
 
@@ -55,44 +51,46 @@ public class GaragePlaceRepositoryImpl implements GaragePlaceRepository {
             criteriaQuery.select(root);
             Query<GaragePlace> query = session.createQuery(criteriaQuery);
             return query.getResultList();
-        } catch (Exception e) {
+        } catch (HibernateException e) {
             logger.error("Error while fetching garage places", e);
+            throw new RuntimeException("Database connection error", e);
         }
-        return null;
     }
 
     @Override
-    public boolean removeGaragePlace(GaragePlace garagePlace) {
-        logger.info("Attempting to remove garage place: {}", garagePlace);
-        boolean isDeleted = false;
+    public Integer removeGaragePlace(GaragePlace garagePlace) {
+        logger.info("Attempting to remove garage place with ID: {}", garagePlace.getPlaceNumber());
 
         try (Session session = DatabaseConnection.getInstance().getSession()) {
-            Transaction transaction = null;
+            Transaction transaction = session.beginTransaction();
             try {
-                transaction = session.beginTransaction();
                 CriteriaBuilder builder = session.getCriteriaBuilder();
                 CriteriaDelete<GaragePlace> criteriaDelete = builder.createCriteriaDelete(GaragePlace.class);
 
                 Root<GaragePlace> root = criteriaDelete.from(GaragePlace.class);
-                criteriaDelete.where(builder.equal(root.get("placeNumber"), garagePlace.getPlaceNumber()));
-
+                criteriaDelete.where(builder.equal(root.get("place_number"), garagePlace.getPlaceNumber()));
                 int rowsAffected = session.createQuery(criteriaDelete).executeUpdate();
+
                 if (rowsAffected > 0) {
-                    isDeleted = true;
-                    logger.info("Successfully removed garage place: {}", garagePlace);
+                    transaction.commit();
+                    logger.info("Successfully removed garage place with ID: {}", garagePlace.getPlaceNumber());
+                    return garagePlace.getPlaceNumber();
                 } else {
-                    logger.error("Failed to remove garage place: {}", garagePlace);
-                }
-                transaction.commit();
-            } catch (HibernateException e) {
-                if (transaction != null) {
                     transaction.rollback();
+                    logger.warn("Garage place with ID {} not found. Nothing was removed.", garagePlace.getPlaceNumber());
+                    throw new RuntimeException("Garage place with ID " + garagePlace.getPlaceNumber() + " not found");
                 }
-                logger.error("Failed to remove garage place: {}", garagePlace, e);
+            } catch (HibernateException e) {
+                transaction.rollback();
+                logger.error("Failed to remove garage place with ID: {}", garagePlace.getPlaceNumber(), e);
+                throw new RuntimeException("Failed to remove garage place", e);
             }
+        } catch (HibernateException e) {
+            logger.error("Error with Hibernate session while removing garage place with ID: {}", garagePlace.getPlaceNumber(), e);
+            throw new RuntimeException("Database connection error", e);
         }
-        return isDeleted;
     }
+
 
     @Override
     public boolean updateGaragePlace(GaragePlace garagePlace) {

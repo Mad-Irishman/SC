@@ -38,7 +38,16 @@ public class Master {
         this.available = available;
     }
 
+    public MasterStatus getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(MasterStatus available) {
+        this.available = available;
+    }
+
     private static String generateUniqueId() {
         return UUID.randomUUID().toString();
     }
+
 }

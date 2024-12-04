@@ -49,40 +49,22 @@ public class ServiceManager implements ServiceManagerInterface {
     }
 
     @Override
-    public boolean addMaster(Master master) throws ServiceManagerException {
-        boolean isAdded = false;
-        if (master == null) {
-            throw new ServiceManagerException("Master cannot be null");
-        }
-        try {
-            garageService.addMaster(master);
+    public String addMaster(Master master) throws ServiceManagerException {
+        if (master != null) {
             logger.info("Master was added to the garage");
-            isAdded = true;
-        } catch (Exception e) {
+            return garageService.addMaster(master);
+        } else {
             throw new ServiceManagerException("Error adding master. Please try again later.");
         }
-
-        return isAdded;
-
     }
 
     @Override
-    public boolean removeMaster(Master master) throws ServiceManagerException {
-        boolean isRemoved = false;
-        if (master == null) {
-            throw new ServiceManagerException("Master cannot be null");
+    public String removeMaster(Master master) {
+        if (true) {
+            return garageService.removeMaster(master);
+        } else {
+            throw new RuntimeException("Can't remove master.");
         }
-        try {
-            if (master.getAvailable() == MasterStatus.AVAILABLE) {
-                garageService.removeMaster(master);
-                isRemoved = true;
-            } else {
-                System.out.println("Cannot remove the master because they have an active order.");
-            }
-        } catch (Exception e) {
-            throw new ServiceManagerException("Error removing master. Please try again later.");
-        }
-        return isRemoved;
     }
 
     @Override
@@ -159,25 +141,24 @@ public class ServiceManager implements ServiceManagerInterface {
     }
 
     @Override
-    public boolean addGaragePlace(GaragePlace garagePlace) {
-        boolean isAdded = false;
-        if (garageService.getGarage().getCanAddGaragePlace()) {
-            garageService.addGaragePlace(garagePlace);
-            isAdded = true;
+    public Integer addGaragePlace(GaragePlace garagePlace) {
+        if (!garageService.getGarage().getCanAddGaragePlace()) {
+            return garageService.addGaragePlace(garagePlace);
         } else {
-            System.out.println("You cannot add garage spaces at this time.");
+            throw new RuntimeException("Cannot add garage place");
         }
-        return isAdded;
     }
 
+
     @Override
-    public void removeGaragePlace(GaragePlace garagePlace) throws ServiceManagerException {
-        if (!garagePlace.isOccupied() && garageService.getGarage().getCanRemoveGaragePlace()) {
-            this.garageService.removeGaragePlace(garagePlace);
+    public Integer removeGaragePlace(GaragePlace garagePlace) {
+        if (garagePlace.isOccupied() && !garageService.getGarage().getCanRemoveGaragePlace()) {
+            return garageService.removeGaragePlace(garagePlace);
         } else {
-            System.out.println("Cannot remove garage place because it is occupied or prohibited at administrator level");
+            throw new RuntimeException("Cannot remove garage place: it is either occupied or removal is prohibited.");
         }
     }
+
 
     @Override
     public List<GaragePlace> allGaragePlaces() throws ServiceManagerException {

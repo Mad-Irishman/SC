@@ -20,7 +20,7 @@ public class OrderRestController {
         this.serviceManager = serviceManager;
     }
 
-    @GetMapping(path = "allOrders")
+    @GetMapping
     public List<Order> getAllOrders() {
         return serviceManager.getAllOrdersInGarage();
     }

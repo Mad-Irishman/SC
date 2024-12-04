@@ -5,11 +5,11 @@ import autoservice.models.garagePlace.GaragePlace;
 import java.util.List;
 
 public interface GaragePlaceRepository {
-    boolean addGaragePlace(GaragePlace garagePlace);
+    Integer addGaragePlace(GaragePlace garagePlace);
 
     List<GaragePlace> getAllGaragePlaces();
 
-    boolean removeGaragePlace(GaragePlace garagePlace);
+    Integer removeGaragePlace(GaragePlace garagePlace);
 
     boolean updateGaragePlace(GaragePlace garagePlace);
 

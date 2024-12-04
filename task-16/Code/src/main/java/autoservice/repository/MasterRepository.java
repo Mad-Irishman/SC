@@ -5,11 +5,11 @@ import autoservice.models.master.Master;
 import java.util.List;
 
 public interface MasterRepository {
-    boolean addMaster(Master master);
+    String addMaster(Master master);
 
     List<Master> allMasters();
 
-    boolean deleteMasterByName(Master master);
+    String removeMasterByName(Master master);
 
     Master getMasterById(String id);
 

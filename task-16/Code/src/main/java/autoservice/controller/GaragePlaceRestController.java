@@ -1,5 +1,8 @@
 package autoservice.controller;
 
+import autoservice.DTO.garagePlaceDTO.differentDTO.GaragePlaceDTO2;
+import autoservice.DTO.garagePlaceDTO.differentDTO.GaragePlaceDTO;
+import autoservice.DTO.garagePlaceDTO.mapper.GaragePlaceMapper;
 import autoservice.manager.impl.ServiceManager;
 import autoservice.models.garagePlace.GaragePlace;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/garagePlace")
+@RequestMapping(path = "/garage-places")
 public class GaragePlaceRestController {
 
     private final ServiceManager serviceManager;
@@ -20,30 +23,44 @@ public class GaragePlaceRestController {
         this.serviceManager = serviceManager;
     }
 
-    @GetMapping(path = "/allGaragePlaces")
-    public List<GaragePlace> getAllGaragePlaces() {
-        return serviceManager.allGaragePlaces();
+    @GetMapping
+    public ResponseEntity<List<GaragePlaceDTO2>> getAllGaragePlaces() {
+        List<GaragePlace> garagePlaces = serviceManager.allGaragePlaces();
+        List<GaragePlaceDTO2> garagePlaceDTOs = GaragePlaceMapper.toDTOList(garagePlaces);
+        return ResponseEntity.status(HttpStatus.OK).body(garagePlaceDTOs);
     }
 
-    @PostMapping(path = "/addGaragePlace")
-    public ResponseEntity<GaragePlace> addGaragePlace(@RequestBody GaragePlace newGaragePlace) {
-        boolean isAdded = serviceManager.addGaragePlace(newGaragePlace);
-        if (isAdded) {
-            return new ResponseEntity<>(newGaragePlace, HttpStatus.CREATED);
-        } else {
-            return new ResponseEntity<>(HttpStatus.CONFLICT);
+    @PostMapping
+    public ResponseEntity<GaragePlaceDTO> addGaragePlace(@RequestBody GaragePlaceDTO garagePlaceDTO) {
+        GaragePlace garagePlace = new GaragePlace(garagePlaceDTO.getId());
+
+        try {
+            Integer addedPlace = serviceManager.addGaragePlace(garagePlace);
+            GaragePlaceDTO responseDTO = new GaragePlaceDTO(addedPlace);
+
+            return ResponseEntity.status(HttpStatus.OK).body(responseDTO);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
     }
 
-    @DeleteMapping(path = "/deleteGaragePlace/{id}")
-    public ResponseEntity<String> deleteGaragePlace(@PathVariable int id) {
-        GaragePlace garagePlaceForDelete = serviceManager.getGaragePlaceByNumber(id);
 
-        if (garagePlaceForDelete == null) {
-            return ResponseEntity.status(404).body("Garage Place Not Found");
-        } else {
-            serviceManager.removeGaragePlace(garagePlaceForDelete);
-            return new ResponseEntity<>("Garage Place Deleted Successfully", HttpStatus.OK);
+    // постоянно ошибка 400
+    @DeleteMapping("/{id}")
+    public ResponseEntity<GaragePlaceDTO> removeGaragePlace(@PathVariable("id") Integer id) {
+        GaragePlace garagePlace = serviceManager.getGaragePlaceByNumber(id);
+
+        try {
+            Integer removedPlace = serviceManager.removeGaragePlace(garagePlace);
+            GaragePlaceDTO responseDTO = new GaragePlaceDTO(removedPlace);
+            return ResponseEntity.status(HttpStatus.OK).body(responseDTO);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
+
+
     }
+
+
+
 }

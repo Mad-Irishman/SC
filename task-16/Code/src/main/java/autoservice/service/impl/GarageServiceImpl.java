@@ -9,7 +9,8 @@ import autoservice.repository.impl.GaragePlaceRepositoryImpl;
 import autoservice.repository.impl.MasterRepositoryImpl;
 import autoservice.repository.impl.OrderRepositoryImpl;
 import autoservice.service.GarageServiceInterface;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ import java.util.List;
 
 @Service
 public class GarageServiceImpl implements GarageServiceInterface {
+    private static final Logger logger = LoggerFactory.getLogger(GarageServiceImpl.class);
     private final Garage garage;
     private final GaragePlaceRepositoryImpl garagePlaceDAO;
     private final MasterRepositoryImpl masterDAO;
@@ -41,8 +43,8 @@ public class GarageServiceImpl implements GarageServiceInterface {
     }
 
     @Override
-    public void addMaster(Master master) {
-        masterDAO.addMaster(master);
+    public String addMaster(Master master) {
+        return masterDAO.addMaster(master);
     }
 
     @Override
@@ -51,8 +53,8 @@ public class GarageServiceImpl implements GarageServiceInterface {
     }
 
     @Override
-    public void removeMaster(Master master) {
-        masterDAO.deleteMasterByName(master);
+    public String removeMaster(Master master) {
+        return masterDAO.removeMasterByName(master);
     }
 
     @Override
@@ -83,8 +85,9 @@ public class GarageServiceImpl implements GarageServiceInterface {
     }
 
     @Override
-    public void addGaragePlace(GaragePlace place) {
-        garagePlaceDAO.addGaragePlace(place);
+    public Integer addGaragePlace(GaragePlace place) {
+        logger.info("Validating and adding garage place...");
+        return garagePlaceDAO.addGaragePlace(place);
     }
 
     @Override
@@ -93,8 +96,8 @@ public class GarageServiceImpl implements GarageServiceInterface {
     }
 
     @Override
-    public void removeGaragePlace(GaragePlace place) {
-        garagePlaceDAO.removeGaragePlace(place);
+    public Integer removeGaragePlace(GaragePlace place) {
+        return garagePlaceDAO.removeGaragePlace(place);
     }
 
     @Override
@@ -111,6 +114,10 @@ public class GarageServiceImpl implements GarageServiceInterface {
     @Override
     public void updateGaragePlace(GaragePlace garagePlace) {
         garagePlaceDAO.updateGaragePlace(garagePlace);
+    }
+
+    public GaragePlace getGaragePlaceByNumber(int id) {
+        return garagePlaceDAO.getGaragePlaceByNumber(id);
     }
 
     @Override

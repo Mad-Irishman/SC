@@ -15,11 +15,11 @@ public interface GarageServiceInterface {
 
     MasterRepositoryImpl getMasterDAO();
 
-    void addMaster(Master master);
+    String addMaster(Master master);
 
     List<Master> allMasters();
 
-    void removeMaster(Master master);
+    String removeMaster(Master master);
 
     List<Master> getAvailableMasters();
 
@@ -29,11 +29,11 @@ public interface GarageServiceInterface {
 
     GaragePlaceRepositoryImpl getGaragePlaceDAO();
 
-    void addGaragePlace(GaragePlace place);
+    Integer addGaragePlace(GaragePlace place);
 
     List<GaragePlace> allGaragePlaces();
 
-    void removeGaragePlace(GaragePlace place);
+    Integer removeGaragePlace(GaragePlace place);
 
     List<GaragePlace> getAvailableGaragePlaces();
 
