@@ -21,11 +21,11 @@ public class Order {
     private final String idOrder;
     @Column(name = "description", nullable = false)
     private String description;
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "assigned_master", referencedColumnName = "id", nullable = false)
     @JsonInclude(JsonInclude.Include.ALWAYS)
     private Master assignedMaster;
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "assigned_garage_place", referencedColumnName = "place_number", nullable = false)
     private GaragePlace assignedGaragePlace;
     @Column(name = "status_order", nullable = false)

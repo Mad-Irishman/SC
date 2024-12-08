@@ -1,8 +1,8 @@
 package autoservice.controller;
 
-import autoservice.DTO.masterDTO.differentDTO.MasterDTO;
-import autoservice.DTO.masterDTO.differentDTO.MasterDTO2;
-import autoservice.DTO.masterDTO.mapper.MasterMapper;
+import autoservice.dto.masterDTO.differentDTO.MasterDTOForGet;
+import autoservice.dto.masterDTO.differentDTO.MasterDTOForPost;
+import autoservice.dto.masterDTO.differentDTO.MasterDTOForResponse;
 import autoservice.manager.impl.ServiceManager;
 import autoservice.models.master.Master;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,37 +24,23 @@ public class MasterRestController {
     }
 
     @GetMapping
-    public ResponseEntity<List<MasterDTO>> showAllMasters() {
-        List<Master> masters = serviceManager.getMasters();
-        List<MasterDTO> masterDTOs = MasterMapper.toDTOList(masters);
-        return ResponseEntity.status(200).body(masterDTOs);
+    public ResponseEntity<List<MasterDTOForGet>> getMasters() {
+        return ResponseEntity.status(200).body(serviceManager.getMasters());
     }
 
     @PostMapping
-    public ResponseEntity<MasterDTO2> addMaster(@RequestBody MasterDTO2 masterDTO2) {
-        Master master = new Master(masterDTO2.getId());
-
-        try {
-            String addedMaster = serviceManager.addMaster(master);
-            MasterDTO2 responseDTO = new MasterDTO2(addedMaster);
-            return ResponseEntity.status(HttpStatus.OK).body(responseDTO);
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-        }
+    public ResponseEntity<MasterDTOForResponse> postMaster(@RequestBody MasterDTOForPost masterDTOForPost) {
+        String addedMaster = serviceManager.addMaster(new Master(masterDTOForPost.getName()));
+        MasterDTOForResponse responseDTO = new MasterDTOForResponse(addedMaster);
+        return ResponseEntity.status(HttpStatus.OK).body(responseDTO);
     }
 
-    // в терминале id, который есть в бд, но при этом он его не находит
+    // в терминале id, который есть в бд, но при этом он его не находит(данные не удаляются)
     @DeleteMapping("/{name}")
-    public ResponseEntity<MasterDTO2> deleteMaster(@PathVariable String name) {
+    public ResponseEntity<MasterDTOForResponse> deleteMaster(@PathVariable String name) {
         Master masterForDeleted = serviceManager.findMasterByName(name);
-
-        try {
-            String removeMaster = serviceManager.removeMaster(masterForDeleted);
-            MasterDTO2 responseDTO = new MasterDTO2(removeMaster);
-            return ResponseEntity.status(HttpStatus.OK).body(responseDTO);
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-        }
+        String removeMaster = serviceManager.removeMaster(masterForDeleted);
+        MasterDTOForResponse responseDTO = new MasterDTOForResponse(removeMaster);
+        return ResponseEntity.status(HttpStatus.OK).body(responseDTO);
     }
-
 }

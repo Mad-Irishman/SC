@@ -23,38 +23,34 @@ public class OrderRepositoryImpl implements OrderRepository {
     private static final Logger logger = LoggerFactory.getLogger(OrderRepositoryImpl.class);
 
     @Override
-    public boolean createOrder(Order order) {
+    public String createOrder(Order order) {
         logger.info("Attempting to create order: {}", order);
-        boolean isCreated = false;
-
         try (Session session = DatabaseConnection.getInstance().getSession()) {
-            Transaction transaction = null;
+            Transaction transaction = session.beginTransaction();
             try {
-                transaction = session.beginTransaction();
                 Master assignedMaster = order.getAssignedMaster();
                 GaragePlace assignedGaragePlace = order.getAssignedGaragePlace();
+
                 if (assignedMaster != null) {
                     session.saveOrUpdate(assignedMaster);
                 }
                 if (assignedGaragePlace != null) {
                     session.saveOrUpdate(assignedGaragePlace);
                 }
-                session.save(order);
+                String orderId = (String) session.save(order);
                 transaction.commit();
+                logger.info("Order created successfully: {}", order);
+                return orderId;
             } catch (HibernateException e) {
-                if (transaction != null) {
-                    transaction.rollback();
-                }
-                logger.info("Failed to create order: {}", order);
+                transaction.rollback();
+                logger.error("Failed to create order: {}", order, e);
+                throw new RuntimeException("Failed to create order", e);
             }
-            logger.info("Order created successfully: {}", order);
-            isCreated = true;
-        } catch (Exception e) {
-            logger.error("Error while creating order: {}", order, e);
+        } catch (HibernateException e) {
+            logger.error("Error with Hibernate session while creating order: {}", order, e);
+            throw new RuntimeException("Database connection error", e);
         }
-        return isCreated;
     }
-
 
     @Override
     public List<Order> allOrders() {
@@ -75,9 +71,8 @@ public class OrderRepositoryImpl implements OrderRepository {
 
 
     @Override
-    public boolean deleteOrder(Order order) {
+    public String deleteOrder(Order order) {
         logger.info("Attempting to delete order: {}", order);
-        boolean isDeleted = false;
 
         try (Session session = DatabaseConnection.getInstance().getSession()) {
             Transaction transaction = session.beginTransaction();
@@ -86,21 +81,25 @@ public class OrderRepositoryImpl implements OrderRepository {
                 if (orderToDelete != null) {
                     session.delete(orderToDelete);
                     transaction.commit();
-                    isDeleted = true;
                     logger.info("Order with ID '{}' was deleted successfully.", order.getIdOrder());
+                    return order.getIdOrder();
                 } else {
                     logger.info("Order with ID '{}' not found.", order.getIdOrder());
+                    return null;
                 }
-            } catch (Exception e) {
+            } catch (HibernateException e) {
                 if (transaction != null) {
                     transaction.rollback();
                 }
                 logger.error("Error while trying to delete order: {}", order.getIdOrder(), e);
+                return null;
             }
-        } catch (Exception e) {
-            logger.error("Error while opening session to delete order: {}", order.getIdOrder(), e);
+        } catch (HibernateException e) {
+            logger.error("Error with Hibernate session while deleting order: {}", order.getIdOrder(), e);
+            return null;
         }
-        return isDeleted;
     }
+
+
 
 }

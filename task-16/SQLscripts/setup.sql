@@ -49,7 +49,7 @@ INSERT INTO garage_places (place_number, is_occupied)
 VALUES
     (1, true),
     (2, true),
-    (3, true),
+    (3, false),
     (4, false),
     (5, false);
 

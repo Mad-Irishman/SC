@@ -68,7 +68,7 @@ public class GaragePlaceRepositoryImpl implements GaragePlaceRepository {
                 CriteriaDelete<GaragePlace> criteriaDelete = builder.createCriteriaDelete(GaragePlace.class);
 
                 Root<GaragePlace> root = criteriaDelete.from(GaragePlace.class);
-                criteriaDelete.where(builder.equal(root.get("place_number"), garagePlace.getPlaceNumber()));
+                criteriaDelete.where(builder.equal(root.get("placeNumber"), garagePlace.getPlaceNumber()));
                 int rowsAffected = session.createQuery(criteriaDelete).executeUpdate();
 
                 if (rowsAffected > 0) {
@@ -104,7 +104,7 @@ public class GaragePlaceRepositoryImpl implements GaragePlaceRepository {
                 CriteriaBuilder builder = session.getCriteriaBuilder();
                 CriteriaUpdate<GaragePlace> criteriaUpdate = builder.createCriteriaUpdate(GaragePlace.class);
                 Root<GaragePlace> root = criteriaUpdate.from(GaragePlace.class);
-                criteriaUpdate.set(root.get("isOccupied"), garagePlace.isOccupied());
+                criteriaUpdate.set(root.get("is_occupied"), garagePlace.isOccupied());
                 criteriaUpdate.where(builder.equal(root.get("placeNumber"), garagePlace.getPlaceNumber()));
                 int rowsAffected = session.createQuery(criteriaUpdate).executeUpdate();
                 if (rowsAffected > 0) {

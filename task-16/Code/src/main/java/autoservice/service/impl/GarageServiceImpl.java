@@ -11,8 +11,10 @@ import autoservice.repository.impl.OrderRepositoryImpl;
 import autoservice.service.GarageServiceInterface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,11 +26,12 @@ public class GarageServiceImpl implements GarageServiceInterface {
     private final MasterRepositoryImpl masterDAO;
     private final OrderRepositoryImpl orderDAO;
 
-    public GarageServiceImpl() {
-        this.garage = new Garage();
-        this.garagePlaceDAO = new GaragePlaceRepositoryImpl();
-        this.masterDAO = new MasterRepositoryImpl();
-        this.orderDAO = new OrderRepositoryImpl();
+    @Autowired
+    public GarageServiceImpl(Garage garage, GaragePlaceRepositoryImpl garagePlaceDAO, MasterRepositoryImpl masterDAO, OrderRepositoryImpl orderDAO) {
+        this.garage = garage;
+        this.garagePlaceDAO = garagePlaceDAO;
+        this.masterDAO = masterDAO;
+        this.orderDAO = orderDAO;
     }
 
     @Override
@@ -122,8 +125,8 @@ public class GarageServiceImpl implements GarageServiceInterface {
 
     @Override
     //    Работа с orders
-    public void createOrder(Order order) {
-        orderDAO.createOrder(order);
+    public String createOrder(Order order) {
+        return orderDAO.createOrder(order);
     }
 
     @Override
@@ -132,7 +135,7 @@ public class GarageServiceImpl implements GarageServiceInterface {
     }
 
     @Override
-    public boolean removeOrder(Order order) {
+    public String removeOrder(Order order) {
         return orderDAO.deleteOrder(order);
     }
 

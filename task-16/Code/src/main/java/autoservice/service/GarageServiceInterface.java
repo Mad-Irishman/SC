@@ -39,11 +39,11 @@ public interface GarageServiceInterface {
 
     void updateGaragePlace(GaragePlace garagePlace);
 
-    void createOrder(Order order);
+    String createOrder(Order order);
 
     List<Order> allOrders();
 
-    boolean removeOrder(Order order);
+    String removeOrder(Order order);
 
     OrderRepositoryImpl getOrderDAO();
 

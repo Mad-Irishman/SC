@@ -1,5 +1,8 @@
 package autoservice.manager;
 
+import autoservice.dto.garagePlaceDTO.differentDTO.GaragePlaceDTOForGet;
+import autoservice.dto.masterDTO.differentDTO.MasterDTOForGet;
+import autoservice.dto.orderDTO.differentDTO.OrderDTOForGet;
 import autoservice.models.garage.Garage;
 import autoservice.models.garagePlace.GaragePlace;
 import autoservice.models.master.Master;
@@ -25,7 +28,7 @@ public interface ServiceManagerInterface {
 
     Master getMasterById(String id);
 
-    List<Master> getMasters();
+    List<MasterDTOForGet> getMasters();
 
     List<Master> getAllMasterInGarage();
 
@@ -33,17 +36,17 @@ public interface ServiceManagerInterface {
 
     GaragePlace findGaragePlaceByNumber(String garagePlaceNumber);
 
-    List<GaragePlace> allGaragePlaces();
+    List<GaragePlaceDTOForGet> allGaragePlaces();
 
     GaragePlace getGaragePlaceByNumber(int placeNumber);
 
     List<GaragePlace> getAvailableGaragePlaces();
 
-    void createOrder(String discription, LocalDateTime submissionDate, LocalDateTime completionDate, LocalDateTime plannedStartDate, double price);
+    String createOrder(String discription, LocalDateTime submissionDate, LocalDateTime completionDate, LocalDateTime plannedStartDate, double price);
 
     void addOrder(Order order);
 
-    List<Order> getOrders();
+    List<OrderDTOForGet> getOrders();
 
     List<Order> getAllOrdersInGarage();
 
@@ -51,7 +54,7 @@ public interface ServiceManagerInterface {
 
     Order getOrderById(String id);
 
-    void removeOrder(Order order);
+    String removeOrder(Order order);
 
     void completeOrder(Order order);
 

@@ -1,8 +1,7 @@
 package autoservice.controller;
 
-import autoservice.DTO.garagePlaceDTO.differentDTO.GaragePlaceDTO2;
-import autoservice.DTO.garagePlaceDTO.differentDTO.GaragePlaceDTO;
-import autoservice.DTO.garagePlaceDTO.mapper.GaragePlaceMapper;
+import autoservice.dto.garagePlaceDTO.differentDTO.GaragePlaceDTOForGet;
+import autoservice.dto.garagePlaceDTO.differentDTO.GaragePlaceDTOForPost;
 import autoservice.manager.impl.ServiceManager;
 import autoservice.models.garagePlace.GaragePlace;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,43 +23,27 @@ public class GaragePlaceRestController {
     }
 
     @GetMapping
-    public ResponseEntity<List<GaragePlaceDTO2>> getAllGaragePlaces() {
-        List<GaragePlace> garagePlaces = serviceManager.allGaragePlaces();
-        List<GaragePlaceDTO2> garagePlaceDTOs = GaragePlaceMapper.toDTOList(garagePlaces);
-        return ResponseEntity.status(HttpStatus.OK).body(garagePlaceDTOs);
+    public ResponseEntity<List<GaragePlaceDTOForGet>> getGaragePlaces() {
+        return ResponseEntity.status(HttpStatus.OK).body(serviceManager.allGaragePlaces());
     }
 
     @PostMapping
-    public ResponseEntity<GaragePlaceDTO> addGaragePlace(@RequestBody GaragePlaceDTO garagePlaceDTO) {
-        GaragePlace garagePlace = new GaragePlace(garagePlaceDTO.getId());
-
-        try {
-            Integer addedPlace = serviceManager.addGaragePlace(garagePlace);
-            GaragePlaceDTO responseDTO = new GaragePlaceDTO(addedPlace);
-
-            return ResponseEntity.status(HttpStatus.OK).body(responseDTO);
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-        }
+    public ResponseEntity<GaragePlaceDTOForPost> postGaragePlace(@RequestBody GaragePlaceDTOForPost garagePlaceDTO) {
+        Integer addedPlace = serviceManager.addGaragePlace(new GaragePlace(garagePlaceDTO.getId()));
+        GaragePlaceDTOForPost responseDTO = new GaragePlaceDTOForPost(addedPlace);
+        return ResponseEntity.status(HttpStatus.OK).body(responseDTO);
     }
 
 
-    // постоянно ошибка 400
     @DeleteMapping("/{id}")
-    public ResponseEntity<GaragePlaceDTO> removeGaragePlace(@PathVariable("id") Integer id) {
+    public ResponseEntity<GaragePlaceDTOForPost> deleteGaragePlace(@PathVariable("id") Integer id) {
         GaragePlace garagePlace = serviceManager.getGaragePlaceByNumber(id);
-
-        try {
-            Integer removedPlace = serviceManager.removeGaragePlace(garagePlace);
-            GaragePlaceDTO responseDTO = new GaragePlaceDTO(removedPlace);
-            return ResponseEntity.status(HttpStatus.OK).body(responseDTO);
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-        }
+        Integer removedPlace = serviceManager.removeGaragePlace(garagePlace);
+        GaragePlaceDTOForPost responseDTO = new GaragePlaceDTOForPost(removedPlace);
+        return ResponseEntity.status(HttpStatus.OK).body(responseDTO);
 
 
     }
-
 
 
 }

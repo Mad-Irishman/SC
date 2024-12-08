@@ -1,6 +1,12 @@
 package autoservice.manager.impl;
 
 import autoservice.assistantManager.impl.Assistant;
+import autoservice.dto.garagePlaceDTO.differentDTO.GaragePlaceDTOForGet;
+import autoservice.dto.garagePlaceDTO.mapper.GaragePlaceMapper;
+import autoservice.dto.masterDTO.differentDTO.MasterDTOForGet;
+import autoservice.dto.masterDTO.mapper.MasterMapper;
+import autoservice.dto.orderDTO.differentDTO.OrderDTOForGet;
+import autoservice.dto.orderDTO.mapper.OrderMapper;
 import autoservice.manager.ServiceManagerInterface;
 import autoservice.exception.managerException.ServiceManagerException;
 import autoservice.models.garage.Garage;
@@ -49,7 +55,7 @@ public class ServiceManager implements ServiceManagerInterface {
     }
 
     @Override
-    public String addMaster(Master master) throws ServiceManagerException {
+    public String addMaster(Master master) {
         if (master != null) {
             logger.info("Master was added to the garage");
             return garageService.addMaster(master);
@@ -60,7 +66,8 @@ public class ServiceManager implements ServiceManagerInterface {
 
     @Override
     public String removeMaster(Master master) {
-        if (true) {
+        if (master != null) {
+            logger.info("Master was deleted from the garage");
             return garageService.removeMaster(master);
         } else {
             throw new RuntimeException("Can't remove master.");
@@ -86,9 +93,9 @@ public class ServiceManager implements ServiceManagerInterface {
 
 
     @Override
-    public List<Master> getMasters() throws ServiceManagerException {
+    public List<MasterDTOForGet> getMasters() {
         try {
-            return garageService.allMasters();
+            return MasterMapper.toDTOList(garageService.allMasters());
         } catch (Exception e) {
             throw new ServiceManagerException("Error retrieving master list");
         }
@@ -142,7 +149,7 @@ public class ServiceManager implements ServiceManagerInterface {
 
     @Override
     public Integer addGaragePlace(GaragePlace garagePlace) {
-        if (!garageService.getGarage().getCanAddGaragePlace()) {
+        if (garageService.getGarage().getCanAddGaragePlace()) {
             return garageService.addGaragePlace(garagePlace);
         } else {
             throw new RuntimeException("Cannot add garage place");
@@ -152,7 +159,7 @@ public class ServiceManager implements ServiceManagerInterface {
 
     @Override
     public Integer removeGaragePlace(GaragePlace garagePlace) {
-        if (garagePlace.isOccupied() && !garageService.getGarage().getCanRemoveGaragePlace()) {
+        if (!garagePlace.isOccupied() && garageService.getGarage().getCanRemoveGaragePlace()) {
             return garageService.removeGaragePlace(garagePlace);
         } else {
             throw new RuntimeException("Cannot remove garage place: it is either occupied or removal is prohibited.");
@@ -161,9 +168,9 @@ public class ServiceManager implements ServiceManagerInterface {
 
 
     @Override
-    public List<GaragePlace> allGaragePlaces() throws ServiceManagerException {
+    public List<GaragePlaceDTOForGet> allGaragePlaces() {
         try {
-            return garageService.allGaragePlaces();
+            return GaragePlaceMapper.toDTOList(garageService.allGaragePlaces());
         } catch (Exception e) {
             throw new ServiceManagerException("Error retrieving garage places: " + e.getMessage());
         }
@@ -186,7 +193,7 @@ public class ServiceManager implements ServiceManagerInterface {
     }
 
     @Override // надо придумать как после создания заказа обновить данные в бд
-    public void createOrder(String description, LocalDateTime submissionDate, LocalDateTime completionDate, LocalDateTime plannedStartDate, double price) throws ServiceManagerException {
+    public String createOrder(String description, LocalDateTime submissionDate, LocalDateTime completionDate, LocalDateTime plannedStartDate, double price) throws ServiceManagerException {
         if (description == null || submissionDate == null || completionDate == null || plannedStartDate == null) {
             throw new ServiceManagerException("Order parameters cannot be null");
         }
@@ -195,26 +202,25 @@ public class ServiceManager implements ServiceManagerInterface {
                 Order order = new Order(description, submissionDate, completionDate, plannedStartDate, price);
                 order.setAssignedMaster(garageService.getAvailableMasters().get(0));
                 order.getAssignedMaster().setAvailable(MasterStatus.OCCUPIED);
-
                 order.setAssignedGaragePlace(garageService.getAvailableGaragePlaces().get(0));
                 order.getAssignedGaragePlace().setOccupied(true);
-
-                garageService.createOrder(order);
-                ;
+                String orderId = garageService.createOrder(order);
                 garageService.updateGaragePlace(order.getAssignedGaragePlace());
                 garageService.updateMaster(order.getAssignedMaster());
-
                 System.out.println("Order created: " + order.getDescription());
+                return orderId;
             } else {
                 System.out.println("No available masters or garage places to create an order.");
+                throw new ServiceManagerException("No available masters or garage places.");
             }
         } catch (Exception e) {
             throw new ServiceManagerException("Error creating order. Please try again later.");
         }
     }
 
+
     @Override
-    public void addOrder(Order order) throws ServiceManagerException {
+    public void addOrder(Order order) {
         if (order == null) {
             throw new ServiceManagerException("Order cannot be null");
         }
@@ -241,7 +247,6 @@ public class ServiceManager implements ServiceManagerInterface {
             assignedGaragePlace.setOccupied(true);
 
             garageService.createOrder(order);
-            ;
             garageService.updateGaragePlace(order.getAssignedGaragePlace());
             garageService.updateMaster(order.getAssignedMaster());
 
@@ -253,8 +258,12 @@ public class ServiceManager implements ServiceManagerInterface {
 
 
     @Override
-    public List<Order> getOrders() {
-        return garageService.allOrders();
+    public List<OrderDTOForGet> getOrders() {
+        try {
+            return OrderMapper.toDTOList(garageService.allOrders());
+        } catch (Exception e) {
+            throw new ServiceManagerException("Error retrieving orders");
+        }
     }
 
     @Override
@@ -294,16 +303,17 @@ public class ServiceManager implements ServiceManagerInterface {
     }
 
     @Override
-    public void removeOrder(Order order) {
-        if (garageService.removeOrder(order) && garageService.getGarage().getCanRemoveOrder()) {
+    public String removeOrder(Order order) {
+        if (garageService.removeOrder(order) != null && garageService.getGarage().getCanRemoveOrder()) {
             order.getAssignedMaster().setAvailable(MasterStatus.AVAILABLE);
             order.getAssignedGaragePlace().setOccupied(false);
-            garageService.removeOrder(order);
+            String orderID = garageService.removeOrder(order);
             garageService.updateMaster(order.getAssignedMaster());
             garageService.updateGaragePlace(order.getAssignedGaragePlace());
             System.out.println("Order removed: " + order);
+            return orderID;
         } else {
-            System.out.println("Order not found or cannot be removed.");
+            throw new ServiceManagerException("Order not found or cannot be removed.");
         }
     }
 
