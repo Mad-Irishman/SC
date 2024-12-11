@@ -1,5 +1,6 @@
 package autoservice.ui.actions.impl.garageAction;
 
+import autoservice.dto.garagePlaceDTO.differentDTO.GaragePlaceDTOForGet;
 import autoservice.manager.impl.ServiceManager;
 import autoservice.models.garagePlace.GaragePlace;
 import autoservice.ui.actions.IAction;
@@ -17,18 +18,18 @@ public class AllGaragePlacesAction implements IAction {
     @Override
     public void execute() {
         try {
-            List<GaragePlace> allGaragePlaces = new ArrayList<>(serviceManager.allGaragePlaces());
+            ArrayList<GaragePlaceDTOForGet> allGaragePlaces = new ArrayList<>(serviceManager.allGaragePlaces());
             if (allGaragePlaces.isEmpty()) {
                 System.out.println("No garage places are available.");
                 return;
             }
-            for (GaragePlace garagePlace : allGaragePlaces) {
+            for (GaragePlaceDTOForGet garagePlace : allGaragePlaces) {
                 try {
-                    System.out.println("Place Number: " + garagePlace.getPlaceNumber() + " " +
-                            "Status: " + (garagePlace.isOccupied() ? "Occupied" : "Available"));
+                    System.out.println("Place Number: " + garagePlace.getId() + " " +
+                            "Status: " + (garagePlace.isStatus() ? "Occupied" : "Available"));
                 } catch (Exception e) {
                     System.out.println("Error retrieving information for garage place number " +
-                            garagePlace.getPlaceNumber() + ": " + e.getMessage());
+                            garagePlace.getId() + ": " + e.getMessage());
                 }
             }
         } catch (Exception e) {

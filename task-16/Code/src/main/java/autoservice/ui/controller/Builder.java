@@ -28,8 +28,8 @@ public class Builder {
                 new MenuItem("Add master", new AddMasterAction(serviceManager), null),
                 new MenuItem("All masters", new AllMastersAction(serviceManager), null),
                 new MenuItem("Remove master", new RemoveMasterAction(serviceManager), null),
-                new MenuItem("Get masters by order", new GetMastersByOrderAction(serviceManager), null),
-                new MenuItem("Get sorted masters", new GetSortedMastersAction(serviceManager), null),
+//                new MenuItem("Get masters by order", new GetMastersByOrderAction(serviceManager), null),
+//                new MenuItem("Get sorted masters", new GetSortedMastersAction(serviceManager), null),
                 new MenuItem("Export masters", new ExportMastersAction(serviceManager), null),
                 new MenuItem("Import masters", new ImportMastersAction(serviceManager), null),
                 new MenuItem("Exit to root menu", new ExitToRootAction(null), null)
@@ -49,8 +49,8 @@ public class Builder {
                 new MenuItem("Create order", new CreateOrderAction(serviceManager), null),
                 new MenuItem("All orders", new AllOrdersAction(serviceManager), null),
                 new MenuItem("Remove order", new RemoveOrderAction(serviceManager), null),
-                new MenuItem("Get order by status", new GetSortedOrdersAction(serviceManager), null),
-                new MenuItem("Get current order", new GetCurentOrdersAction(serviceManager), null),
+//                new MenuItem("Get order by status", new GetSortedOrdersAction(serviceManager), null),
+//                new MenuItem("Get current order", new GetCurentOrdersAction(serviceManager), null),
                 new MenuItem("Export orders", new ExportOrdersAction(serviceManager), null),
                 new MenuItem("Import orders", new ImportOrdersAction(serviceManager), null),
                 new MenuItem("Exit to root menu", new ExitToRootAction(null), null)

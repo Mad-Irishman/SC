@@ -1,5 +1,6 @@
 package autoservice.utils.imports.csv;
 
+import autoservice.dto.garagePlaceDTO.differentDTO.GaragePlaceDTOForGet;
 import autoservice.manager.impl.ServiceManager;
 import autoservice.models.garagePlace.GaragePlace;
 
@@ -13,7 +14,7 @@ public class GarageCSVImporter {
     private static final String filePath = "src/main/resources/importFiles/garages.csv";
 
     public static void importGaragePlacesFromCSV(ServiceManager serviceManager) throws IOException {
-        List<GaragePlace> existingGaragePlaces = serviceManager.allGaragePlaces();
+        List<GaragePlaceDTOForGet> existingGaragePlaces = serviceManager.allGaragePlaces();
         List<GaragePlace> newGaragePlaces = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
@@ -35,7 +36,7 @@ public class GarageCSVImporter {
                 boolean isOccupied = Boolean.parseBoolean(values[1]);
 
                 boolean idExistsInDB = existingGaragePlaces.stream()
-                        .anyMatch(garagePlace -> garagePlace.getPlaceNumber() == placeId);
+                        .anyMatch(garagePlace -> garagePlace.getId() == placeId);
 
                 if (idExistsInDB) {
                     System.out.println("ID conflict found: " + placeId + ". Import canceled.");

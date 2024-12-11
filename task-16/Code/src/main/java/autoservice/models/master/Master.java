@@ -1,10 +1,10 @@
 package autoservice.models.master;
 
 import autoservice.models.master.masterStatus.MasterStatus;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
 import java.util.UUID;
 
 @Getter

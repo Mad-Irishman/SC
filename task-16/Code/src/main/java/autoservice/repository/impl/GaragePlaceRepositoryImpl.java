@@ -8,10 +8,11 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.criteria.*;
+import jakarta.persistence.criteria.*;
 import java.util.List;
 
 @Repository
@@ -19,6 +20,7 @@ public class GaragePlaceRepositoryImpl implements GaragePlaceRepository {
     private static final Logger logger = LoggerFactory.getLogger(GaragePlaceRepositoryImpl.class);
     private final SessionFactory sessionFactory;
 
+    @Autowired
     public GaragePlaceRepositoryImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }

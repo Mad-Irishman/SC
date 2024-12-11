@@ -1,5 +1,6 @@
 package autoservice.utils.imports.csv;
 
+import autoservice.dto.orderDTO.differentDTO.OrderDTOForGet;
 import autoservice.models.order.Order;
 import autoservice.models.order.orderStatus.OrderStatus;
 import autoservice.models.master.Master;
@@ -19,7 +20,7 @@ public class OrderCSVImporter {
     private static final String filePath = "src/main/resources/importFiles/orders.csv";
 
     public static void importOrdersFromCSV(ServiceManager serviceManager) throws IOException {
-        List<Order> existingOrders = serviceManager.getOrders();
+        List<OrderDTOForGet> existingOrders = serviceManager.getOrders();
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
@@ -57,7 +58,7 @@ public class OrderCSVImporter {
                 GaragePlace assignedGaragePlace = serviceManager.findGaragePlaceByNumber(String.valueOf(garagePlaceNumber));
 
                 boolean orderExists = existingOrders.stream()
-                        .anyMatch(order -> order.getIdOrder().equals(id) || order.getDescription().equals(description));
+                        .anyMatch(order -> order.getOrderId().equals(id) || order.getDescription().equals(description));
 
                 if (orderExists) {
                     System.out.println("Duplicate order found with ID: " + id + ". Import cancelled.");

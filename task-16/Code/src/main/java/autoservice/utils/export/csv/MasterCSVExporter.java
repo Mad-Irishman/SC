@@ -1,5 +1,6 @@
 package autoservice.utils.export.csv;
 
+import autoservice.dto.masterDTO.differentDTO.MasterDTOForGet;
 import autoservice.models.master.Master;
 import autoservice.models.master.masterStatus.MasterStatus;
 
@@ -11,17 +12,16 @@ import java.util.List;
 public class MasterCSVExporter {
     private static final String filePath = "src/main/resources/exportFiles/masters.csv";
 
-    public static void exportMastersToCSV(List<Master> masters) throws IOException {
+    public static void exportMastersToCSV(List<MasterDTOForGet> masters) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             writer.write("ID,Name,Status");
             writer.newLine();
 
-            for (Master master : masters) {
+            for (MasterDTOForGet master : masters) {
                 String id = master.getId();
                 String name = master.getName();
-                MasterStatus status = master.getAvailable();
 
-                String line = String.format("%s,%s,%s", id, name, status);
+                String line = String.format("%s,%s", id, name);
                 writer.write(line);
                 writer.newLine();
             }

@@ -1,5 +1,6 @@
 package autoservice.ui.actions.impl.masterAction;
 
+import autoservice.dto.masterDTO.differentDTO.MasterDTOForGet;
 import autoservice.manager.impl.ServiceManager;
 import autoservice.models.master.Master;
 import autoservice.ui.actions.IAction;
@@ -16,7 +17,7 @@ public class AllMastersAction implements IAction {
 
     @Override
     public void execute() {
-        List<Master> allMasters = serviceManager.getMasters();
+        List<MasterDTOForGet> allMasters = serviceManager.getMasters();
         try {
             if (serviceManager.getAllMasterInGarage().isEmpty()) {
                 System.out.println("No masters available in the garage.");

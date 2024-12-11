@@ -1,5 +1,6 @@
 package autoservice.ui.actions.impl.orderAction;
 
+import autoservice.dto.orderDTO.differentDTO.OrderDTOForGet;
 import autoservice.manager.impl.ServiceManager;
 import autoservice.models.order.Order;
 import autoservice.ui.actions.IAction;
@@ -17,7 +18,7 @@ public class AllOrdersAction implements IAction {
     @Override
     public void execute() {
         try {
-            List<Order> allOrders = serviceManager.getOrders();
+            List<OrderDTOForGet> allOrders = serviceManager.getOrders();
 
             if (allOrders.isEmpty()) {
                 System.out.println("No orders found.");

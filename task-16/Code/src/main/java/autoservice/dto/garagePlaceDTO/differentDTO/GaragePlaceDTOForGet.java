@@ -16,5 +16,4 @@ public class GaragePlaceDTOForGet {
         this.id = id;
         this.status = status;
     }
-
 }
