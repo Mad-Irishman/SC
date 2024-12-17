@@ -44,6 +44,7 @@ public class MasterRepositoryImpl implements MasterRepository {
 
 
     @Override
+    @Transactional
     public List<Master> allMasters() {
         logger.info("Attempting to get all masters");
         try {
@@ -92,6 +93,7 @@ public class MasterRepositoryImpl implements MasterRepository {
 
 
     @Override
+    @Transactional
     public Master getMasterById(String id) {
         Master master = null;
 

@@ -7,9 +7,14 @@ import autoservice.models.garagePlace.GaragePlace;
 import autoservice.models.master.Master;
 import autoservice.models.order.Order;
 import autoservice.models.order.orderStatus.OrderStatus;
+import autoservice.service.GarageServiceInterface;
+import autoservice.servicesSorting.DataSort.DataSortInterface;
 import autoservice.servicesSorting.DataSort.impl.DataSort;
+import autoservice.servicesSorting.GaragePlacesSort.GaragePlacesSortInterface;
 import autoservice.servicesSorting.GaragePlacesSort.impl.GaragePlacesSort;
+import autoservice.servicesSorting.MastersSort.MastersSortInterface;
 import autoservice.servicesSorting.MastersSort.impl.MastersSort;
+import autoservice.servicesSorting.OrdersSort.OrdersSortInterface;
 import autoservice.servicesSorting.OrdersSort.impl.OrdersSort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,17 +25,17 @@ import java.util.List;
 
 @Service
 public class Assistant implements AssistantInterface {
-    private final MastersSort mastersSort;
-    private final GaragePlacesSort garagePlacesSort;
-    private final DataSort dataSort;
-    private final OrdersSort ordersSort;
+    private final MastersSortInterface mastersSortInterface;
+    private final GaragePlacesSortInterface garagePlacesSortInterface;
+    private final DataSortInterface dataSortInterface;
+    private final OrdersSortInterface ordersSortInterface;
 
     @Autowired
-    public Assistant(MastersSort mastersSort, GaragePlacesSort garagePlacesSort, DataSort dataSort, OrdersSort ordersSort) {
-        this.mastersSort = mastersSort;
-        this.garagePlacesSort = garagePlacesSort;
-        this.dataSort = dataSort;
-        this.ordersSort = ordersSort;
+    public Assistant(DataSortInterface dataSortInterface, MastersSortInterface mastersSortInterface, GaragePlacesSortInterface garagePlacesSortInterface, OrdersSortInterface ordersSortInterface) {
+        this.dataSortInterface = dataSortInterface;
+        this.mastersSortInterface = mastersSortInterface;
+        this.garagePlacesSortInterface = garagePlacesSortInterface;
+        this.ordersSortInterface = ordersSortInterface;
     }
 
     @Override
@@ -40,7 +45,7 @@ public class Assistant implements AssistantInterface {
             return masters;
         }
         try {
-            return mastersSort.getMastersByOrders(masters, order);
+            return mastersSortInterface.getMastersByOrders(masters, order);
         } catch (Exception e) {
             System.err.println("Error retrieving masters by order. Please try again later.");
             return masters;
@@ -54,7 +59,7 @@ public class Assistant implements AssistantInterface {
             return masters;
         }
         try {
-            return mastersSort.getSortedMasters(masters, comparators);
+            return mastersSortInterface.getSortedMasters(masters, comparators);
         } catch (Exception e) {
             System.err.println("Error sorting masters. Please try again later.");
             return masters;
@@ -64,7 +69,7 @@ public class Assistant implements AssistantInterface {
     @Override
     public List<GaragePlace> getAvailableGaragePlaces(List<Garage> garages) throws AssistantException {
         try {
-            return garagePlacesSort.getAvailableGaragePlaces(garages);
+            return garagePlacesSortInterface.getAvailableGaragePlaces(garages);
         } catch (Exception e) {
             System.err.println("Error retrieving available garage places. Please try again later.");
             return null;
@@ -78,7 +83,7 @@ public class Assistant implements AssistantInterface {
             return -1;
         }
         try {
-            return dataSort.getFreePlacesOnDate(orders, masters, garages, date);
+            return dataSortInterface.getFreePlacesOnDate(orders, masters, garages, date);
         } catch (Exception e) {
             System.err.println("Error retrieving free places on the specified date. Please try again later.");
             return -1;
@@ -88,7 +93,7 @@ public class Assistant implements AssistantInterface {
     @Override
     public LocalDateTime getNearestFreeDate(List<Master> masters, List<Order> orders, List<Garage> garages) throws AssistantException {
         try {
-            return dataSort.getNearestFreeDate(masters, orders, garages);
+            return dataSortInterface.getNearestFreeDate(masters, orders, garages);
         } catch (Exception e) {
             System.err.println("Error retrieving nearest free date. Please try again later.");
             return null;
@@ -102,7 +107,7 @@ public class Assistant implements AssistantInterface {
             return orders;
         }
         try {
-            return ordersSort.getSortedOrders(orders, comparators);
+            return ordersSortInterface.getSortedOrders(orders, comparators);
         } catch (Exception e) {
             System.err.println("Error sorting orders. Please try again later.");
             return orders;
@@ -116,7 +121,7 @@ public class Assistant implements AssistantInterface {
             return orders;
         }
         try {
-            return ordersSort.getOrdersByMaster(orders, master);
+            return ordersSortInterface.getOrdersByMaster(orders, master);
         } catch (Exception e) {
             System.err.println("Error retrieving orders by master. Please try again later.");
             return orders;
@@ -126,7 +131,7 @@ public class Assistant implements AssistantInterface {
     @Override
     public List<Order> getCurrentOrders(List<Order> orders) throws AssistantException {
         try {
-            return ordersSort.getCurrentOrders(orders);
+            return ordersSortInterface.getCurrentOrders(orders);
         } catch (Exception e) {
             System.err.println("Error retrieving current orders. Please try again later.");
             return orders;
@@ -140,7 +145,7 @@ public class Assistant implements AssistantInterface {
             return orders;
         }
         try {
-            return ordersSort.getOrdersByStatus(orders, status);
+            return ordersSortInterface.getOrdersByStatus(orders, status);
         } catch (Exception e) {
             System.err.println("Error retrieving orders by status. Please try again later.");
             return orders;
@@ -158,7 +163,7 @@ public class Assistant implements AssistantInterface {
             return orders;
         }
         try {
-            return ordersSort.getOrdersByTimeFrame(orders, startTime, endTime);
+            return ordersSortInterface.getOrdersByTimeFrame(orders, startTime, endTime);
         } catch (Exception e) {
             System.err.println("Error retrieving orders by time frame. Please try again later.");
             return orders;

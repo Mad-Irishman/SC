@@ -43,6 +43,7 @@ public class GaragePlaceRepositoryImpl implements GaragePlaceRepository {
 
 
     @Override
+    @Transactional
     public List<GaragePlace> getAllGaragePlaces() {
         logger.info("Attempting to get all garage places");
         try {
@@ -117,6 +118,7 @@ public class GaragePlaceRepositoryImpl implements GaragePlaceRepository {
 
 
     @Override
+    @Transactional
     public GaragePlace getGaragePlaceByNumber(int placeNumber) {
         logger.info("Attempting to get garage place by number: {}", placeNumber);
         GaragePlace garagePlace = null;

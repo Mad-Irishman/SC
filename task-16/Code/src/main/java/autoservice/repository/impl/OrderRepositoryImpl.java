@@ -55,6 +55,7 @@ public class OrderRepositoryImpl implements OrderRepository {
 
 
     @Override
+    @Transactional
     public List<Order> allOrders() {
         logger.info("Attempting to retrieve all orders");
 

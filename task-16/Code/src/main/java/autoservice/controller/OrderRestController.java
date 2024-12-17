@@ -35,8 +35,7 @@ public class OrderRestController {
         OrderDTOForResponse orderDTOForResponse = new OrderDTOForResponse(addedOrder);
         return ResponseEntity.status(200).body(orderDTOForResponse);
     }
-
-    // не выводится id
+    
     @DeleteMapping(path = "/{description}")
     public ResponseEntity<OrderDTOForResponse> deleteOrder(@PathVariable String description) {
         Order order = serviceManager.getOrderByDescription(description);

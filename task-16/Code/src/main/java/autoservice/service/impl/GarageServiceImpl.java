@@ -5,9 +5,9 @@ import autoservice.models.garagePlace.GaragePlace;
 import autoservice.models.master.Master;
 import autoservice.models.master.masterStatus.MasterStatus;
 import autoservice.models.order.Order;
-import autoservice.repository.impl.GaragePlaceRepositoryImpl;
-import autoservice.repository.impl.MasterRepositoryImpl;
-import autoservice.repository.impl.OrderRepositoryImpl;
+import autoservice.repository.GaragePlaceRepository;
+import autoservice.repository.MasterRepository;
+import autoservice.repository.OrderRepository;
 import autoservice.service.GarageServiceInterface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,16 +21,16 @@ import java.util.List;
 public class GarageServiceImpl implements GarageServiceInterface {
     private static final Logger logger = LoggerFactory.getLogger(GarageServiceImpl.class);
     private final Garage garage;
-    private final GaragePlaceRepositoryImpl garagePlaceDAO;
-    private final MasterRepositoryImpl masterDAO;
-    private final OrderRepositoryImpl orderDAO;
+    private final GaragePlaceRepository garagePlaceRepository;
+    private final MasterRepository masterRepository;
+    private final OrderRepository orderRepository;
 
     @Autowired
-    public GarageServiceImpl(Garage garage, GaragePlaceRepositoryImpl garagePlaceDAO, MasterRepositoryImpl masterDAO, OrderRepositoryImpl orderDAO) {
+    public GarageServiceImpl(Garage garage, GaragePlaceRepository garagePlaceRepository, MasterRepository masterRepository, OrderRepository orderRepository) {
         this.garage = garage;
-        this.garagePlaceDAO = garagePlaceDAO;
-        this.masterDAO = masterDAO;
-        this.orderDAO = orderDAO;
+        this.garagePlaceRepository = garagePlaceRepository;
+        this.masterRepository = masterRepository;
+        this.orderRepository = orderRepository;
     }
 
     @Override
@@ -40,29 +40,29 @@ public class GarageServiceImpl implements GarageServiceInterface {
 
     @Override
     //Работа с masters
-    public MasterRepositoryImpl getMasterDAO() {
-        return masterDAO;
+    public MasterRepository getMasterRepository() {
+        return masterRepository;
     }
 
     @Override
     public String addMaster(Master master) {
-        return masterDAO.addMaster(master);
+        return masterRepository.addMaster(master);
     }
 
     @Override
     public List<Master> allMasters() {
-        return masterDAO.allMasters();
+        return masterRepository.allMasters();
     }
 
     @Override
     public String removeMaster(Master master) {
-        return masterDAO.removeMasterByName(master);
+        return masterRepository.removeMasterByName(master);
     }
 
     @Override
     public List<Master> getAvailableMasters() {
         List<Master> availableMasters = new ArrayList<>();
-        for (Master master : masterDAO.allMasters()) {
+        for (Master master : masterRepository.allMasters()) {
             if (master.getAvailable() == MasterStatus.AVAILABLE) {
                 availableMasters.add(master);
             }
@@ -72,40 +72,40 @@ public class GarageServiceImpl implements GarageServiceInterface {
 
     @Override
     public Master getMasterById(String id) {
-        return masterDAO.getMasterById(id);
+        return masterRepository.getMasterById(id);
     }
 
     @Override
     public void updateMaster(Master master) {
-        masterDAO.updateMaster(master);
+        masterRepository.updateMaster(master);
     }
 
     @Override
     //Работа с garagePlaces
-    public GaragePlaceRepositoryImpl getGaragePlaceDAO() {
-        return garagePlaceDAO;
+    public GaragePlaceRepository getGaragePlaceRepository() {
+        return garagePlaceRepository;
     }
 
     @Override
     public Integer addGaragePlace(GaragePlace place) {
         logger.info("Validating and adding garage place...");
-        return garagePlaceDAO.addGaragePlace(place);
+        return garagePlaceRepository.addGaragePlace(place);
     }
 
     @Override
     public List<GaragePlace> allGaragePlaces() {
-        return garagePlaceDAO.getAllGaragePlaces();
+        return garagePlaceRepository.getAllGaragePlaces();
     }
 
     @Override
     public Integer removeGaragePlace(GaragePlace place) {
-        return garagePlaceDAO.removeGaragePlace(place);
+        return garagePlaceRepository.removeGaragePlace(place);
     }
 
     @Override
     public List<GaragePlace> getAvailableGaragePlaces() {
         List<GaragePlace> availablePlaces = new ArrayList<>();
-        for (GaragePlace place : getGaragePlaceDAO().getAllGaragePlaces()) {
+        for (GaragePlace place : getGaragePlaceRepository().getAllGaragePlaces()) {
             if (!place.isOccupied()) {
                 availablePlaces.add(place);
             }
@@ -115,32 +115,33 @@ public class GarageServiceImpl implements GarageServiceInterface {
 
     @Override
     public void updateGaragePlace(GaragePlace garagePlace) {
-        garagePlaceDAO.updateGaragePlace(garagePlace);
-    }
-
-    public GaragePlace getGaragePlaceByNumber(int id) {
-        return garagePlaceDAO.getGaragePlaceByNumber(id);
+        garagePlaceRepository.updateGaragePlace(garagePlace);
     }
 
     @Override
+    public GaragePlace getGaragePlaceByNumber(int id) {
+        return garagePlaceRepository.getGaragePlaceByNumber(id);
+    }
+
     //    Работа с orders
+    @Override
+    public OrderRepository getOrderRepository() {
+        return orderRepository;
+    }
+
+    @Override
     public String createOrder(Order order) {
-        return orderDAO.createOrder(order);
+        return orderRepository.createOrder(order);
     }
 
     @Override
     public List<Order> allOrders() {
-        return orderDAO.allOrders();
+        return orderRepository.allOrders();
     }
 
     @Override
     public String removeOrder(Order order) {
-        return orderDAO.deleteOrder(order);
-    }
-
-    @Override
-    public OrderRepositoryImpl getOrderDAO() {
-        return orderDAO;
+        return orderRepository.deleteOrder(order);
     }
 
 }

@@ -35,7 +35,6 @@ public class MasterRestController {
         return ResponseEntity.status(HttpStatus.OK).body(responseDTO);
     }
 
-    // в терминале id, который есть в бд, но при этом он его не находит(данные не удаляются)
     @DeleteMapping("/{name}")
     public ResponseEntity<MasterDTOForResponse> deleteMaster(@PathVariable String name) {
         Master masterForDeleted = serviceManager.findMasterByName(name);
