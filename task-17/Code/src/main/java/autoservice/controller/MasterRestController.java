@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/masters")
+@RequestMapping(path = "/admin/masters")
 public class MasterRestController {
 
     private final ServiceManager serviceManager;

@@ -10,8 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="942d31e9-d089-4221-b149-9c3b9848bbf4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../task-16/SQLscripts/setup.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../../task-16/SQLscripts/setup.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/autoservice/controller/GaragePlaceRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/autoservice/controller/GaragePlaceRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/autoservice/controller/MasterRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/autoservice/controller/MasterRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/autoservice/controller/OrderRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/autoservice/controller/OrderRestController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -258,7 +259,7 @@
       <workItem from="1736265925983" duration="4387000" />
       <workItem from="1736327006664" duration="31010000" />
       <workItem from="1736441975063" duration="28529000" />
-      <workItem from="1736554242435" duration="2690000" />
+      <workItem from="1736554242435" duration="3018000" />
     </task>
     <servers />
   </component>
